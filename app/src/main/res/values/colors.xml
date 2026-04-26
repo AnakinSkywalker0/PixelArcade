@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Theme Default Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Retro 2048 Theme Colors -->
+    <!-- Backgrounds -->
+    <color name="retro_bg">#EADECA</color>
+
+    <!-- Main Title & Dark Boxes -->
+    <color name="retro_dark_box">#8A7E71</color>
+    <color name="retro_dark_box_shadow">#6B6055</color>
+    
+    <!-- Light Grid Buttons (Unselected) -->
+    <color name="retro_light_btn">#B7A89A</color>
+    <color name="retro_light_btn_shadow">#9D8E80</color>
+    
+    <!-- Selected Grid Button -->
+    <color name="retro_selected_btn">#8F7661</color>
+    <color name="retro_selected_btn_shadow">#725B48</color>
+    
+    <!-- Settings Button -->
+    <color name="retro_settings_btn">#F3EBE1</color>
+    <color name="retro_settings_btn_shadow">#D9D0C5</color>
+    
+    <!-- Back Button -->
+    <color name="retro_back_btn">#A59B8B</color>
+    
+    <!-- 2048 Grid Colors -->
+    <color name="retro_grid_bg">#B7A89A</color>
+    <color name="retro_cell_empty">#CDC1B4</color>
+    <color name="retro_cell_2">#eee4da</color>
+    <color name="retro_cell_4">#ede0c8</color>
+    <color name="retro_cell_8">#f2b179</color>
+    <color name="retro_cell_16">#f59563</color>
+    <color name="retro_cell_32">#f67c5f</color>
+    <color name="retro_cell_64">#f65e3b</color>
+    <color name="retro_cell_128">#edcf72</color>
+    <color name="retro_cell_256">#edcc61</color>
+    <color name="retro_cell_512">#edc850</color>
+    <color name="retro_cell_1024">#edc53f</color>
+    <color name="retro_cell_2048">#edc22e</color>
+    <color name="retro_score_text">#6B6055</color>
+    
+    <!-- Text Colors -->
+    <color name="retro_text_white">#FFFFFF</color>
+    <color name="retro_text_dark">#6B6055</color>
+</resources>

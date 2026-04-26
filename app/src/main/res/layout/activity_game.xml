@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/retro_bg"
+    tools:context=".GameActivity">
+
+    <!-- Title Option -->
+    <TextView
+        android:id="@+id/tvGameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="66dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="2048"
+        android:textColor="@color/retro_dark_box"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Scores Section -->
+    <LinearLayout
+        android:id="@+id/llScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SCORES"
+            android:textColor="@color/retro_dark_box"
+            android:fontFamily="@font/press_start_2p"
+            android:textSize="14sp"
+            android:layout_marginBottom="6dp"/>
+
+        <LinearLayout
+            android:id="@+id/llScoreBoxes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+                <!-- Current Score Box -->
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_score_box"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CURRENT"
+                        android:textColor="@color/retro_text_white"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tvCurrentScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="0"
+                        android:textColor="@color/retro_text_white"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Highest Score Box -->
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_score_box"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HIGHEST"
+                        android:textColor="@color/retro_text_white"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tvHighestScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="0"
+                        android:textColor="@color/retro_text_white"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textSize="16sp" />
+                </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Game Board Container -->
+    <FrameLayout
+        android:id="@+id/boardContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_grid_container"
+        android:padding="8dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llScores">
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:useDefaultMargins="false">
+            <!-- Background cells stay here -->
+        </GridLayout>
+
+        <FrameLayout
+            android:id="@+id/tileContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- Animated tiles go here -->
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <!-- Controls Container -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boardContainer">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMenu"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_score_box"
+            android:fontFamily="@font/press_start_2p"
+            android:text="MENU"
+            android:textColor="@color/retro_text_white"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRestart"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn_grid_unselected"
+            android:fontFamily="@font/press_start_2p"
+            android:text="RESTART"
+            android:textColor="@color/retro_text_white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <!-- End Game Overlay (Semi-transparent background + Dialog) -->
+    <FrameLayout
+        android:id="@+id/overlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_dialog"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="32dp">
+
+            <TextView
+                android:id="@+id/tvOverlayTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="GAME OVER"
+                android:textColor="@color/white"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/tvOverlaySubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="BETTER LUCK NEXT TIME!"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
+            <!-- Dialog Score Box -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_dark_box"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvOverlayScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="SCORE: 0"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnOverlayAction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/bg_btn_grid_unselected"
+                android:fontFamily="@font/press_start_2p"
+                android:text="TRY AGAIN"
+                android:textColor="@color/retro_text_white"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnOverlayMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_btn_settings"
+                android:fontFamily="@font/press_start_2p"
+                android:text="MENU"
+                android:textColor="@color/retro_text_dark"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

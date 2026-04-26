@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Utilizing the dark box tint or a mid-brown color -->
+            <solid android:color="#7D746A"/> 
+            <corners android:radius="16dp"/>
+            <size android:width="54dp" android:height="28dp"/>
+        </shape>
+    </item>
+    <item android:gravity="start|center_vertical" android:left="3dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/white"/>
+            <size android:width="22dp" android:height="22dp"/>
+        </shape>
+    </item>
+</layer-list>

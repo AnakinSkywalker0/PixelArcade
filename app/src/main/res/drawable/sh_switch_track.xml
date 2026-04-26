@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Switch ON (Yellow) -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/retro_cell_2048"/>
+            <corners android:radius="20dp"/>
+            <size android:height="32dp" android:width="64dp"/>
+        </shape>
+    </item>
+    <!-- Switch OFF (Grey/Brown) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/retro_dark_box_shadow"/>
+            <corners android:radius="20dp"/>
+            <size android:height="32dp" android:width="64dp"/>
+        </shape>
+    </item>
+</selector>

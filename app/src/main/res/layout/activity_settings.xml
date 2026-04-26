@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/retro_bg"
+    tools:context=".SettingsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settingsContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="48dp"
+        android:paddingBottom="48dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_dialog"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:fontFamily="@font/press_start_2p"
+                android:text="SETTINGS"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+            <!-- SOUND -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="SOUND"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <!-- Volume Label -->
+            <TextView
+                android:id="@+id/tvVolumeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="VOLUME 70%"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
+            <!-- Volume Slider Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_settings"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="6dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="-"
+                    android:textColor="@color/retro_text_dark"
+                    android:textSize="12sp"/>
+
+                <SeekBar
+                    android:id="@+id/sbVolume"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="12dp"
+                    android:maxHeight="10dp"
+                    android:minHeight="10dp"
+                    android:max="100"
+                    android:progress="70"
+                    android:progressDrawable="@drawable/sh_seekbar_progress"
+                    android:thumb="@drawable/sh_seekbar_thumb"
+                    android:splitTrack="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_settings"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="6dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="+"
+                    android:textColor="@color/retro_text_dark"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <!-- Sound Effects Toggle -->
+            <LinearLayout
+                android:id="@+id/rowSoundEffects"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="SOUND EFFECTS"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/ivSoundEffects"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_toggle_on" />
+            </LinearLayout>
+
+            <!-- Music Toggle -->
+            <LinearLayout
+                android:id="@+id/rowMusic"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="MUSIC"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/ivMusic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_toggle_on" />
+            </LinearLayout>
+
+            <!-- GAME -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="GAME"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <!-- Animations Toggle -->
+            <LinearLayout
+                android:id="@+id/rowAnimations"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="ANIMATIONS"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/ivAnimations"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_toggle_on" />
+            </LinearLayout>
+
+            <!-- Grid Lines Toggle -->
+            <LinearLayout
+                android:id="@+id/rowGridLines"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="GRID LINES"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/ivGridLines"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_toggle_on" />
+            </LinearLayout>
+
+            <!-- DISPLAY -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="DISPLAY"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="48dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="THEME:"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_settings"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="10dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="CLASSIC"
+                    android:textColor="@color/retro_text_dark"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Actions -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnResetData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_btn_grid_unselected"
+                android:fontFamily="@font/press_start_2p"
+                android:text="RESET GAME DATA"
+                android:paddingVertical="16dp"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBackToMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_settings"
+                android:fontFamily="@font/press_start_2p"
+                android:paddingVertical="18dp"
+                android:text="BACK TO MENU"
+                android:textColor="@color/retro_text_dark"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

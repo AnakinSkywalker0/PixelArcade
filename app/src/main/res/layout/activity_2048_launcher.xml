@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/retro_bg"
+    tools:context=".GameLauncher2048Activity">
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_btn_back"
+        android:src="@drawable/ic_retro_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Go Back"
+        android:elevation="4dp"/>
+
+    <!-- 2048 Title Box -->
+    <FrameLayout
+        android:id="@+id/boxTitleContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_dark_box"
+        android:elevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingVertical="32dp"
+            android:fontFamily="@font/press_start_2p"
+            android:text="2048"
+            android:textColor="@color/retro_text_white"
+            android:textSize="48sp" />
+    </FrameLayout>
+
+    <!-- Grid Size Selector Box -->
+    <LinearLayout
+        android:id="@+id/boxGridSelector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/bg_dark_box"
+        android:elevation="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boxTitleContainer">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/press_start_2p"
+            android:text="SELECT GRID SIZE"
+            android:textColor="@color/retro_text_white"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="3">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGrid4x4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_btn_grid_unselected"
+                android:fontFamily="@font/press_start_2p"
+                android:text="4X4"
+                android:textColor="@color/retro_text_white"
+                android:textSize="14sp"
+                android:paddingBottom="10dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGrid5x5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/bg_btn_grid_selected"
+                android:fontFamily="@font/press_start_2p"
+                android:text="5X5"
+                android:textColor="@color/retro_text_white"
+                android:textSize="14sp"
+                android:paddingBottom="10dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGrid6x6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_btn_grid_unselected"
+                android:fontFamily="@font/press_start_2p"
+                android:text="6X6"
+                android:textColor="@color/retro_text_white"
+                android:textSize="14sp"
+                android:paddingBottom="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnStartGame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/bg_btn_start_game"
+        android:fontFamily="@font/press_start_2p"
+        android:text="START GAME"
+        android:textColor="@color/retro_text_white"
+        android:textSize="18sp"
+        android:paddingVertical="16dp"
+        android:paddingBottom="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boxGridSelector" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSettings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_btn_settings"
+        android:fontFamily="@font/press_start_2p"
+        android:text="SETTINGS"
+        android:textColor="@color/retro_text_dark"
+        android:textSize="16sp"
+        android:paddingVertical="14dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartGame" />
+
+    <!-- "How to Play" Overlay -->
+    <FrameLayout
+        android:id="@+id/overlayHowToPlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A6000000"
+        android:visibility="gone"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/bg_dialog"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:fontFamily="@font/press_start_2p"
+                android:text="HOW TO\nPLAY"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <!-- Instruction Block 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/bg_dark_box"
+                android:padding="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="SWIPE UP, DOWN, LEFT, OR RIGHT TO MOVE ALL TILES."
+                    android:textColor="#EADECA"
+                    android:lineSpacingExtra="12dp"
+                    android:textSize="14sp" />
+                    
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="WHEN TWO IDENTICAL TILES TOUCH, THEY MERGE INTO ONE!"
+                    android:textColor="#EADECA"
+                    android:lineSpacingExtra="12dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="REACH 2048 TO WIN!"
+                    android:textColor="@color/retro_cell_2048"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnPlayNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingVertical="18dp"
+                android:background="@drawable/bg_btn_grid_selected"
+                android:fontFamily="@font/press_start_2p"
+                android:text="PLAY NOW"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/btnCancelTutorial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="12dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="BACK"
+                android:textColor="@color/retro_text_dark"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

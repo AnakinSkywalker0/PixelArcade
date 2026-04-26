@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/leaderboardRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/retro_bg"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:padding="8dp"
+        android:text="X"
+        android:textColor="#5F564D"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLeaderboardTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/press_start_2p"
+        android:gravity="center"
+        android:text="@string/leaderboard"
+        android:textColor="#76716C"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnClose" />
+
+    <LinearLayout
+        android:id="@+id/chipContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLeaderboardTitle">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chipGalaga"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chip_black"
+            android:fontFamily="@font/press_start_2p"
+            android:text="@string/chip_galaga"
+            android:textColor="#F6C547"
+            android:textSize="9sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chip2048"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.8"
+            android:background="@drawable/bg_chip_orange"
+            android:fontFamily="@font/press_start_2p"
+            android:text="@string/chip_2048"
+            android:textColor="#FFFFFF"
+            android:textSize="9sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chipTtt"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1.6"
+            android:background="@drawable/bg_leaderboard_chip"
+            android:fontFamily="@font/press_start_2p"
+            android:text="@string/chip_ttt"
+            android:textColor="#76716C"
+            android:textSize="9sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/chipAll"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="0.8"
+            android:background="@drawable/bg_leaderboard_chip"
+            android:fontFamily="@font/press_start_2p"
+            android:text="@string/chip_all"
+            android:textColor="#76716C"
+            android:textSize="9sp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLeaderboard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnRankContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipContainer" />
+
+    <LinearLayout
+        android:id="@+id/btnRankContainer"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/bg_rank_bar"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="YOUR RANK:"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp" />
+            
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/press_start_2p"
+            android:text="#47"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
