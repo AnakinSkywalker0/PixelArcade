@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ttt_bg"
+    tools:context=".TicTacToeActivity">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTttTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="SWORDS &amp;\nSHIELDS"
+        android:textColor="@color/ttt_title_color"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTttSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Tic Tac Toe"
+        android:textColor="@color/ttt_subtitle_color"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTttTitle" />
+
+    <!-- Score Panel -->
+    <LinearLayout
+        android:id="@+id/llTttScores"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTttSubtitle">
+
+        <!-- Sword (Player) Score -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_ttt_score_sword"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚔️ YOU"
+                android:textColor="@color/white"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tvPlayerScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <!-- Draw Score -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_ttt_board"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DRAW"
+                android:textColor="@color/ttt_subtitle_color"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tvDrawScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="0"
+                android:textColor="@color/ttt_subtitle_color"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <!-- Shield (AI) Score -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_ttt_score_shield"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginStart="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🛡️ CPU"
+                android:textColor="@color/white"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tvCpuScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Turn Indicator -->
+    <TextView
+        android:id="@+id/tvTurnIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="⚔️ YOUR TURN"
+        android:textColor="@color/ttt_sword_color"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llTttScores" />
+
+    <!-- Game Board -->
+    <FrameLayout
+        android:id="@+id/tttBoardContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_ttt_board"
+        android:padding="10dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTurnIndicator">
+
+        <GridLayout
+            android:id="@+id/tttGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="3"
+            android:rowCount="3" />
+
+    </FrameLayout>
+
+    <!-- Controls -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tttBoardContainer">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTttMenu"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_ttt_board"
+            android:fontFamily="@font/press_start_2p"
+            android:text="MENU"
+            android:textColor="@color/ttt_subtitle_color"
+            android:textSize="12sp"
+            android:paddingVertical="14dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTttRestart"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_ttt_score_sword"
+            android:fontFamily="@font/press_start_2p"
+            android:text="RESTART"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:paddingVertical="14dp" />
+
+    </LinearLayout>
+
+    <!-- Win/Lose/Draw Overlay -->
+    <FrameLayout
+        android:id="@+id/tttOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC1A1B2E"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_ttt_board"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="32dp">
+
+            <TextView
+                android:id="@+id/tvTttOverlayTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="YOU WIN!"
+                android:textColor="@color/ttt_win_highlight"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:lineSpacingExtra="8dp" />
+
+            <TextView
+                android:id="@+id/tvTttOverlaySubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="Great battle!"
+                android:textColor="@color/ttt_subtitle_color"
+                android:textSize="10sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTttPlayAgain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_ttt_score_sword"
+                android:fontFamily="@font/press_start_2p"
+                android:text="PLAY AGAIN"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:paddingVertical="14dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTttOverlayMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_ttt_board"
+                android:fontFamily="@font/press_start_2p"
+                android:text="MENU"
+                android:textColor="@color/ttt_subtitle_color"
+                android:textSize="12sp"
+                android:paddingVertical="14dp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Coin Reward Popup Banner -->
+    <LinearLayout
+        android:id="@+id/tttCoinRewardPopup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/bg_ttt_board"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:elevation="12dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTttCoinRewardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="🪙 +5 COINS!"
+            android:textColor="#FFD700"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

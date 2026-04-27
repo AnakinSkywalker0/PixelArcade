@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -49,7 +51,17 @@ public class GameActivity extends AppCompatActivity {
     private TextView tvOverlayScore;
     private Button btnOverlayAction;
     private Button btnOverlayMenu;
+    private Button btnOverlayUndo;
     private boolean hasShownWinDialog = false;
+    private boolean hasAwarded2048 = false;
+    private boolean hasAwardedNewHigh = false;
+    private boolean animationsEnabled = true;
+    private boolean gridLinesEnabled = true;
+
+    // Coin Reward Popup
+    private LinearLayout coinRewardPopup;
+    private TextView tvCoinRewardText;
+    private Handler coinHandler = new Handler(new Handler().getLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +95,10 @@ public class GameActivity extends AppCompatActivity {
         tvOverlayScore = findViewById(R.id.tvOverlayScore);
         btnOverlayAction = findViewById(R.id.btnOverlayAction);
         btnOverlayMenu = findViewById(R.id.btnOverlayMenu);
+        btnOverlayUndo = findViewById(R.id.btnOverlayUndo);
+
+        coinRewardPopup = findViewById(R.id.coinRewardPopup);
+        tvCoinRewardText = findViewById(R.id.tvCoinRewardText);
 
         btnMenu.setOnClickListener(v -> finish());
         btnOverlayMenu.setOnClickListener(v -> finish());
@@ -91,6 +107,10 @@ public class GameActivity extends AppCompatActivity {
         android.content.SharedPreferences prefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
         highestScore = prefs.getInt("high_score_2048", 0);
         tvHighestScore.setText(String.valueOf(highestScore));
+
+        // Read settings
+        animationsEnabled = prefs.getBoolean("animations", true);
+        gridLinesEnabled = prefs.getBoolean("grid_lines", true);
 
         // Increment Play Count
         int plays = prefs.getInt("plays_2048", 0);
@@ -147,6 +167,9 @@ public class GameActivity extends AppCompatActivity {
             params.setMargins(margin, margin, margin, margin);
             emptyCell.setLayoutParams(params);
             emptyCell.setBackgroundResource(R.drawable.bg_cell_empty);
+            if (!gridLinesEnabled) {
+                emptyCell.setAlpha(0f);
+            }
             gridLayout.addView(emptyCell);
         }
     }
@@ -254,26 +277,39 @@ public class GameActivity extends AppCompatActivity {
             // Use hardware layer for smooth translation
             tile.setLayerType(View.LAYER_TYPE_HARDWARE, null);
             
-            tile.animate()
-                .translationX(targetX)
-                .translationY(targetY)
-                .setDuration(140)
-                .setInterpolator(new DecelerateInterpolator())
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        tile.setLayerType(View.LAYER_TYPE_NONE, null);
-                        remainingAnimations[0]--;
-                        if (remainingAnimations[0] <= 0) {
-                            // Delay removal slightly to ensure visual consistency
-                            new Handler(Looper.getMainLooper()).post(() -> {
-                                for (TextView t : tilesToRemove) tileContainer.removeView(t);
-                                finalizeMove(moves);
-                            });
+            if (animationsEnabled) {
+                tile.animate()
+                    .translationX(targetX)
+                    .translationY(targetY)
+                    .setDuration(140)
+                    .setInterpolator(new DecelerateInterpolator())
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            tile.setLayerType(View.LAYER_TYPE_NONE, null);
+                            remainingAnimations[0]--;
+                            if (remainingAnimations[0] <= 0) {
+                                new Handler(Looper.getMainLooper()).post(() -> {
+                                    for (TextView t : tilesToRemove) tileContainer.removeView(t);
+                                    finalizeMove(moves);
+                                });
+                            }
                         }
-                    }
-                })
-                .start();
+                    })
+                    .start();
+            } else {
+                // Instant move without animation
+                tile.setTranslationX(targetX);
+                tile.setTranslationY(targetY);
+                tile.setLayerType(View.LAYER_TYPE_NONE, null);
+                remainingAnimations[0]--;
+                if (remainingAnimations[0] <= 0) {
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        for (TextView t : tilesToRemove) tileContainer.removeView(t);
+                        finalizeMove(moves);
+                    });
+                }
+            }
 
             if (event.isMerge) {
                 tilesToRemove.add(tile);
@@ -297,25 +333,29 @@ public class GameActivity extends AppCompatActivity {
                     activeTiles[event.toRow][event.toCol] = mergedTile;
                     
                     // Juicy pop animation
-                    mergedTile.setScaleX(0.7f); mergedTile.setScaleY(0.7f);
-                    mergedTile.animate()
-                        .scaleX(1.0f).scaleY(1.0f)
-                        .setDuration(150)
-                        .setInterpolator(new OvershootInterpolator(1.5f))
-                        .start();
+                    if (animationsEnabled) {
+                        mergedTile.setScaleX(0.7f); mergedTile.setScaleY(0.7f);
+                        mergedTile.animate()
+                            .scaleX(1.0f).scaleY(1.0f)
+                            .setDuration(150)
+                            .setInterpolator(new OvershootInterpolator(1.5f))
+                            .start();
+                    }
                     
                     SoundManager.getInstance(this).playSfx("merge");
                 }
             } else if (event.isNew) {
                 addTileAt(event.toRow, event.toCol, event.value);
                 TextView newTile = activeTiles[event.toRow][event.toCol];
-                newTile.setAlpha(0f);
-                newTile.setScaleX(0.6f); newTile.setScaleY(0.6f);
-                newTile.animate()
-                    .alpha(1f).scaleX(1.0f).scaleY(1.0f)
-                    .setDuration(160)
-                    .setInterpolator(new OvershootInterpolator(1.2f))
-                    .start();
+                if (animationsEnabled) {
+                    newTile.setAlpha(0f);
+                    newTile.setScaleX(0.6f); newTile.setScaleY(0.6f);
+                    newTile.animate()
+                        .alpha(1f).scaleX(1.0f).scaleY(1.0f)
+                        .setDuration(160)
+                        .setInterpolator(new OvershootInterpolator(1.2f))
+                        .start();
+                }
             }
         }
         updateScoreOnly();
@@ -332,10 +372,22 @@ public class GameActivity extends AppCompatActivity {
             // Save new high score
             getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE)
                 .edit().putInt("high_score_2048", highestScore).apply();
+
+            // Award 20 coins for new high score (once per game)
+            if (!hasAwardedNewHigh) {
+                hasAwardedNewHigh = true;
+                awardCoins(20, "🎯 NEW HIGH! +20 🪙");
+            }
         }
     }
 
     private void checkStatus() {
+        // Award 100 coins for reaching 2048 (once per game)
+        if (engine.hasWon() && !hasAwarded2048) {
+            hasAwarded2048 = true;
+            awardCoins(100, "🏆 +100 COINS!");
+        }
+
         if (engine.hasWon() && !hasShownWinDialog) showEndGameOverlay(true);
         else if (engine.isGameOver()) showEndGameOverlay(false);
     }
@@ -343,6 +395,8 @@ public class GameActivity extends AppCompatActivity {
     private void showEndGameOverlay(boolean isWin) {
         overlayView.setVisibility(View.VISIBLE);
         tvOverlayScore.setText("SCORE: " + engine.getScore());
+        btnOverlayUndo.setVisibility(View.GONE);
+
         if (isWin) {
             tvOverlayTitle.setText("YOU WIN!");
             tvOverlaySubtitle.setVisibility(View.GONE);
@@ -355,15 +409,64 @@ public class GameActivity extends AppCompatActivity {
             tvOverlayTitle.setText("GAME OVER");
             tvOverlaySubtitle.setVisibility(View.VISIBLE);
             btnOverlayAction.setText("TRY AGAIN");
+
+            // Show UNDO button if player has enough coins
+            SharedPreferences prefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
+            int coins = prefs.getInt("coins", 0);
+            if (coins >= 20 && engine.canUndo()) {
+                btnOverlayUndo.setVisibility(View.VISIBLE);
+                btnOverlayUndo.setOnClickListener(v -> {
+                    int currentCoins = prefs.getInt("coins", 0);
+                    if (currentCoins >= 20) {
+                        prefs.edit().putInt("coins", currentCoins - 20).apply();
+                        engine.undo();
+                        tileContainer.removeAllViews();
+                        activeTiles = new TextView[gridSize][gridSize];
+                        overlayView.setVisibility(View.GONE);
+                        initialUI();
+                        SoundManager.getInstance(this).playSfx("merge");
+                    }
+                });
+            }
+
             btnOverlayAction.setOnClickListener(v -> {
                 engine.resetBoard();
                 tileContainer.removeAllViews();
                 activeTiles = new TextView[gridSize][gridSize];
                 hasShownWinDialog = false;
+                hasAwarded2048 = false;
+                hasAwardedNewHigh = false;
                 overlayView.setVisibility(View.GONE);
                 initialUI();
             });
         }
+    }
+
+    private void awardCoins(int amount, String message) {
+        SharedPreferences prefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
+        int coins = prefs.getInt("coins", 0);
+        prefs.edit().putInt("coins", coins + amount).apply();
+        showCoinReward(message);
+    }
+
+    private void showCoinReward(String message) {
+        if (coinRewardPopup == null) return;
+        tvCoinRewardText.setText(message);
+        coinRewardPopup.setVisibility(View.VISIBLE);
+        coinRewardPopup.setAlpha(0f);
+        coinRewardPopup.setTranslationY(-50f);
+        coinRewardPopup.animate()
+            .alpha(1f).translationY(0f)
+            .setDuration(400)
+            .setInterpolator(new OvershootInterpolator(1.2f))
+            .withEndAction(() -> coinRewardPopup.animate()
+                .alpha(0f).translationY(-30f)
+                .setStartDelay(1800)
+                .setDuration(300)
+                .withEndAction(() -> coinRewardPopup.setVisibility(View.GONE))
+                .start())
+            .start();
+        SoundManager.getInstance(this).playSfx("merge");
     }
 
     private int getTileColor(int value) {

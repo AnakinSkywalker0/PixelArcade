@@ -51,8 +51,10 @@ public class MainActivity extends AppCompatActivity {
         btnPlaySpace.setOnClickListener(v ->
                 Toast.makeText(this, R.string.coming_soon, Toast.LENGTH_SHORT).show());
 
-        btnPlayTicTacToe.setOnClickListener(v ->
-                Toast.makeText(this, R.string.coming_soon, Toast.LENGTH_SHORT).show());
+        btnPlayTicTacToe.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, TicTacToeLauncherActivity.class);
+            startActivity(intent);
+        });
         
         TextView btnDailyReward = findViewById(R.id.btnDailyReward);
         if (btnDailyReward != null) {
@@ -127,10 +129,12 @@ public class MainActivity extends AppCompatActivity {
             tvSpaceStats.setText("PLAYS: 0 | HIGH: 0");
         }
 
-        // TTT Stats (Placeholders for now)
+        // TTT Stats
+        int playsTtt = prefs.getInt("plays_ttt", 0);
+        int winsTtt = prefs.getInt("wins_ttt", 0);
         TextView tvTttStats = findViewById(R.id.tvTttStats);
         if (tvTttStats != null) {
-            tvTttStats.setText("PLAYS: 0 | WINS: 0");
+            tvTttStats.setText("PLAYS: " + playsTtt + " | WINS: " + winsTtt);
         }
     }
 

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,26 +14,25 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SettingsActivity extends AppCompatActivity {
+public class TicTacToeSettingsActivity extends AppCompatActivity {
 
-    private SeekBar sbVolume;
-    private TextView tvVolumeLabel;
-    private ImageView ivSoundEffects, ivMusic, ivAnimations, ivGridLines;
-    private LinearLayout rowSoundEffects, rowMusic, rowAnimations, rowGridLines;
-    private Button btnResetData, btnBackToMenu;
+    private ImageView ivSoundEffects, ivMusic, ivAnimations, ivPlayerFirst;
+    private LinearLayout rowSoundEffects, rowMusic, rowAnimations, rowPlayerFirst;
+    private Button btnResetStats, btnBack;
+    private TextView tvStatPlays, tvStatWins, tvStatWinRate;
 
     private SharedPreferences prefs;
     private static final String PREFS_NAME = "PixelArcadePrefs";
 
-    private boolean isSoundEffectsOn, isMusicOn, isAnimationsOn, isGridLinesOn;
+    private boolean isSoundEffectsOn, isMusicOn, isAnimationsOn, isPlayerFirstOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_ttt_settings);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.settingsContent), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tttSettingsContent), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -43,38 +41,26 @@ public class SettingsActivity extends AppCompatActivity {
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         // Initialize Views
-        tvVolumeLabel = findViewById(R.id.tvVolumeLabel);
-        sbVolume = findViewById(R.id.sbVolume);
+        ivSoundEffects = findViewById(R.id.ivTttSoundEffects);
+        ivMusic = findViewById(R.id.ivTttMusic);
+        ivAnimations = findViewById(R.id.ivTttAnimations);
+        ivPlayerFirst = findViewById(R.id.ivTttPlayerFirst);
 
-        ivSoundEffects = findViewById(R.id.ivSoundEffects);
-        ivMusic = findViewById(R.id.ivMusic);
-        ivAnimations = findViewById(R.id.ivAnimations);
-        ivGridLines = findViewById(R.id.ivGridLines);
+        rowSoundEffects = findViewById(R.id.rowTttSoundEffects);
+        rowMusic = findViewById(R.id.rowTttMusic);
+        rowAnimations = findViewById(R.id.rowTttAnimations);
+        rowPlayerFirst = findViewById(R.id.rowTttPlayerFirst);
 
-        rowSoundEffects = findViewById(R.id.rowSoundEffects);
-        rowMusic = findViewById(R.id.rowMusic);
-        rowAnimations = findViewById(R.id.rowAnimations);
-        rowGridLines = findViewById(R.id.rowGridLines);
+        btnResetStats = findViewById(R.id.btnTttResetStats);
+        btnBack = findViewById(R.id.btnTttBackToMenu);
 
-        btnResetData = findViewById(R.id.btnResetData);
-        btnBackToMenu = findViewById(R.id.btnBackToMenu);
+        tvStatPlays = findViewById(R.id.tvTttStatPlays);
+        tvStatWins = findViewById(R.id.tvTttStatWins);
+        tvStatWinRate = findViewById(R.id.tvTttStatWinRate);
 
         loadSettings();
 
-        // Listeners
-        sbVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvVolumeLabel.setText("VOLUME " + progress + "%");
-                prefs.edit().putInt("volume", progress).apply();
-                SoundManager.getInstance(SettingsActivity.this).loadPreferences();
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
-
+        // Toggle listeners
         rowSoundEffects.setOnClickListener(v -> {
             isSoundEffectsOn = !isSoundEffectsOn;
             updateToggle(ivSoundEffects, isSoundEffectsOn, "sound_effects");
@@ -90,13 +76,13 @@ public class SettingsActivity extends AppCompatActivity {
             updateToggle(ivAnimations, isAnimationsOn, "animations");
         });
 
-        rowGridLines.setOnClickListener(v -> {
-            isGridLinesOn = !isGridLinesOn;
-            updateToggle(ivGridLines, isGridLinesOn, "grid_lines");
+        rowPlayerFirst.setOnClickListener(v -> {
+            isPlayerFirstOn = !isPlayerFirstOn;
+            updateToggle(ivPlayerFirst, isPlayerFirstOn, "ttt_player_first");
         });
 
-        btnResetData.setOnClickListener(v -> resetData());
-        btnBackToMenu.setOnClickListener(v -> finish());
+        btnResetStats.setOnClickListener(v -> resetTttData());
+        btnBack.setOnClickListener(v -> finish());
     }
 
     private void updateToggle(ImageView iv, boolean isOn, String prefKey) {
@@ -106,25 +92,30 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void loadSettings() {
-        int volume = prefs.getInt("volume", 70);
-        sbVolume.setProgress(volume);
-        tvVolumeLabel.setText("VOLUME " + volume + "%");
-
         isSoundEffectsOn = prefs.getBoolean("sound_effects", true);
         isMusicOn = prefs.getBoolean("music", false);
         isAnimationsOn = prefs.getBoolean("animations", true);
-        isGridLinesOn = prefs.getBoolean("grid_lines", true);
+        isPlayerFirstOn = prefs.getBoolean("ttt_player_first", true);
 
         ivSoundEffects.setImageResource(isSoundEffectsOn ? R.drawable.ic_toggle_on : R.drawable.ic_toggle_off);
         ivMusic.setImageResource(isMusicOn ? R.drawable.ic_toggle_on : R.drawable.ic_toggle_off);
         ivAnimations.setImageResource(isAnimationsOn ? R.drawable.ic_toggle_on : R.drawable.ic_toggle_off);
-        ivGridLines.setImageResource(isGridLinesOn ? R.drawable.ic_toggle_on : R.drawable.ic_toggle_off);
+        ivPlayerFirst.setImageResource(isPlayerFirstOn ? R.drawable.ic_toggle_on : R.drawable.ic_toggle_off);
+
+        // Load stats
+        int plays = prefs.getInt("plays_ttt", 0);
+        int wins = prefs.getInt("wins_ttt", 0);
+        int winRate = plays > 0 ? (wins * 100 / plays) : 0;
+
+        tvStatPlays.setText(String.valueOf(plays));
+        tvStatWins.setText(String.valueOf(wins));
+        tvStatWinRate.setText(winRate + "%");
     }
 
-    private void resetData() {
+    private void resetTttData() {
         prefs.edit()
-            .remove("high_score_2048")
-            .remove("plays_2048")
+            .remove("plays_ttt")
+            .remove("wins_ttt")
             .apply();
         loadSettings();
         Toast.makeText(this, "Game data reset!", Toast.LENGTH_SHORT).show();
