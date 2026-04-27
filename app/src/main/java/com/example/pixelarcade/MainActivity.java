@@ -54,7 +54,53 @@ public class MainActivity extends AppCompatActivity {
         btnPlayTicTacToe.setOnClickListener(v ->
                 Toast.makeText(this, R.string.coming_soon, Toast.LENGTH_SHORT).show());
         
+        TextView btnDailyReward = findViewById(R.id.btnDailyReward);
+        if (btnDailyReward != null) {
+            btnDailyReward.setOnClickListener(v -> {
+                SoundManager.getInstance(this).playSfx("click");
+                showDailyRewardDialog(); // Always let them see their streak!
+            });
+        }
+        
         updateStats();
+        checkDailyReward();
+    }
+
+    private boolean isDailyRewardReady() {
+        android.content.SharedPreferences prefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
+        long lastClaimTime = prefs.getLong("last_daily_claim", 0);
+        if (lastClaimTime == 0) return true;
+
+        java.util.Calendar lastClaim = java.util.Calendar.getInstance();
+        lastClaim.setTimeInMillis(lastClaimTime);
+        lastClaim.set(java.util.Calendar.HOUR_OF_DAY, 0);
+        lastClaim.set(java.util.Calendar.MINUTE, 0);
+        lastClaim.set(java.util.Calendar.SECOND, 0);
+        lastClaim.set(java.util.Calendar.MILLISECOND, 0);
+
+        java.util.Calendar today = java.util.Calendar.getInstance();
+        today.set(java.util.Calendar.HOUR_OF_DAY, 0);
+        today.set(java.util.Calendar.MINUTE, 0);
+        today.set(java.util.Calendar.SECOND, 0);
+        today.set(java.util.Calendar.MILLISECOND, 0);
+
+        long diffMillis = today.getTimeInMillis() - lastClaim.getTimeInMillis();
+        long diffDays = diffMillis / (24 * 60 * 60 * 1000);
+        
+        return diffDays > 0;
+    }
+
+    private void checkDailyReward() {
+        if (isDailyRewardReady()) {
+            showDailyRewardDialog();
+        }
+    }
+
+    private void showDailyRewardDialog() {
+        DailyRewardDialog dialog = new DailyRewardDialog(this, coins -> {
+            updateStats(); // Refresh the coin UI
+        });
+        dialog.show();
     }
 
     private void updateStats() {
