@@ -87,6 +87,15 @@ public class GameActivity extends AppCompatActivity {
         btnMenu.setOnClickListener(v -> finish());
         btnOverlayMenu.setOnClickListener(v -> finish());
         
+        // High Score Persistence
+        android.content.SharedPreferences prefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
+        highestScore = prefs.getInt("high_score_2048", 0);
+        tvHighestScore.setText(String.valueOf(highestScore));
+
+        // Increment Play Count
+        int plays = prefs.getInt("plays_2048", 0);
+        prefs.edit().putInt("plays_2048", plays + 1).apply();
+
         btnRestart.setOnClickListener(v -> {
             engine.resetBoard();
             tileContainer.removeAllViews();
@@ -104,10 +113,22 @@ public class GameActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.main).setOnTouchListener(new OnSwipeTouchListener(this) {
-            @Override public void onSwipeLeft() { handleMove(engine.moveLeft()); }
-            @Override public void onSwipeRight() { handleMove(engine.moveRight()); }
-            @Override public void onSwipeTop() { handleMove(engine.moveUp()); }
-            @Override public void onSwipeBottom() { handleMove(engine.moveDown()); }
+            @Override public void onSwipeLeft() { 
+                SoundManager.getInstance(GameActivity.this).playSfx("swipe");
+                handleMove(engine.moveLeft()); 
+            }
+            @Override public void onSwipeRight() { 
+                SoundManager.getInstance(GameActivity.this).playSfx("swipe");
+                handleMove(engine.moveRight()); 
+            }
+            @Override public void onSwipeTop() { 
+                SoundManager.getInstance(GameActivity.this).playSfx("swipe");
+                handleMove(engine.moveUp()); 
+            }
+            @Override public void onSwipeBottom() { 
+                SoundManager.getInstance(GameActivity.this).playSfx("swipe");
+                handleMove(engine.moveDown()); 
+            }
         });
     }
 
@@ -282,6 +303,8 @@ public class GameActivity extends AppCompatActivity {
                         .setDuration(150)
                         .setInterpolator(new OvershootInterpolator(1.5f))
                         .start();
+                    
+                    SoundManager.getInstance(this).playSfx("merge");
                 }
             } else if (event.isNew) {
                 addTileAt(event.toRow, event.toCol, event.value);
@@ -305,6 +328,10 @@ public class GameActivity extends AppCompatActivity {
         if (score > highestScore) {
             highestScore = score;
             tvHighestScore.setText(String.valueOf(highestScore));
+            
+            // Save new high score
+            getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE)
+                .edit().putInt("high_score_2048", highestScore).apply();
         }
     }
 

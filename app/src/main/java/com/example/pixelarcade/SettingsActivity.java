@@ -67,6 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tvVolumeLabel.setText("VOLUME " + progress + "%");
                 prefs.edit().putInt("volume", progress).apply();
+                SoundManager.getInstance(SettingsActivity.this).loadPreferences();
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
@@ -101,6 +102,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void updateToggle(ImageView iv, boolean isOn, String prefKey) {
         iv.setImageResource(isOn ? R.drawable.ic_toggle_on : R.drawable.ic_toggle_off);
         prefs.edit().putBoolean(prefKey, isOn).apply();
+        SoundManager.getInstance(this).loadPreferences();
     }
 
     private void loadSettings() {

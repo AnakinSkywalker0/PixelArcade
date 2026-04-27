@@ -22,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         
+        // Initialize Sound
+        SoundManager.getInstance(this).loadPreferences();
+        // SoundManager.getInstance(this).startMusic(R.raw.menu_bgm); // Uncomment when file exists
+        
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -49,5 +53,44 @@ public class MainActivity extends AppCompatActivity {
 
         btnPlayTicTacToe.setOnClickListener(v ->
                 Toast.makeText(this, R.string.coming_soon, Toast.LENGTH_SHORT).show());
+        
+        updateStats();
+    }
+
+    private void updateStats() {
+        android.content.SharedPreferences prefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
+        
+        // Coin Count
+        int coins = prefs.getInt("coins", 0);
+        TextView tvCoinCount = findViewById(R.id.tvCoinCount);
+        if (tvCoinCount != null) {
+            tvCoinCount.setText(String.valueOf(coins));
+        }
+
+        // 2048 Stats
+        int plays2048 = prefs.getInt("plays_2048", 0);
+        int high2048 = prefs.getInt("high_score_2048", 0);
+        TextView tv2048Stats = findViewById(R.id.tv2048Stats);
+        if (tv2048Stats != null) {
+            tv2048Stats.setText("PLAYS: " + plays2048 + " | HIGH: " + high2048);
+        }
+
+        // Space Stats (Placeholders for now)
+        TextView tvSpaceStats = findViewById(R.id.tvSpaceStats);
+        if (tvSpaceStats != null) {
+            tvSpaceStats.setText("PLAYS: 0 | HIGH: 0");
+        }
+
+        // TTT Stats (Placeholders for now)
+        TextView tvTttStats = findViewById(R.id.tvTttStats);
+        if (tvTttStats != null) {
+            tvTttStats.setText("PLAYS: 0 | WINS: 0");
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateStats();
     }
 }
