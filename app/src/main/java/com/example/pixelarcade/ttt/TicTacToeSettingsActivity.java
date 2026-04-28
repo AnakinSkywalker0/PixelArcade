@@ -1,6 +1,8 @@
 package com.example.pixelarcade.ttt;
 
 import com.example.pixelarcade.R;
+import com.example.pixelarcade.manager.UserDataManager;
+import com.example.pixelarcade.manager.SoundManager;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

@@ -12,6 +12,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.pixelarcade.manager.UserDataManager;
+
 import java.util.Calendar;
 
 public class DailyRewardDialog extends Dialog {

@@ -6,6 +6,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pixelarcade.R;
+import com.example.pixelarcade.auth.LoginActivity;
+import com.example.pixelarcade.auth.SignUpActivity;
+
 public class AuthActivity extends AppCompatActivity {
 
     @Override

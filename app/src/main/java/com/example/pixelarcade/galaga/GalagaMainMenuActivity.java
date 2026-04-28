@@ -2,6 +2,7 @@ package com.example.pixelarcade.galaga;
 
 import com.example.pixelarcade.R;
 import com.example.pixelarcade.manager.UserDataManager;
+import com.example.pixelarcade.manager.SoundManager;
 
 import android.content.Intent;
 import android.os.Bundle;

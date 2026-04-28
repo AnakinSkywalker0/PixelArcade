@@ -1,6 +1,7 @@
 package com.example.pixelarcade.game2048;
 
 import com.example.pixelarcade.R;
+import com.example.pixelarcade.main.SettingsActivity;
 
 import android.os.Bundle;
 import android.widget.Button;

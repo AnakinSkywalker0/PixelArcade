@@ -1,7 +1,10 @@
 package com.example.pixelarcade.game2048;
 
 import com.example.pixelarcade.R;
+import com.example.pixelarcade.GameEngine;
+import com.example.pixelarcade.OnSwipeTouchListener;
 import com.example.pixelarcade.manager.UserDataManager;
+import com.example.pixelarcade.manager.SoundManager;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

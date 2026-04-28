@@ -1,11 +1,11 @@
 package com.example.pixelarcade.main;
 
 import com.example.pixelarcade.R;
+import com.example.pixelarcade.DailyRewardDialog;
 import com.example.pixelarcade.galaga.GalagaMainMenuActivity;
 import com.example.pixelarcade.game2048.GameLauncher2048Activity;
 import com.example.pixelarcade.manager.UserDataManager;
 import com.example.pixelarcade.ttt.TicTacToeLauncherActivity;
-import com.example.pixelarcade.view.DailyRewardDialog;
 
 import android.content.Intent;
 import android.os.Bundle;

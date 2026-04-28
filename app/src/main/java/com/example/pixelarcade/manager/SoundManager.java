@@ -5,6 +5,8 @@ import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 
+import com.example.pixelarcade.R;
+
 public class SoundManager {
     private static SoundManager instance;
     private SoundPool soundPool;

@@ -44,7 +44,7 @@ public class GalagaGameOverActivity extends AppCompatActivity {
         TextView tvStatWave = findViewById(R.id.tvStatWave);
         TextView tvStatEnemies = findViewById(R.id.tvStatEnemies);
         TextView tvStatAccuracy = findViewById(R.id.tvStatAccuracy);
-        TextView tvNewBest = findViewById(R.id.tvNewBestLabel); // Assuming there's a label for NEW BEST!
+        android.view.View tvNewBest = findViewById(R.id.tvNewBestLabel); // MaterialCardView for NEW BEST!
 
         tvFinalScore.setText(String.format("%05d", score));
         tvYourBest.setText(String.format("%05d", absoluteBest));
