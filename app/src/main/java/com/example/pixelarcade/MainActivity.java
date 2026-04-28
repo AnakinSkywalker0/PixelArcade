@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         tvProfileLink.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
         tvLeaderboardLink.setOnClickListener(v -> startActivity(new Intent(this, LeaderboardActivity.class)));
-        coinBadge.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+        coinBadge.setOnClickListener(v -> startActivity(new Intent(this, DailyChallengesActivity.class)));
 
         btnPlay2048.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, GameLauncher2048Activity.class);

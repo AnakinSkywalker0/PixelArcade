@@ -158,8 +158,10 @@ public class DailyRewardDialog extends Dialog {
         // Update Data
         SharedPreferences prefs = getContext().getSharedPreferences("PixelArcadePrefs", Context.MODE_PRIVATE);
         int currentCoins = prefs.getInt("coins", 0);
+        int totalEarned = prefs.getInt("total_coins_earned", 0);
         prefs.edit()
              .putInt("coins", currentCoins + wonAmount)
+             .putInt("total_coins_earned", totalEarned + wonAmount)
              .putInt("streak_days", currentStreak + 1)
              .putLong("last_daily_claim", System.currentTimeMillis())
              .apply();

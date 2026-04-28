@@ -1,275 +1,485 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/profileRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="#F4F5F7"
-    android:padding="20dp">
+    android:scrollbars="none">
 
-    <!-- Top Bar -->
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/back"
-        android:padding="12dp"
-        android:src="@drawable/ic_retro_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="#5F564D" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:fontFamily="@font/press_start_2p"
-        android:gravity="center"
-        android:text="@string/pixel_profile"
-        android:textColor="#1B1C22"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!-- Top Bar -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back"
+            android:padding="12dp"
+            android:src="@drawable/ic_retro_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#5F564D" />
 
-    <!-- Decoration Blocks -->
-    <View
-        android:layout_width="64dp"
-        android:layout_height="20dp"
-        android:alpha="0.2"
-        android:background="@drawable/bg_splash_block"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:fontFamily="@font/press_start_2p"
+            android:gravity="center"
+            android:text="@string/pixel_profile"
+            android:textColor="#1B1C22"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
-    <View
-        android:layout_width="80dp"
-        android:layout_height="32dp"
-        android:alpha="0.1"
-        android:background="@drawable/bg_splash_block"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/avatarBox"
-        app:layout_constraintBottom_toBottomOf="@+id/avatarBox"
-        android:layout_marginEnd="-10dp" />
-        
-    <View
-        android:layout_width="40dp"
-        android:layout_height="16dp"
-        android:alpha="0.2"
-        android:background="@drawable/bg_splash_block"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayerName"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="10dp" />
+        <!-- Avatar Box -->
+        <FrameLayout
+            android:id="@+id/avatarBox"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_profile_avatar_frame"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle">
 
-    <!-- Avatar Box -->
-    <FrameLayout
-        android:id="@+id/avatarBox"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/bg_profile_avatar_frame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+            <TextView
+                android:id="@+id/tvProfileAvatarEmoji"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="👾"
+                android:textSize="72sp" />
+        </FrameLayout>
 
-        <ImageView
+        <!-- Player Name -->
+        <TextView
+            android:id="@+id/tvPlayerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/press_start_2p"
+            android:text="PLAYER ONE"
+            android:textColor="#5F564D"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avatarBox" />
+
+        <!-- Tagline -->
+        <TextView
+            android:id="@+id/tvSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/press_start_2p"
+            android:text="ARCADE WARRIOR"
+            android:textColor="#85929E"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPlayerName" />
+
+        <!-- Member Since -->
+        <TextView
+            android:id="@+id/tvMemberSince"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/press_start_2p"
+            android:text="MEMBER SINCE APR 2026"
+            android:textColor="#AEB6BF"
+            android:textSize="6sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />
+
+        <!-- ═══════════ STATS ROW ═══════════ -->
+        <LinearLayout
+            android:id="@+id/statsRow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMemberSince">
+
+            <!-- Coins -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_profile_stat_card_new"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🪙"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tvTotalCoinsEarned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="0"
+                    android:textColor="#E65100"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="COINS"
+                    android:textColor="#85929E"
+                    android:textSize="6sp" />
+            </LinearLayout>
+
+            <!-- Best Score -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_marginHorizontal="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_profile_stat_card_new"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏆"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tvHighScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="0"
+                    android:textColor="#1976D2"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="BEST"
+                    android:textColor="#85929E"
+                    android:textSize="6sp" />
+            </LinearLayout>
+
+            <!-- Played -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_profile_stat_card_new"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎮"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tvTotalGames"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="0"
+                    android:textColor="#2E7D32"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="PLAYED"
+                    android:textColor="#85929E"
+                    android:textSize="6sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ═══════════ BREAKDOWN ═══════════ -->
+        <TextView
+            android:id="@+id/tvBreakdownTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/press_start_2p"
+            android:text="GAME BREAKDOWN"
+            android:textColor="#5F564D"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/statsRow" />
+
+        <!-- 2048 Card -->
+        <LinearLayout
+            android:id="@+id/card2048"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp"
-            android:layout_marginBottom="12dp"
-            android:layout_marginEnd="12dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_avatar" />
-    </FrameLayout>
-
-    <!-- Player Info -->
-    <TextView
-        android:id="@+id/tvPlayerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/profile_name"
-        android:textColor="#5F564D"
-        android:textSize="28sp"
-        android:shadowColor="#C1B8AE"
-        android:shadowDx="3"
-        android:shadowDy="3"
-        android:shadowRadius="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatarBox" />
-
-    <TextView
-        android:id="@+id/tvSubTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/profile_subtitle"
-        android:textColor="#85929E"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayerName" />
-
-    <!-- Stats Row -->
-    <LinearLayout
-        android:id="@+id/statsRow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSubTitle">
-
-        <!-- Level Card -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:layout_marginEnd="6dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_profile_stat_card_new"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:padding="16dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/tvBreakdownTitle">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/press_start_2p"
-                android:text="↗"
-                android:textColor="#1976D2"
-                android:textSize="10sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🧩"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="2048"
+                    android:textColor="#5F564D"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/level"
-                android:textColor="#85929E"
-                android:textSize="7sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/press_start_2p"
-                android:text="15"
-                android:textColor="#1B1C22"
-                android:textSize="18sp" />
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="PLAYS"
+                        android:textColor="#AEB6BF"
+                        android:textSize="6sp" />
+                    <TextView
+                        android:id="@+id/tv2048Plays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="0"
+                        android:textColor="#1B1C22"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="HIGH"
+                        android:textColor="#AEB6BF"
+                        android:textSize="6sp" />
+                    <TextView
+                        android:id="@+id/tv2048High"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="0"
+                        android:textColor="#1976D2"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="COINS"
+                        android:textColor="#AEB6BF"
+                        android:textSize="6sp" />
+                    <TextView
+                        android:id="@+id/tv2048Coins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="0"
+                        android:textColor="#E65100"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- XP Card -->
+        <!-- TTT Card -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:layout_marginHorizontal="6dp"
-            android:layout_weight="1"
+            android:id="@+id/cardTTT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="14dp"
             android:background="@drawable/bg_profile_stat_card_new"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:padding="16dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/card2048">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/press_start_2p"
-                android:text="♆"
-                android:textColor="#FBC02D"
-                android:textSize="10sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚔️"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="TIC TAC TOE"
+                    android:textColor="#5F564D"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/xp"
-                android:textColor="#85929E"
-                android:textSize="7sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/press_start_2p"
-                android:text="1,250"
-                android:textColor="#1B1C22"
-                android:textSize="18sp" />
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="PLAYS"
+                        android:textColor="#AEB6BF"
+                        android:textSize="6sp" />
+                    <TextView
+                        android:id="@+id/tvTttPlays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="0"
+                        android:textColor="#1B1C22"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="WINS"
+                        android:textColor="#AEB6BF"
+                        android:textSize="6sp" />
+                    <TextView
+                        android:id="@+id/tvTttWins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="0"
+                        android:textColor="#2E7D32"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="RATE"
+                        android:textColor="#AEB6BF"
+                        android:textSize="6sp" />
+                    <TextView
+                        android:id="@+id/tvTttWinRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="0%"
+                        android:textColor="#FBC02D"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Coins Card -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="6dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_profile_stat_card_new"
-            android:gravity="center"
-            android:orientation="vertical">
+        <!-- Buttons -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_btn_brown_3d"
+            android:fontFamily="@font/press_start_2p"
+            android:paddingBottom="6dp"
+            android:text="@string/edit_profile"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/cardTTT" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/press_start_2p"
-                android:text="◎"
-                android:textColor="#E65100"
-                android:textSize="10sp" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnViewLeaderboard"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_btn_outline_3d"
+            android:fontFamily="@font/press_start_2p"
+            android:paddingBottom="6dp"
+            android:text="@string/view_leaderboard"
+            android:textColor="#4F433A"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/coins"
-                android:textColor="#85929E"
-                android:textSize="7sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/press_start_2p"
-                android:text="500"
-                android:textColor="#1B1C22"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- Buttons -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnEditProfile"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/bg_btn_brown_3d"
-        android:fontFamily="@font/press_start_2p"
-        android:paddingBottom="6dp"
-        android:text="@string/edit_profile"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/statsRow"
-        app:layout_constraintStart_toStartOf="@+id/statsRow"
-        app:layout_constraintTop_toBottomOf="@+id/statsRow" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnViewLeaderboard"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_btn_outline_3d"
-        android:fontFamily="@font/press_start_2p"
-        android:paddingBottom="6dp"
-        android:text="@string/view_leaderboard"
-        android:textColor="#4F433A"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/statsRow"
-        app:layout_constraintStart_toStartOf="@+id/statsRow"
-        app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

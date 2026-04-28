@@ -303,6 +303,15 @@ public class GameEngine {
         return false;
     }
 
+    public boolean hasTile(int value) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (board[i][j] == value) return true;
+            }
+        }
+        return false;
+    }
+
     public void resetBoard() {
         initBoard();
     }

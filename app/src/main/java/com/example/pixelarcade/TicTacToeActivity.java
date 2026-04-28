@@ -380,8 +380,19 @@ public class TicTacToeActivity extends AppCompatActivity {
             // Award coins based on difficulty: Easy=5, Medium=15, Hard=25
             int coinReward = (difficulty == 0) ? 5 : (difficulty == 1) ? 15 : 25;
             int coins = prefs.getInt("coins", 0);
-            prefs.edit().putInt("coins", coins + coinReward).apply();
+            int totalEarned = prefs.getInt("total_coins_earned", 0);
+            prefs.edit()
+                .putInt("coins", coins + coinReward)
+                .putInt("total_coins_earned", totalEarned + coinReward)
+                .apply();
             showCoinReward("⚔️ +" + coinReward + " 🪙");
+
+            // Daily Challenge: Track consecutive wins
+            int consecWins = prefs.getInt("challenge_ttt_consec_wins", 0) + 1;
+            prefs.edit().putInt("challenge_ttt_consec_wins", consecWins).apply();
+            if (consecWins >= 3) {
+                prefs.edit().putBoolean("challenge_ttt_streak_done", true).apply();
+            }
 
             SoundManager.getInstance(this).playSfx("merge");
         } else if (winner == 2) {
@@ -390,11 +401,21 @@ public class TicTacToeActivity extends AppCompatActivity {
             tvTttOverlaySubtitle.setText("The shield holds!");
             cpuWins++;
             tvCpuScore.setText(String.valueOf(cpuWins));
+
+            // Reset consecutive win streak on loss
+            SharedPreferences lossPrefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
+            lossPrefs.edit().putInt("challenge_ttt_consec_wins", 0).apply();
+
             SoundManager.getInstance(this).playSfx("game_over");
         } else {
             tvTttOverlayTitle.setText("🤝\nDRAW!");
             tvTttOverlayTitle.setTextColor(ContextCompat.getColor(this, R.color.ttt_subtitle_color));
             tvTttOverlaySubtitle.setText("Evenly matched!");
+
+            // Reset consecutive win streak on draw
+            SharedPreferences drawPrefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
+            drawPrefs.edit().putInt("challenge_ttt_consec_wins", 0).apply();
+
             SoundManager.getInstance(this).playSfx("click");
         }
 

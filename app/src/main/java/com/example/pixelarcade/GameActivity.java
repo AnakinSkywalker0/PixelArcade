@@ -388,6 +388,14 @@ public class GameActivity extends AppCompatActivity {
             awardCoins(100, "🏆 +100 COINS!");
         }
 
+        // Daily Challenge: Reach 512
+        if (engine.hasTile(512)) {
+            SharedPreferences challengePrefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
+            if (!challengePrefs.getBoolean("challenge_512_done", false)) {
+                challengePrefs.edit().putBoolean("challenge_512_done", true).apply();
+            }
+        }
+
         if (engine.hasWon() && !hasShownWinDialog) showEndGameOverlay(true);
         else if (engine.isGameOver()) showEndGameOverlay(false);
     }
@@ -445,7 +453,13 @@ public class GameActivity extends AppCompatActivity {
     private void awardCoins(int amount, String message) {
         SharedPreferences prefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
         int coins = prefs.getInt("coins", 0);
-        prefs.edit().putInt("coins", coins + amount).apply();
+        int totalEarned = prefs.getInt("total_coins_earned", 0);
+        int earned2048 = prefs.getInt("coins_earned_2048", 0);
+        prefs.edit()
+            .putInt("coins", coins + amount)
+            .putInt("total_coins_earned", totalEarned + amount)
+            .putInt("coins_earned_2048", earned2048 + amount)
+            .apply();
         showCoinReward(message);
     }
 
