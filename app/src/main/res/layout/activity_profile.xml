@@ -452,6 +452,116 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Galaga Card -->
+        <LinearLayout
+            android:id="@+id/cardGalaga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_profile_stat_card_new"
+            android:padding="16dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/cardTTT">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="👾"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="GALAGA"
+                    android:textColor="#5F564D"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="PLAYS"
+                        android:textColor="#AEB6BF"
+                        android:textSize="6sp" />
+                    <TextView
+                        android:id="@+id/tvGalagaPlays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="0"
+                        android:textColor="#1B1C22"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="HIGH"
+                        android:textColor="#AEB6BF"
+                        android:textSize="6sp" />
+                    <TextView
+                        android:id="@+id/tvGalagaHigh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="0"
+                        android:textColor="#FF3333"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="WAVE"
+                        android:textColor="#AEB6BF"
+                        android:textSize="6sp" />
+                    <TextView
+                        android:id="@+id/tvGalagaWave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="0"
+                        android:textColor="#FFFF00"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
         <!-- Buttons -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnEditProfile"
@@ -465,7 +575,7 @@
             android:text="@string/edit_profile"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@+id/cardTTT" />
+            app:layout_constraintTop_toBottomOf="@+id/cardGalaga" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnViewLeaderboard"

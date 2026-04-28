@@ -163,17 +163,27 @@
 
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:background="@drawable/bg_menu_thumb_space">
+                        android:layout_height="110dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:alpha="0.7"
+                            android:src="@drawable/img_galaga_thumb" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/press_start_2p"
-                            android:text="@string/space_preview"
-                            android:textColor="#D9DAFF"
-                            android:textSize="14sp" />
+                            android:text="GALAGA"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:shadowColor="#000000"
+                            android:shadowDx="2"
+                            android:shadowDy="2"
+                            android:shadowRadius="4" />
                     </FrameLayout>
 
                     <TextView
@@ -221,6 +231,119 @@
                         android:layout_width="match_parent"
                         android:layout_height="110dp"
                         android:background="@drawable/bg_menu_thumb_2048">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|start"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:text="2048"
+                            android:alpha="0.06"
+                            android:textSize="36sp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:textColor="#000000"
+                            android:rotation="-15" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="60dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="1024"
+                            android:alpha="0.05"
+                            android:textSize="28sp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:textColor="#000000"
+                            android:rotation="10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|end"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginTop="20dp"
+                            android:text="512"
+                            android:alpha="0.03"
+                            android:textSize="44sp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:textColor="#000000"
+                            android:rotation="25" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="256"
+                            android:alpha="0.04"
+                            android:textSize="24sp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:textColor="#000000"
+                            android:rotation="-5" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|start"
+                            android:layout_marginStart="80dp"
+                            android:text="128"
+                            android:alpha="0.03"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:textColor="#000000"
+                            android:rotation="15" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginEnd="90dp"
+                            android:text="64"
+                            android:alpha="0.05"
+                            android:textSize="32sp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:textColor="#000000"
+                            android:rotation="-20" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="35dp"
+                            android:text="16"
+                            android:alpha="0.04"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:textColor="#000000"
+                            android:rotation="30" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:text="8"
+                            android:alpha="0.03"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:textColor="#000000"
+                            android:rotation="-10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginBottom="8dp"
+                            android:text="2"
+                            android:alpha="0.05"
+                            android:textSize="26sp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:textColor="#000000"
+                            android:rotation="45" />
 
                         <TextView
                             android:layout_width="wrap_content"

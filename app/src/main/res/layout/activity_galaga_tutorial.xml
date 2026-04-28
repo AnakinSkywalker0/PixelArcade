@@ -294,33 +294,14 @@
                 android:orientation="horizontal"
                 android:layout_marginBottom="32dp">
                 
-                <!-- Mini ships for lives placeholder -->
-                <LinearLayout
+                <TextView
                     android:layout_width="64dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="▲"
-                        android:textColor="#33FF33"
-                        android:textSize="14sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="▲"
-                        android:textColor="#33FF33"
-                        android:textSize="14sp"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginEnd="2dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="▲"
-                        android:textColor="#33FF33"
-                        android:textSize="14sp"/>
-                </LinearLayout>
+                    android:text="02"
+                    android:fontFamily="@font/press_start_2p"
+                    android:textColor="#33FF33"
+                    android:textSize="24sp"
+                    android:gravity="center"/>
                 
                 <LinearLayout
                     android:layout_width="match_parent"

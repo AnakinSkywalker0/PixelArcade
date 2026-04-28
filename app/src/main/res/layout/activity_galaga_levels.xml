@@ -231,17 +231,16 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- LEVEL 2: NEBULA BELT (LOCKED) -->
+            <!-- ENDLESS MODE -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardLevel2"
+                android:id="@+id/cardEndless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#0D0D0D"
-                app:strokeColor="#1A1A1A"
+                app:cardBackgroundColor="#110000"
+                app:strokeColor="#FF3333"
                 app:strokeWidth="1dp"
                 app:cardCornerRadius="8dp"
                 android:layout_marginBottom="16dp"
-                android:alpha="0.5"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -251,12 +250,12 @@
                     android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/tvNum2"
+                        android:id="@+id/tvNumEndless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="02"
+                        android:text="∞"
                         android:fontFamily="@font/press_start_2p"
-                        android:textColor="#333333"
+                        android:textColor="#FF3333"
                         android:textSize="32sp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -267,23 +266,23 @@
                         android:orientation="vertical"
                         android:layout_marginStart="16dp"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tvNum2">
-                        
+                        app:layout_constraintStart_toEndOf="@id/tvNumEndless">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="NEBULA BELT"
+                            android:text="ENDLESS MODE"
                             android:fontFamily="@font/press_start_2p"
-                            android:textColor="#555555"
+                            android:textColor="#FF5555"
                             android:textSize="12sp"
                             android:layout_marginTop="4dp"/>
-                            
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="WAVES 4 - 6 • PILOT"
+                            android:text="INFINITE WAVES • NO END"
                             android:fontFamily="@font/press_start_2p"
-                            android:textColor="#333333"
+                            android:textColor="#552222"
                             android:textSize="8sp"
                             android:layout_marginTop="6dp"/>
                     </LinearLayout>
@@ -295,250 +294,49 @@
                         android:gravity="end"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent">
-                        
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="LOCKED"
+                            android:text="SURVIVE"
                             android:fontFamily="@font/press_start_2p"
-                            android:textColor="#333333"
+                            android:textColor="#FF3333"
                             android:textSize="8sp"
                             android:paddingHorizontal="6dp"
                             android:paddingVertical="4dp"
-                            android:background="#1A1A1A" />
-                    </LinearLayout>
+                            android:background="#1A0000" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintTop_toBottomOf="@id/tvNum2"
-                        app:layout_constraintStart_toStartOf="parent">
-                        
                         <TextView
+                            android:id="@+id/tvEndlessBest"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="WAVES  "
+                            android:text="BEST WAVE 0"
                             android:fontFamily="@font/press_start_2p"
-                            android:textColor="#333333"
-                            android:textSize="8sp"/>
-                        
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="○" android:textColor="#333333" android:textSize="12sp"/>
-                        <View android:layout_width="16dp" android:layout_height="2dp" android:background="#222222" android:layout_marginHorizontal="6dp" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="○" android:textColor="#333333" android:textSize="12sp"/>
-                        <View android:layout_width="16dp" android:layout_height="2dp" android:background="#222222" android:layout_marginHorizontal="6dp" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="○" android:textColor="#333333" android:textSize="12sp"/>
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- LEVEL 3: VOID STORM (LOCKED) -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardLevel3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#0D0D0D"
-                app:strokeColor="#1A1A1A"
-                app:strokeWidth="1dp"
-                app:cardCornerRadius="8dp"
-                android:layout_marginBottom="16dp"
-                android:alpha="0.5"
-                android:clickable="true"
-                android:focusable="true">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/tvNum3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="03"
-                        android:fontFamily="@font/press_start_2p"
-                        android:textColor="#333333"
-                        android:textSize="32sp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="16dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tvNum3">
-                        
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="VOID STORM"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#555555"
-                            android:textSize="12sp"
-                            android:layout_marginTop="4dp"/>
-                            
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="WAVES 7 - 9 • ACE"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#333333"
+                            android:textColor="#552222"
                             android:textSize="8sp"
                             android:layout_marginTop="6dp"/>
-                    </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="end"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
-                        
                         <TextView
+                            android:id="@+id/tvEndlessHiScore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="LOCKED"
+                            android:text="BEST 00000"
                             android:fontFamily="@font/press_start_2p"
-                            android:textColor="#333333"
+                            android:textColor="#552222"
                             android:textSize="8sp"
-                            android:paddingHorizontal="6dp"
-                            android:paddingVertical="4dp"
-                            android:background="#1A1A1A" />
+                            android:layout_marginTop="4dp"/>
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintTop_toBottomOf="@id/tvNum3"
-                        app:layout_constraintStart_toStartOf="parent">
-                        
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="WAVES  "
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#333333"
-                            android:textSize="8sp"/>
-                        
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="○" android:textColor="#333333" android:textSize="12sp"/>
-                        <View android:layout_width="16dp" android:layout_height="2dp" android:background="#222222" android:layout_marginHorizontal="6dp" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="○" android:textColor="#333333" android:textSize="12sp"/>
-                        <View android:layout_width="16dp" android:layout_height="2dp" android:background="#222222" android:layout_marginHorizontal="6dp" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="○" android:textColor="#333333" android:textSize="12sp"/>
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- LEVEL 4: GALAGA CORE (LOCKED) -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardLevel4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#0D0D0D"
-                app:strokeColor="#1A1A1A"
-                app:strokeWidth="1dp"
-                app:cardCornerRadius="8dp"
-                android:layout_marginBottom="24dp"
-                android:alpha="0.5"
-                android:clickable="true"
-                android:focusable="true">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/tvNum4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="04"
+                        android:text="⚠ SPEED INCREASES EVERY WAVE"
                         android:fontFamily="@font/press_start_2p"
-                        android:textColor="#333333"
-                        android:textSize="32sp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="16dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/tvNum4">
-                        
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="GALAGA CORE"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#555555"
-                            android:textSize="12sp"
-                            android:layout_marginTop="4dp"/>
-                            
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="WAVES 10 - 12 • COMMANDER"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#333333"
-                            android:textSize="8sp"
-                            android:layout_marginTop="6dp"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="end"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
-                        
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="LOCKED"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#333333"
-                            android:textSize="8sp"
-                            android:paddingHorizontal="6dp"
-                            android:paddingVertical="4dp"
-                            android:background="#1A1A1A" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
+                        android:textColor="#442222"
+                        android:textSize="7sp"
                         android:layout_marginTop="20dp"
-                        app:layout_constraintTop_toBottomOf="@id/tvNum4"
-                        app:layout_constraintStart_toStartOf="parent">
-                        
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="WAVES  "
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#333333"
-                            android:textSize="8sp"/>
-                        
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="○" android:textColor="#333333" android:textSize="12sp"/>
-                        <View android:layout_width="16dp" android:layout_height="2dp" android:background="#222222" android:layout_marginHorizontal="6dp" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="○" android:textColor="#333333" android:textSize="12sp"/>
-                        <View android:layout_width="16dp" android:layout_height="2dp" android:background="#222222" android:layout_marginHorizontal="6dp" />
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="○" android:textColor="#333333" android:textSize="12sp"/>
-                    </LinearLayout>
+                        app:layout_constraintTop_toBottomOf="@id/tvNumEndless"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -563,6 +361,7 @@
                     android:textSize="10sp"/>
                 
                 <TextView
+                    android:id="@+id/tvOverallBest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="000000"
@@ -571,19 +370,17 @@
                     android:textSize="16sp"/>
             </LinearLayout>
 
-            <!-- PLAY LEVEL BUTTON -->
+            <!-- PLAY BUTTON -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnPlayLevel"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                android:text="PLAY LEVEL"
+                android:text="PLAY"
                 android:fontFamily="@font/press_start_2p"
                 android:textSize="14sp"
                 android:textColor="#000000"
                 android:backgroundTint="#FFFF00"
-                android:layout_marginBottom="16dp"
-                android:enabled="false"
-                android:alpha="0.3" />
+                android:layout_marginBottom="16dp" />
 
             <!-- MAIN MENU BUTTON -->
             <androidx.appcompat.widget.AppCompatButton

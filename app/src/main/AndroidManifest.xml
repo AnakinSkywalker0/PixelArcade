@@ -12,35 +12,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PixelArcade">
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".main.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AuthActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".EditProfileActivity" />
-        <activity android:name=".LeaderboardActivity" />
-        <activity android:name=".GameActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".GameLauncher2048Activity" />
-        <activity android:name=".GalagaLevelsActivity" />
-        <activity android:name=".GalagaTutorialActivity" />
-        <activity android:name=".GalagaMainMenuActivity" />
-        <activity android:name=".GalagaWaveBeginActivity" />
-        <activity android:name=".GalagaGameActivity" />
-        <activity android:name=".GalagaGameOverActivity" />
-        <activity android:name=".DailyChallengesActivity" />
-        <activity android:name=".TicTacToeActivity" />
-        <activity android:name=".TicTacToeLauncherActivity" />
-        <activity android:name=".TicTacToeSettingsActivity" />
+        <activity android:name=".auth.LoginActivity" />
+        <activity android:name=".auth.SignUpActivity" />
+        <activity android:name=".main.ProfileActivity" />
+        <activity android:name=".main.LeaderboardActivity" />
+        <activity android:name=".game2048.GameActivity" />
+        <activity android:name=".galaga.GalagaLevelsActivity" />
+        <activity android:name=".galaga.GalagaTutorialActivity" />
+        <activity android:name=".galaga.GalagaMainMenuActivity" />
+        <activity android:name=".galaga.GalagaWaveBeginActivity" />
+        <activity android:name=".galaga.GalagaGameActivity" />
+        <activity android:name=".galaga.GalagaGameOverActivity" />
+        <activity android:name=".main.DailyChallengesActivity" />
+        <activity android:name=".ttt.TicTacToeActivity" />
     </application>
 
 </manifest>

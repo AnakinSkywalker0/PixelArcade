@@ -157,7 +157,7 @@
             android:id="@+id/tvHighScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NULL"
+            android:text="000000"
             android:fontFamily="@font/press_start_2p"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
