@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_splash_panel"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvDailyRewardTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text="DAILY GIFTS"
+        android:textColor="#F3F3F3"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvDailyRewardSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Come back daily for more!"
+        android:textColor="#8D8379"
+        android:textSize="9sp"
+        android:layout_marginBottom="24dp"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="2"
+        android:layout_marginBottom="4dp">
+
+        <!-- Day 1 -->
+        <LinearLayout android:id="@+id/cardDay1" android:layout_width="70dp" android:layout_height="80dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_day_card_locked" android:layout_margin="4dp">
+            <TextView android:id="@+id/tvTitleDay1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Day 1" android:textColor="#A0A0A0" android:textSize="8sp" android:fontFamily="@font/press_start_2p" android:layout_marginBottom="8dp"/>
+            <TextView android:id="@+id/tvCoin1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🪙 10" android:textColor="#D4AF37" android:textSize="12sp" android:fontFamily="@font/press_start_2p"/>
+        </LinearLayout>
+        
+        <!-- Day 2 -->
+        <LinearLayout android:id="@+id/cardDay2" android:layout_width="70dp" android:layout_height="80dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_day_card_locked" android:layout_margin="4dp">
+            <TextView android:id="@+id/tvTitleDay2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Day 2" android:textColor="#A0A0A0" android:textSize="8sp" android:fontFamily="@font/press_start_2p" android:layout_marginBottom="8dp"/>
+            <TextView android:id="@+id/tvCoin2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🪙 20" android:textColor="#D4AF37" android:textSize="12sp" android:fontFamily="@font/press_start_2p"/>
+        </LinearLayout>
+
+        <!-- Day 3 -->
+        <LinearLayout android:id="@+id/cardDay3" android:layout_width="70dp" android:layout_height="80dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_day_card_locked" android:layout_margin="4dp">
+            <TextView android:id="@+id/tvTitleDay3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Day 3" android:textColor="#A0A0A0" android:textSize="8sp" android:fontFamily="@font/press_start_2p" android:layout_marginBottom="8dp"/>
+            <TextView android:id="@+id/tvCoin3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🪙 30" android:textColor="#D4AF37" android:textSize="12sp" android:fontFamily="@font/press_start_2p"/>
+        </LinearLayout>
+
+        <!-- Day 4 -->
+        <LinearLayout android:id="@+id/cardDay4" android:layout_width="70dp" android:layout_height="80dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_day_card_locked" android:layout_margin="4dp">
+            <TextView android:id="@+id/tvTitleDay4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Day 4" android:textColor="#A0A0A0" android:textSize="8sp" android:fontFamily="@font/press_start_2p" android:layout_marginBottom="8dp"/>
+            <TextView android:id="@+id/tvCoin4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🪙 40" android:textColor="#D4AF37" android:textSize="12sp" android:fontFamily="@font/press_start_2p"/>
+        </LinearLayout>
+
+        <!-- Day 5 -->
+        <LinearLayout android:id="@+id/cardDay5" android:layout_width="70dp" android:layout_height="80dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_day_card_locked" android:layout_margin="4dp">
+            <TextView android:id="@+id/tvTitleDay5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Day 5" android:textColor="#A0A0A0" android:textSize="8sp" android:fontFamily="@font/press_start_2p" android:layout_marginBottom="8dp"/>
+            <TextView android:id="@+id/tvCoin5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🪙 50" android:textColor="#D4AF37" android:textSize="12sp" android:fontFamily="@font/press_start_2p"/>
+        </LinearLayout>
+
+        <!-- Day 6 -->
+        <LinearLayout android:id="@+id/cardDay6" android:layout_width="70dp" android:layout_height="80dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_day_card_locked" android:layout_margin="4dp">
+            <TextView android:id="@+id/tvTitleDay6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Day 6" android:textColor="#A0A0A0" android:textSize="8sp" android:fontFamily="@font/press_start_2p" android:layout_marginBottom="8dp"/>
+            <TextView android:id="@+id/tvCoin6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🪙 60" android:textColor="#D4AF37" android:textSize="12sp" android:fontFamily="@font/press_start_2p"/>
+        </LinearLayout>
+
+    </GridLayout>
+
+    <!-- Day 7 -->
+    <LinearLayout android:id="@+id/cardDay7" android:layout_width="226dp" android:layout_height="80dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/bg_day_card_locked" android:layout_marginBottom="24dp">
+        <TextView android:id="@+id/tvTitleDay7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Day 7" android:textColor="#A0A0A0" android:textSize="8sp" android:fontFamily="@font/press_start_2p" android:layout_marginBottom="8dp"/>
+        <TextView android:id="@+id/tvCoin7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🪙 100" android:textColor="#D4AF37" android:textSize="16sp" android:fontFamily="@font/press_start_2p"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDailyRewardAction"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_auth_btn_primary"
+        android:fontFamily="@font/press_start_2p"
+        android:text="CLAIM"
+        android:textColor="#F3F3F3"
+        android:textSize="12sp" />
+        
+    <TextView
+        android:id="@+id/tvCloseLater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="MAYBE LATER"
+        android:textColor="#76716C"
+        android:textSize="9sp" />
+
+</LinearLayout>

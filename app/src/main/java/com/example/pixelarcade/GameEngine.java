@@ -7,8 +7,11 @@ import java.util.Random;
 public class GameEngine {
 
     private int[][] board;
+    private int[][] previousBoard;
     private int size;
     private int score = 0;
+    private int previousScore = 0;
+    private boolean canUndo = false;
     private Random random = new Random();
 
     public GameEngine(int size) {
@@ -53,8 +56,30 @@ public class GameEngine {
         }
     }
 
+    private void saveState() {
+        previousBoard = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            previousBoard[i] = board[i].clone();
+        }
+        previousScore = score;
+        canUndo = true;
+    }
+
+    public boolean canUndo() {
+        return canUndo;
+    }
+
+    public void undo() {
+        if (canUndo && previousBoard != null) {
+            board = previousBoard;
+            score = previousScore;
+            canUndo = false;
+        }
+    }
+
     public List<MoveEvent> moveLeft() {
         List<MoveEvent> currentMoves = new ArrayList<>();
+        saveState();
         boolean moved = false;
         for (int i = 0; i < size; i++) {
             List<Integer> tiles = new ArrayList<>();
@@ -95,6 +120,7 @@ public class GameEngine {
 
     public List<MoveEvent> moveRight() {
         List<MoveEvent> currentMoves = new ArrayList<>();
+        saveState();
         boolean moved = false;
         for (int i = 0; i < size; i++) {
             List<Integer> tiles = new ArrayList<>();
@@ -133,6 +159,7 @@ public class GameEngine {
 
     public List<MoveEvent> moveUp() {
         List<MoveEvent> currentMoves = new ArrayList<>();
+        saveState();
         boolean moved = false;
         for (int j = 0; j < size; j++) {
             List<Integer> tiles = new ArrayList<>();
@@ -171,6 +198,7 @@ public class GameEngine {
 
     public List<MoveEvent> moveDown() {
         List<MoveEvent> currentMoves = new ArrayList<>();
+        saveState();
         boolean moved = false;
         for (int j = 0; j < size; j++) {
             List<Integer> tiles = new ArrayList<>();
@@ -270,6 +298,15 @@ public class GameEngine {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (board[i][j] == 2048) return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasTile(int value) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (board[i][j] == value) return true;
             }
         }
         return false;

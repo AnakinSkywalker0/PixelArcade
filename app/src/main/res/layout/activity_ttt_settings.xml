@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/ttt_bg"
+    tools:context=".TicTacToeSettingsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tttSettingsContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="48dp"
+        android:paddingBottom="48dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_ttt_dialog"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:fontFamily="@font/press_start_2p"
+                android:text="⚔️ SETTINGS"
+                android:textColor="@color/ttt_title_color"
+                android:textSize="20sp" />
+
+            <!-- SOUND Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="SOUND"
+                android:textColor="@color/ttt_sword_color"
+                android:textSize="14sp" />
+
+            <!-- Sound Effects Toggle -->
+            <LinearLayout
+                android:id="@+id/rowTttSoundEffects"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="SOUND EFFECTS"
+                    android:textColor="@color/ttt_title_color"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/ivTttSoundEffects"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_toggle_on" />
+            </LinearLayout>
+
+            <!-- Music Toggle -->
+            <LinearLayout
+                android:id="@+id/rowTttMusic"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="MUSIC"
+                    android:textColor="@color/ttt_title_color"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/ivTttMusic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_toggle_on" />
+            </LinearLayout>
+
+            <!-- GAME Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="GAME"
+                android:textColor="@color/ttt_sword_color"
+                android:textSize="14sp" />
+
+            <!-- Animations Toggle -->
+            <LinearLayout
+                android:id="@+id/rowTttAnimations"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="ANIMATIONS"
+                    android:textColor="@color/ttt_title_color"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/ivTttAnimations"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_toggle_on" />
+            </LinearLayout>
+
+            <!-- Player Goes First Toggle -->
+            <LinearLayout
+                android:id="@+id/rowTttPlayerFirst"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="PLAYER FIRST"
+                    android:textColor="@color/ttt_title_color"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/ivTttPlayerFirst"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_toggle_on" />
+            </LinearLayout>
+
+            <!-- STATS Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="STATS"
+                android:textColor="@color/ttt_sword_color"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="TOTAL GAMES:"
+                    android:textColor="@color/ttt_title_color"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tvTttStatPlays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="0"
+                    android:textColor="@color/ttt_shield_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="WINS:"
+                    android:textColor="@color/ttt_title_color"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tvTttStatWins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="0"
+                    android:textColor="@color/ttt_sword_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="WIN RATE:"
+                    android:textColor="@color/ttt_title_color"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tvTttStatWinRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="0%"
+                    android:textColor="@color/ttt_win_highlight"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Actions -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTttResetStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_ttt_btn_unselected"
+                android:fontFamily="@font/press_start_2p"
+                android:text="RESET GAME DATA"
+                android:paddingVertical="16dp"
+                android:textColor="@color/ttt_title_color"
+                android:textSize="11sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTttBackToMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_ttt_btn_settings"
+                android:fontFamily="@font/press_start_2p"
+                android:paddingVertical="18dp"
+                android:text="BACK"
+                android:textColor="@color/ttt_subtitle_color"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

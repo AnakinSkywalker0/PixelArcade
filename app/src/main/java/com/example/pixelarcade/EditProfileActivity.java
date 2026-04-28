@@ -2,7 +2,12 @@ package com.example.pixelarcade;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -13,8 +18,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private EditText etName;
+    private EditText etName, etTagline;
+    private TextView tvCurrentAvatarEmoji;
+    private LinearLayout avatarContainer;
     private SharedPreferences prefs;
+    
+    private String selectedAvatarEmoji = "👾"; // Default
+    private final String[] avatars = {"👾", "🤖", "🚀", "⚔️", "🛡️", "🕹️", "🎮", "🐲"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +40,67 @@ public class EditProfileActivity extends AppCompatActivity {
 
         // Initialize Views
         etName = findViewById(R.id.etName);
+        etTagline = findViewById(R.id.etTagline);
+        tvCurrentAvatarEmoji = findViewById(R.id.tvCurrentAvatarEmoji);
+        avatarContainer = findViewById(R.id.avatarContainer);
         prefs = getSharedPreferences("PixelArcadePrefs", MODE_PRIVATE);
 
-        // Load Current Name
+        // Load Current Data
         String currentName = prefs.getString("playerName", "BUDDY");
+        String currentTagline = prefs.getString("playerTagline", "ARCADE WARRIOR");
+        selectedAvatarEmoji = prefs.getString("playerAvatarEmoji", "👾");
+        
         etName.setText(currentName);
+        etTagline.setText(currentTagline);
+        updateAvatarPreview();
+
+        // Setup Avatar Picker
+        setupAvatarPicker();
 
         // Click Listeners
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-        
         findViewById(R.id.btnSave).setOnClickListener(v -> saveProfile());
+    }
+
+    private void setupAvatarPicker() {
+        avatarContainer.removeAllViews();
+        for (String emoji : avatars) {
+            TextView tv = new TextView(this);
+            tv.setText(emoji);
+            tv.setTextSize(32);
+            tv.setGravity(Gravity.CENTER);
+            
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(140, 140);
+            params.setMargins(10, 0, 10, 0);
+            tv.setLayoutParams(params);
+            
+            updateItemSelection(tv, emoji.equals(selectedAvatarEmoji));
+
+            tv.setOnClickListener(v -> {
+                selectedAvatarEmoji = emoji;
+                updateAvatarPreview();
+                setupAvatarPicker(); // Refresh to update borders
+            });
+
+            avatarContainer.addView(tv);
+        }
+    }
+
+    private void updateItemSelection(TextView tv, boolean isSelected) {
+        if (isSelected) {
+            tv.setBackgroundResource(R.drawable.bg_avatar_selected);
+        } else {
+            tv.setBackgroundResource(R.drawable.bg_avatar_unselected);
+        }
+    }
+
+    private void updateAvatarPreview() {
+        tvCurrentAvatarEmoji.setText(selectedAvatarEmoji);
     }
 
     private void saveProfile() {
         String newName = etName.getText().toString().trim();
+        String newTagline = etTagline.getText().toString().trim();
 
         if (newName.isEmpty()) {
             Toast.makeText(this, "Name cannot be empty", Toast.LENGTH_SHORT).show();
@@ -53,9 +110,12 @@ public class EditProfileActivity extends AppCompatActivity {
         // Save to SharedPreferences
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("playerName", newName);
+        editor.putString("playerTagline", newTagline);
+        editor.putString("playerAvatarEmoji", selectedAvatarEmoji);
         editor.apply();
 
+        SoundManager.getInstance(this).playSfx("merge");
         Toast.makeText(this, "Profile Updated!", Toast.LENGTH_SHORT).show();
-        finish(); // Return to previous screen
+        finish();
     }
 }

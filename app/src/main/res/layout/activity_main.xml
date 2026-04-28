@@ -107,6 +107,16 @@
             app:layout_constraintTop_toBottomOf="@+id/tvSelectGame">
 
             <TextView
+                android:id="@+id/btnDailyReward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:text="🎁"
+                android:clickable="true"
+                android:focusable="true"
+                android:textSize="14sp" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/press_start_2p"
@@ -115,6 +125,7 @@
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/tvCoinCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -176,6 +187,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvSpaceStats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -231,6 +243,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tv2048Stats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -285,6 +298,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvTttStats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"

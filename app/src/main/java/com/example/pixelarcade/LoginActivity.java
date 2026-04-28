@@ -18,10 +18,16 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
         Button btnLoginSubmit = findViewById(R.id.btnLoginSubmit);
+        Button btnGoogleLogin = findViewById(R.id.btnGoogleLogin);
         TextView tvCreateAccount = findViewById(R.id.tvCreateAccount);
         TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
 
         btnLoginSubmit.setOnClickListener(v -> {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        });
+
+        btnGoogleLogin.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });

@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/bg_challenge_screen"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:id="@+id/challengesRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="48dp">
+
+        <!-- ════════════ TOP BAR ════════════ -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            android:paddingHorizontal="20dp">
+
+            <ImageButton
+                android:id="@+id/btnChallengesBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start|center_vertical"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/back"
+                android:padding="8dp"
+                android:src="@drawable/ic_retro_back"
+                app:tint="#4A5568" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/press_start_2p"
+                android:letterSpacing="0.05"
+                android:text="QUESTS"
+                android:textColor="#E2E8F0"
+                android:textSize="14sp"
+                android:shadowColor="#FFB300"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="8"/>
+
+        </FrameLayout>
+
+        <!-- ════════════ COIN HERO SECTION ════════════ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Subtitle -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="YOUR COINS"
+                android:textColor="#4A5568"
+                android:textSize="7sp"
+                android:letterSpacing="0.15"/>
+
+            <!-- Big coin display -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🪙"
+                    android:textSize="36sp"/>
+
+                <TextView
+                    android:id="@+id/tvChallengeBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textSize="40sp"
+                    android:shadowColor="#FFB300"
+                    android:shadowDx="0"
+                    android:shadowDy="4"
+                    android:shadowRadius="20"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <!-- ════════════ DIVIDER ════════════ -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="24dp"
+            android:background="#151829"/>
+
+        <!-- ════════════ SECTION HEADER ════════════ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="20dp"
+                android:background="#FFB300"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/press_start_2p"
+                android:text="TODAY'S QUESTS"
+                android:textColor="#CBD5E0"
+                android:textSize="9sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_challenge_card_locked"
+                android:fontFamily="@font/press_start_2p"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:text="🪙 +20 EACH"
+                android:textColor="#FFB300"
+                android:textSize="6sp"/>
+        </LinearLayout>
+
+        <!-- ════════════════════════════════════════════
+             CARD 1 — 2048: REACH 512
+        ════════════════════════════════════════════ -->
+        <LinearLayout
+            android:id="@+id/challenge1Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_challenge_card"
+            android:orientation="vertical"
+            android:padding="0dp"
+            android:clipToPadding="false">
+
+            <!-- Gold accent top strip -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#FFB300"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Row: emoji + text -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Big emoji in circle -->
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:gravity="center"
+                        android:text="🧩"
+                        android:textSize="28sp"
+                        android:background="@drawable/bg_challenge_icon_badge"/>
+
+                    <!-- Title + description -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="REACH 512"
+                            android:textColor="#FFF8E1"
+                            android:textSize="11sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="2048 · Reach the 512 tile"
+                            android:textColor="#5C4A00"
+                            android:textSize="6sp"/>
+                    </LinearLayout>
+
+                    <!-- Coin reward badge -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🪙"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="+20"
+                            android:textColor="#FFB300"
+                            android:textSize="9sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Progress bar -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_progress_track"
+                    android:clipToPadding="true">
+                    <View
+                        android:id="@+id/progress1Fill"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_progress_fill"/>
+                </FrameLayout>
+
+                <!-- Status + Claim -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvProgress1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="NOT STARTED"
+                        android:textColor="#3D3000"
+                        android:textSize="6sp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnClaim1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_btn_locked"
+                        android:fontFamily="@font/press_start_2p"
+                        android:paddingHorizontal="20dp"
+                        android:text="LOCKED"
+                        android:textColor="#3D3000"
+                        android:textSize="7sp"
+                        android:elevation="0dp"
+                        android:stateListAnimator="@null"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ════════════════════════════════════════════
+             CARD 2 — TTT: WIN STREAK
+        ════════════════════════════════════════════ -->
+        <LinearLayout
+            android:id="@+id/challenge2Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_card_ttt"
+            android:orientation="vertical"
+            android:clipToPadding="false">
+
+            <!-- Red accent top strip -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#FF5252"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Row: emoji + text -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:gravity="center"
+                        android:text="⚔️"
+                        android:textSize="28sp"
+                        android:background="@drawable/bg_challenge_icon_badge"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="WIN STREAK"
+                            android:textColor="#FFF0F0"
+                            android:textSize="11sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="TTT · Win 3 games in a row"
+                            android:textColor="#5C1010"
+                            android:textSize="6sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🪙"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="+20"
+                            android:textColor="#FF5252"
+                            android:textSize="9sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Win streak pips -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <View
+                            android:id="@+id/pip1"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@drawable/bg_progress_track"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="WIN 1"
+                            android:textColor="#3D0000"
+                            android:textSize="5sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="4dp"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <View
+                            android:id="@+id/pip2"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@drawable/bg_progress_track"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="WIN 2"
+                            android:textColor="#3D0000"
+                            android:textSize="5sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <View
+                            android:id="@+id/pip3"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@drawable/bg_progress_track"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="WIN 3"
+                            android:textColor="#3D0000"
+                            android:textSize="5sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Hidden compat view -->
+                <View
+                    android:id="@+id/progress2Fill"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone"/>
+
+                <!-- Status + Claim -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvProgress2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="0 / 3 WINS"
+                        android:textColor="#3D0000"
+                        android:textSize="6sp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnClaim2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_btn_locked"
+                        android:fontFamily="@font/press_start_2p"
+                        android:paddingHorizontal="20dp"
+                        android:text="LOCKED"
+                        android:textColor="#3D0000"
+                        android:textSize="7sp"
+                        android:elevation="0dp"
+                        android:stateListAnimator="@null"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ════════════════════════════════════════════
+             CARD 3 — GALAGA: COMING SOON
+        ════════════════════════════════════════════ -->
+        <LinearLayout
+            android:id="@+id/challenge3Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_card_galaga"
+            android:orientation="vertical"
+            android:alpha="0.4"
+            android:clipToPadding="false">
+
+            <!-- Teal accent top strip -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#26C6DA"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:gravity="center"
+                        android:text="🚀"
+                        android:textSize="28sp"
+                        android:background="@drawable/bg_challenge_icon_badge"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="ENDLESS RUN"
+                            android:textColor="#E0F7FA"
+                            android:textSize="11sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="GALAGA · Coming soon..."
+                            android:textColor="#004D5C"
+                            android:textSize="6sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🔒"
+                            android:textSize="22sp"
+                            android:gravity="center"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/press_start_2p"
+                            android:text="SOON"
+                            android:textColor="#26C6DA"
+                            android:textSize="7sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_progress_track">
+                    <View
+                        android:id="@+id/progress3Fill"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_progress_fill"/>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvProgress3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="COMING SOON"
+                        android:textColor="#003D4A"
+                        android:textSize="6sp"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnClaim3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_btn_locked"
+                        android:enabled="false"
+                        android:fontFamily="@font/press_start_2p"
+                        android:paddingHorizontal="20dp"
+                        android:text="SOON"
+                        android:textColor="#003D4A"
+                        android:textSize="7sp"
+                        android:elevation="0dp"
+                        android:stateListAnimator="@null"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ════════════ FOOTER ════════════ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="3dp"
+                android:background="#FFB300"
+                android:layout_marginBottom="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.8"
+                android:text="COMPLETE DAILY QUESTS\nTO EARN MORE COINS!"
+                android:textColor="#1E2235"
+                android:textSize="6sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
