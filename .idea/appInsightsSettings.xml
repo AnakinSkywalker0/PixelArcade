@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.pixelarcade" />
+                  <option name="mobileSdkAppId" value="1:77387860683:android:75b05145fcd9437161e94e" />
+                  <option name="projectId" value="pixel-arcade-84e5a" />
+                  <option name="projectNumber" value="77387860683" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

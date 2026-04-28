@@ -37,6 +37,10 @@
         <activity android:name=".GalagaWaveBeginActivity" />
         <activity android:name=".GalagaGameActivity" />
         <activity android:name=".GalagaGameOverActivity" />
+        <activity android:name=".DailyChallengesActivity" />
+        <activity android:name=".TicTacToeActivity" />
+        <activity android:name=".TicTacToeLauncherActivity" />
+        <activity android:name=".TicTacToeSettingsActivity" />
     </application>
 
 </manifest>

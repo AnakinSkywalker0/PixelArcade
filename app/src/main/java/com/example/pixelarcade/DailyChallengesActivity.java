@@ -208,7 +208,7 @@ public class DailyChallengesActivity extends AppCompatActivity {
             .putInt("total_coins_earned", totalEarned + 20)
             .putBoolean(claimedKey, true)
             .apply();
-        SoundManager.getInstance(this).playSfx("merge");
+        // SoundManager.getInstance(this).playSfx("merge");
         // Animate balance counter
         animateBalance(coins, coins + 20);
     }

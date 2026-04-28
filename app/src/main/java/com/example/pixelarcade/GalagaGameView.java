@@ -384,12 +384,6 @@ public class GalagaGameView extends SurfaceView implements SurfaceHolder.Callbac
             explosions.get(i).update();
             if (explosions.get(i).isDead()) explosions.remove(i);
         }
-        
-        // Update floating texts
-        for (int i = floatingTexts.size() - 1; i >= 0; i--) {
-            floatingTexts.get(i).update();
-            if (floatingTexts.get(i).isDead()) floatingTexts.remove(i);
-        }
 
         if (stateTimer >= WAVE_CLEARED_DURATION) {
             stateTimer = 0;
@@ -440,23 +434,13 @@ public class GalagaGameView extends SurfaceView implements SurfaceHolder.Callbac
                         explosions.add(new Explosion(e.currentX, e.y));
                         enemies.remove(j); 
                         
-                        // Points increment based on bug difficulty
-                        int pts = 100;
-                        if (e.type == 1) pts = 150;
-                        else if (e.type == 3) pts = 200;
-                        else if (e.type == 2) pts = 250;
+                        // Points increment based on bug difficulty (reduced by 100)
+                        int pts = 25; // Base bug
+                        if (e.type == 1) pts = 50;
+                        else if (e.type == 3) pts = 100;
+                        else if (e.type == 2) pts = 150;
                         
                         score += pts;
-                        
-                        // Floating text for points
-                        floatingTexts.add(new FloatingText(e.currentX, e.y, "+" + pts, 30f, Color.YELLOW, 30));
-
-                        // Milestone messages (500, 1000, 1500, etc.)
-                        int milestone = score / 500;
-                        if (milestone > lastMilestone) {
-                            lastMilestone = milestone;
-                            floatingTexts.add(new FloatingText(getWidth() / 2f, getHeight() / 2f, (milestone * 500) + " POINTS!", 50f, Color.GREEN, 60));
-                        }
 
                         final int s = score;
                         if (listener != null) post(() -> listener.onScoreUpdated(s));
@@ -561,9 +545,6 @@ public class GalagaGameView extends SurfaceView implements SurfaceHolder.Callbac
 
         // Explosions
         for (Explosion ex : explosions) ex.draw(canvas, paint);
-        
-        // Floating Texts
-        for (FloatingText ft : floatingTexts) ft.draw(canvas, textPaint);
 
         // Death explosion ring (final life)
         if (deathExplosion != null) deathExplosion.draw(canvas, paint);

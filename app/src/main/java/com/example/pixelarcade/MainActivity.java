@@ -21,10 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        
-        // Initialize Sound
-        SoundManager.getInstance(this).loadPreferences();
-        // SoundManager.getInstance(this).startMusic(R.raw.menu_bgm); // Uncomment when file exists
+        // Initialize Sound (removed for non-Galaga)
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -61,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         TextView btnDailyReward = findViewById(R.id.btnDailyReward);
         if (btnDailyReward != null) {
             btnDailyReward.setOnClickListener(v -> {
-                SoundManager.getInstance(this).playSfx("click");
                 showDailyRewardDialog(); // Always let them see their streak!
             });
         }

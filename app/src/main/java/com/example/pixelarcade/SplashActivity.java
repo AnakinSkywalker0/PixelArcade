@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SplashActivity extends AppCompatActivity {
     private final String[] dots = {".", "..", "..."};
     private int dotIndex = 0;
@@ -31,9 +33,14 @@ public class SplashActivity extends AppCompatActivity {
 
         handler.postDelayed(() -> {
             handler.removeCallbacksAndMessages(null);
-            startActivity(new Intent(SplashActivity.this, AuthActivity.class));
+
+            // Skip auth if user is already logged in
+            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            } else {
+                startActivity(new Intent(SplashActivity.this, AuthActivity.class));
+            }
             finish();
         }, 2500);
     }
 }
-

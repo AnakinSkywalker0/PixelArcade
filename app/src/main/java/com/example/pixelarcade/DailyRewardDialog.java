@@ -167,7 +167,7 @@ public class DailyRewardDialog extends Dialog {
              .apply();
 
         // Play Sound
-        SoundManager.getInstance(getContext()).playSfx("merge");
+        // SoundManager.getInstance(getContext()).playSfx("merge");
 
         // Update UI
         isClaimableToday = false;

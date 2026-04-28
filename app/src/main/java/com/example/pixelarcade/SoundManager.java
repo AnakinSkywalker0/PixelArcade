@@ -53,6 +53,15 @@ public class SoundManager {
         }
     }
 
+    // Stubs to prevent compilation errors in other minigames (2048, TTT)
+    public void playSfx(String sfxName) {
+        // Ignored. SoundManager is only used for Galaga.
+    }
+
+    public void loadPreferences() {
+        // Ignored.
+    }
+
     public void playBackgroundMusic(int resourceId, boolean loop) {
         stopBackgroundMusic();
         backgroundMusicPlayer = MediaPlayer.create(context, resourceId);
