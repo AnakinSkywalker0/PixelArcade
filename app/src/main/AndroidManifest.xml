@@ -31,6 +31,12 @@
         <activity android:name=".GameActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".GameLauncher2048Activity" />
+        <activity android:name=".GalagaLevelsActivity" />
+        <activity android:name=".GalagaTutorialActivity" />
+        <activity android:name=".GalagaMainMenuActivity" />
+        <activity android:name=".GalagaWaveBeginActivity" />
+        <activity android:name=".GalagaGameActivity" />
+        <activity android:name=".GalagaGameOverActivity" />
     </application>
 
 </manifest>

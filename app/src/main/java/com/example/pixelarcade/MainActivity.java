@@ -44,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btnPlaySpace.setOnClickListener(v ->
-                Toast.makeText(this, R.string.coming_soon, Toast.LENGTH_SHORT).show());
+        btnPlaySpace.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GalagaMainMenuActivity.class);
+            startActivity(intent);
+        });
 
         btnPlayTicTacToe.setOnClickListener(v ->
                 Toast.makeText(this, R.string.coming_soon, Toast.LENGTH_SHORT).show());
