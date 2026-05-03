@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer border (dark) -->
+    <item android:drawable="@color/window_border_dark" />
+
+    <!-- Inner border light (top-left) -->
+    <item android:top="1dp" android:left="1dp" android:right="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="2dp" android:color="@color/window_border_light" />
+            <solid android:color="@color/window_background" />
+        </shape>
+    </item>
+
+    <!-- Inner border shadow (bottom-right) -->
+    <item android:top="3dp" android:left="3dp" android:right="0dp" android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="1dp" android:color="@color/window_border_shadow" />
+        </shape>
+    </item>
+</layer-list>

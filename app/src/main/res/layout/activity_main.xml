@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1C22">
+    android:background="#000000"
+    android:fitsSystemWindows="true">
+
+    <!-- Starfield Background -->
+    <com.example.pixelarcade.main.StarfieldView
+        android:id="@+id/starfieldView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/menuPanel"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/bg_splash_panel"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +35,7 @@
             android:fontFamily="@font/press_start_2p"
             android:gravity="center"
             android:text="@string/brand_title_single_line"
-            android:textColor="#76716C"
+            android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +62,7 @@
                 android:gravity="start|center_vertical"
                 android:paddingVertical="8dp"
                 android:text="PROFILE"
-                android:textColor="#76716C"
+                android:textColor="#FFFFFF"
                 android:textSize="9sp" />
 
             <TextView
@@ -63,7 +74,7 @@
                 android:gravity="end|center_vertical"
                 android:paddingVertical="8dp"
                 android:text="LEADERBOARD"
-                android:textColor="#76716C"
+                android:textColor="#FFFFFF"
                 android:textSize="9sp" />
         </LinearLayout>
 
@@ -84,7 +95,7 @@
             android:layout_marginTop="18dp"
             android:fontFamily="@font/press_start_2p"
             android:text="@string/select_your_game"
-            android:textColor="#76716C"
+            android:textColor="#FFFFFF"
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/press_start_2p"
                 android:text="@string/coins_label"
-                android:textColor="#76716C"
+                android:textColor="#FFFFFF"
                 android:textSize="11sp" />
 
             <TextView
@@ -131,7 +142,7 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/press_start_2p"
                 android:text="@string/menu_coin_count"
-                android:textColor="#76716C"
+                android:textColor="#FFFFFF"
                 android:textSize="11sp" />
         </LinearLayout>
 
@@ -193,7 +204,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/press_start_2p"
                         android:text="@string/space_shooter"
-                        android:textColor="#76716C"
+                        android:textColor="#FFFFFF"
                         android:textSize="12sp" />
 
                     <TextView
@@ -362,7 +373,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/press_start_2p"
                         android:text="@string/game_2048"
-                        android:textColor="#76716C"
+                        android:textColor="#FFFFFF"
                         android:textSize="12sp" />
 
                     <TextView
@@ -417,7 +428,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/press_start_2p"
                         android:text="@string/tic_tac_toe"
-                        android:textColor="#76716C"
+                        android:textColor="#FFFFFF"
                         android:textSize="12sp" />
 
                     <TextView

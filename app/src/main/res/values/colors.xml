@@ -57,4 +57,10 @@
     <color name="ttt_title_color">#E8E8F0</color>
     <color name="ttt_subtitle_color">#8888AA</color>
     <color name="ttt_win_highlight">#FFD700</color>
+
+    <!-- Splash Window Frame Colors -->
+    <color name="window_border_dark">#000000</color>
+    <color name="window_border_light">#DFDFDF</color>
+    <color name="window_border_shadow">#808080</color>
+    <color name="window_background">#C0C0C0</color>
 </resources>
