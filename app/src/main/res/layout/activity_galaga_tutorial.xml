@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:id="@+id/main">
+
+    <!-- Animated Starry Background -->
+    <com.example.pixelarcade.StarfieldView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Back Button -->
+    <LinearLayout
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"
+        android:focusable="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="◀"
+            android:textColor="#FFFF00"
+            android:textSize="10sp"
+            android:layout_marginEnd="6dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BACK"
+            android:fontFamily="@font/press_start_2p"
+            android:textColor="#FFFF00"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvHowToPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOW TO PLAY"
+        android:fontFamily="@font/press_start_2p"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tvHowToPlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="24dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- CONTROLS Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="| CONTROLS"
+                android:fontFamily="@font/press_start_2p"
+                android:textColor="#555555"
+                android:textSize="12sp"
+                android:layout_marginBottom="24dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+                
+                <!-- Move Left -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:strokeColor="#4285F4"
+                        app:strokeWidth="2dp"
+                        app:cardCornerRadius="8dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="◀"
+                            android:textColor="#4285F4"
+                            android:textSize="32sp" />
+                    </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MOVE LEFT"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#FFFFFF"
+                        android:textSize="8sp"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TAP LEFT SIDE"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#555555"
+                        android:textSize="6sp"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="#333333" />
+
+                <!-- Auto Fire -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:strokeColor="#FFFF00"
+                        app:strokeWidth="2dp"
+                        app:cardCornerRadius="8dp">
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="24dp"
+                            android:background="#FFFF00"
+                            android:layout_gravity="center" />
+                    </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AUTO FIRE"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#FFFFFF"
+                        android:textSize="8sp"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ALWAYS ON"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#555555"
+                        android:textSize="6sp"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="#333333" />
+
+                <!-- Move Right -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:strokeColor="#4285F4"
+                        app:strokeWidth="2dp"
+                        app:cardCornerRadius="8dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="▶"
+                            android:textColor="#4285F4"
+                            android:textSize="32sp" />
+                    </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MOVE RIGHT"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#FFFFFF"
+                        android:textSize="8sp"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TAP RIGHT SIDE"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#555555"
+                        android:textSize="6sp"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:background="#222222" />
+
+            <!-- RULES Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="| RULES"
+                android:fontFamily="@font/press_start_2p"
+                android:textColor="#555555"
+                android:textSize="12sp"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Rule 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="32dp">
+                
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="01"
+                    android:fontFamily="@font/press_start_2p"
+                    android:textColor="#FF3333"
+                    android:textSize="24sp"
+                    android:gravity="center"/>
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DESTROY ALL ENEMIES"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp"
+                        android:layout_marginBottom="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SHOOT EVERY ENEMY TO CLEAR THE WAVE."
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#777777"
+                        android:lineSpacingExtra="4dp"
+                        android:textSize="8sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Rule 2 (Lives) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="32dp">
+                
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="02"
+                    android:fontFamily="@font/press_start_2p"
+                    android:textColor="#33FF33"
+                    android:textSize="24sp"
+                    android:gravity="center"/>
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="YOU HAVE 3 LIVES"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp"
+                        android:layout_marginBottom="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GETTING HIT BY AN ENEMY BULLET COSTS ONE LIFE. LOSE ALL 3 -- GAME OVER."
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#777777"
+                        android:lineSpacingExtra="4dp"
+                        android:textSize="8sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Rule 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="32dp">
+                
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="03"
+                    android:fontFamily="@font/press_start_2p"
+                    android:textColor="#FFFF00"
+                    android:textSize="24sp"
+                    android:gravity="center"/>
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3 WAVES PER LEVEL"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp"
+                        android:layout_marginBottom="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CLEAR ALL 3 WAVES TO FINISH THE LEVEL AND UNLOCK THE NEXT."
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#777777"
+                        android:lineSpacingExtra="4dp"
+                        android:textSize="8sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Rule 4 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="48dp">
+                
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="04"
+                    android:fontFamily="@font/press_start_2p"
+                    android:textColor="#4285F4"
+                    android:textSize="24sp"
+                    android:gravity="center"/>
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ENEMIES GET FASTER"
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp"
+                        android:layout_marginBottom="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EACH WAVE ENEMIES MOVE AND SHOOT FASTER. STAY SHARP."
+                        android:fontFamily="@font/press_start_2p"
+                        android:textColor="#777777"
+                        android:lineSpacingExtra="4dp"
+                        android:textSize="8sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- GOT IT! Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGotIt"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:text="GOT IT!"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:backgroundTint="#FFFF00"
+                android:layout_marginBottom="32dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

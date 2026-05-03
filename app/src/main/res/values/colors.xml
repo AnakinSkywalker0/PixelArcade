@@ -46,4 +46,15 @@
     <!-- Text Colors -->
     <color name="retro_text_white">#FFFFFF</color>
     <color name="retro_text_dark">#6B6055</color>
+
+    <!-- Tic Tac Toe Theme Colors -->
+    <color name="ttt_bg">#1A1B2E</color>
+    <color name="ttt_board_bg">#252742</color>
+    <color name="ttt_cell_bg">#2F3157</color>
+    <color name="ttt_cell_border">#3D4070</color>
+    <color name="ttt_sword_color">#FF6B6B</color>
+    <color name="ttt_shield_color">#4ECDC4</color>
+    <color name="ttt_title_color">#E8E8F0</color>
+    <color name="ttt_subtitle_color">#8888AA</color>
+    <color name="ttt_win_highlight">#FFD700</color>
 </resources>

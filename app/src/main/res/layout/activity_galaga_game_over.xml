@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:fitsSystemWindows="true"
+    tools:context=".GalagaGameOverActivity">
+
+    <!-- Animated Starry Background -->
+    <com.example.pixelarcade.StarfieldView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GAME\nOVER"
+            android:fontFamily="@font/press_start_2p"
+            android:textColor="#FF0000"
+            android:textSize="54sp"
+            android:gravity="center"
+            android:lineSpacingExtra="12dp"
+            android:layout_marginBottom="32dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#333333"
+            android:layout_marginBottom="32dp"
+            android:layout_marginHorizontal="32dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FINAL SCORE"
+            android:fontFamily="@font/press_start_2p"
+            android:textColor="#FF3333"
+            android:textSize="12sp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvFinalScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24850"
+            android:fontFamily="@font/press_start_2p"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:layout_marginBottom="16dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/tvNewBestLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#FFFF00"
+            app:cardCornerRadius="4dp"
+            app:strokeWidth="0dp"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NEW BEST!"
+                android:fontFamily="@font/press_start_2p"
+                android:textColor="#000000"
+                android:textSize="8sp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YOUR BEST"
+            android:fontFamily="@font/press_start_2p"
+            android:textColor="#FFFF00"
+            android:textSize="12sp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvYourBest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24850"
+            android:fontFamily="@font/press_start_2p"
+            android:textColor="#FFFF00"
+            android:textSize="24sp"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Stats Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="48dp"
+            android:layout_marginHorizontal="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="WAVE" android:fontFamily="@font/press_start_2p" android:textColor="#555555" android:textSize="8sp" android:layout_marginBottom="12dp"/>
+                <TextView android:id="@+id/tvStatWave" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="05" android:fontFamily="@font/press_start_2p" android:textColor="#FFFFFF" android:textSize="16sp"/>
+            </LinearLayout>
+
+            <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#222222" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ENEMIES" android:fontFamily="@font/press_start_2p" android:textColor="#555555" android:textSize="8sp" android:layout_marginBottom="12dp"/>
+                <TextView android:id="@+id/tvStatEnemies" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="38" android:fontFamily="@font/press_start_2p" android:textColor="#FFFFFF" android:textSize="16sp"/>
+            </LinearLayout>
+
+            <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#222222" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ACCURACY" android:fontFamily="@font/press_start_2p" android:textColor="#555555" android:textSize="8sp" android:layout_marginBottom="12dp"/>
+                <TextView android:id="@+id/tvStatAccuracy" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="64%" android:fontFamily="@font/press_start_2p" android:textColor="#FFFFFF" android:textSize="16sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Buttons -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPlayAgain"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="PLAY AGAIN"
+            android:fontFamily="@font/press_start_2p"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:backgroundTint="#33FF33"
+            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="32dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMainMenu"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="MAIN MENU"
+            android:fontFamily="@font/press_start_2p"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            app:strokeColor="#555555"
+            app:strokeWidth="2dp"
+            app:backgroundTint="#111111"
+            android:layout_marginHorizontal="32dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

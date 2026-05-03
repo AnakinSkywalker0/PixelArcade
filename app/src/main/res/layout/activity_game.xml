@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:fitsSystemWindows="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -231,11 +231,24 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
+            <!-- UNDO Button (Game Over only) -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnOverlayUndo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_btn_grid_selected"
+                android:fontFamily="@font/press_start_2p"
+                android:text="⏪ UNDO (20 🪙)"
+                android:textColor="@color/retro_text_white"
+                android:textSize="11sp"
+                android:visibility="gone" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnOverlayAction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/bg_btn_grid_unselected"
                 android:fontFamily="@font/press_start_2p"
                 android:text="TRY AGAIN"
@@ -255,5 +268,32 @@
 
         </LinearLayout>
     </FrameLayout>
+
+    <!-- Coin Reward Popup Banner -->
+    <LinearLayout
+        android:id="@+id/coinRewardPopup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/bg_dark_box"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:elevation="12dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvCoinRewardText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="🪙 +20 COINS!"
+            android:textColor="#FFD700"
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
