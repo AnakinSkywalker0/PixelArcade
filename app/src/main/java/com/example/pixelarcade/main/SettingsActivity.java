@@ -4,9 +4,11 @@ import com.example.pixelarcade.R;
 import com.example.pixelarcade.manager.UserDataManager;
 import com.example.pixelarcade.manager.SoundManager;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import com.example.pixelarcade.auth.AuthActivity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -126,9 +128,10 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void resetData() {
-        udm.remove("high_score_2048");
-        udm.remove("plays_2048");
-        loadSettings();
-        Toast.makeText(this, "Game data reset!", Toast.LENGTH_SHORT).show();
+        udm.clearAllData();
+        Intent intent = new Intent(this, AuthActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }

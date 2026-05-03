@@ -1,7 +1,7 @@
 package com.example.pixelarcade.main;
 
 import com.example.pixelarcade.R;
-import com.example.pixelarcade.AuthActivity;
+import com.example.pixelarcade.auth.AuthActivity;
 import com.example.pixelarcade.auth.LoginActivity;
 import com.example.pixelarcade.manager.UserDataManager;
 

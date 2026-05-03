@@ -1,4 +1,4 @@
-package com.example.pixelarcade;
+package com.example.pixelarcade.auth;
 
 import android.content.Intent;
 import android.os.Bundle;

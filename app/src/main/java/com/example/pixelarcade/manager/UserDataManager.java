@@ -201,6 +201,20 @@ public class UserDataManager {
      * Push ALL current local data to the cloud.
      * Call this once after first login to seed the cloud with existing data.
      */
+    /**
+     * Wipes all local and cloud data for the current user.
+     */
+    public void clearAllData() {
+        prefs.edit().clear().apply();
+        FirebaseAuth.getInstance().signOut();
+        DocumentReference doc = getUserDoc();
+        if (doc != null) {
+            doc.delete()
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "Cloud data successfully deleted"))
+                .addOnFailureListener(e -> Log.e(TAG, "Error deleting cloud data", e));
+        }
+    }
+
     public void pushAllToCloud() {
         DocumentReference doc = getUserDoc();
         if (doc == null) return;
