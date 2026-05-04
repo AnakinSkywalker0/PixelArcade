@@ -9,7 +9,7 @@
     tools:context=".GalagaMainMenuActivity">
 
     <!-- Animated Starry Background -->
-    <com.example.pixelarcade.StarfieldView
+    <com.example.pixelarcade.main.StarfieldView
         android:id="@+id/ivBackgroundStars"
         android:layout_width="0dp"
         android:layout_height="0dp"

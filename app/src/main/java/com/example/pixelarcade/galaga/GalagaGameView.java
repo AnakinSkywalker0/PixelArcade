@@ -4,6 +4,7 @@ import com.example.pixelarcade.R;
 import com.example.pixelarcade.manager.SoundManager;
 
 import android.content.Context;
+import android.util.Log;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -153,7 +154,9 @@ public class GalagaGameView extends SurfaceView implements SurfaceHolder.Callbac
     public void run() {
         while (isRunning) {
             long t0 = System.currentTimeMillis();
-            updateGame();
+            synchronized (this) {
+                updateGame();
+            }
             renderFrame();
             long sleep = TARGET_FRAME_TIME_MS - (System.currentTimeMillis() - t0);
             if (sleep > 0) try { Thread.sleep(sleep); } catch (InterruptedException ignored) {}
@@ -162,16 +165,22 @@ public class GalagaGameView extends SurfaceView implements SurfaceHolder.Callbac
 
     private void renderFrame() {
         Canvas canvas = null;
+        SurfaceHolder holder = getHolder();
         try {
-            SurfaceHolder holder = getHolder();
             canvas = holder.lockCanvas();
             if (canvas != null) {
-                synchronized (holder) { drawFrame(canvas); }
+                synchronized (this) {
+                    drawFrame(canvas);
+                }
             }
-        } catch (Exception e) { e.printStackTrace(); }
-        finally {
-            if (canvas != null)
-                try { getHolder().unlockCanvasAndPost(canvas); } catch (Exception ignored) {}
+        } catch (Exception e) {
+            Log.e("GalagaGameView", "Rendering error", e);
+        } finally {
+            if (canvas != null) {
+                try {
+                    holder.unlockCanvasAndPost(canvas);
+                } catch (Exception ignored) {}
+            }
         }
     }
 

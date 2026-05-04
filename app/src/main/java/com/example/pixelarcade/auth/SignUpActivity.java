@@ -150,7 +150,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 String name = mAuth.getCurrentUser() != null ? mAuth.getCurrentUser().getDisplayName() : "Player";
                                 Toast.makeText(SignUpActivity.this, "Welcome " + name + "!", Toast.LENGTH_SHORT).show();
-                                UserDataManager.getInstance(SignUpActivity.this).syncFromCloud(() -> {
+                                UserDataManager.getInstance(SignUpActivity.this).syncFromCloud(success -> {
                                     startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                                     finish();
                                 });

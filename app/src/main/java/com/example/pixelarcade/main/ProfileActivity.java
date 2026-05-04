@@ -74,6 +74,9 @@ public class ProfileActivity extends AppCompatActivity {
         findViewById(R.id.btnEditProfile).setOnClickListener(v ->
                 startActivity(new Intent(this, EditProfileActivity.class)));
 
+        findViewById(R.id.btnSocial).setOnClickListener(v ->
+                android.widget.Toast.makeText(this, "Social features coming soon!", android.widget.Toast.LENGTH_SHORT).show());
+
         findViewById(R.id.btnViewLeaderboard).setOnClickListener(v ->
                 startActivity(new Intent(this, LeaderboardActivity.class)));
 
@@ -97,9 +100,8 @@ public class ProfileActivity extends AppCompatActivity {
         }
         tvSubTitle.setText(tagline);
 
-        // Avatar Emoji
-        String avatarEmoji = udm.getString("playerAvatarEmoji", "👾");
-        tvProfileAvatarEmoji.setText(avatarEmoji);
+        // Avatar
+        tvProfileAvatarEmoji.setText("IMG");
 
         // Member since
         String joinDate = udm.getString("join_date", null);

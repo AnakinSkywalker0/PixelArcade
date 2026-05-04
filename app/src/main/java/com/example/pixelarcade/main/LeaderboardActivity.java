@@ -129,7 +129,7 @@ public class LeaderboardActivity extends AppCompatActivity {
                     if (suffix.equals("Wins")) {
                         displayScore = score + " Wins";
                     } else if (suffix.equals("Coins")) {
-                        displayScore = formatNumber(score) + " 🪙";
+                        displayScore = formatNumber(score) + " COINS";
                     } else {
                         displayScore = formatNumber(score);
                     }
@@ -157,7 +157,7 @@ public class LeaderboardActivity extends AppCompatActivity {
                                     if (suffix.equals("Wins")) {
                                         myDisplay = myScore + " Wins";
                                     } else if (suffix.equals("Coins")) {
-                                        myDisplay = formatNumber(myScore) + " 🪙";
+                                        myDisplay = formatNumber(myScore) + " COINS";
                                     } else {
                                         myDisplay = formatNumber(myScore);
                                     }

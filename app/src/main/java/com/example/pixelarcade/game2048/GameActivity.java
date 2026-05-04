@@ -395,10 +395,16 @@ public class GameActivity extends AppCompatActivity {
         }
 
         // Daily Challenge: Reach 512
-        if (engine.hasTile(512)) {
-            UserDataManager udm512 = UserDataManager.getInstance(this);
-            if (!udm512.getBoolean("challenge_512_done", false)) {
-                udm512.putBoolean("challenge_512_done", true);
+        int currentMax = engine.getMaxTile();
+        UserDataManager udmTile = UserDataManager.getInstance(this);
+        int savedMax = udmTile.getInt("challenge_2048_max_tile", 0);
+        if (currentMax > savedMax) {
+            udmTile.putInt("challenge_2048_max_tile", currentMax);
+        }
+
+        if (currentMax >= 512) {
+            if (!udmTile.getBoolean("challenge_512_done", false)) {
+                udmTile.putBoolean("challenge_512_done", true);
             }
         }
 

@@ -17,460 +17,938 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/menuPanel"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <!-- Header Section (Flattened for perfect alignment) -->
+    <FrameLayout
+        android:id="@+id/profileHeader"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_pixel_card_dark"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="6dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tvTopTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/press_start_2p"
+            android:id="@+id/playerAvatarEmoji"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/brand_title_single_line"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="👾"
+            android:textSize="24sp" />
+    </FrameLayout>
+
+    <!-- Title (Center) - Perfectly centered in screen -->
+    <LinearLayout
+        android:id="@+id/logoContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/profileHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profileHeader">
 
         <LinearLayout
-            android:id="@+id/topMenuLinks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="2dp">
+            <View android:layout_width="4dp" android:layout_height="4dp" android:background="@color/arcade_red" android:layout_marginEnd="2dp" />
+            <View android:layout_width="4dp" android:layout_height="4dp" android:background="@color/arcade_green" android:layout_marginEnd="2dp" />
+            <View android:layout_width="4dp" android:layout_height="4dp" android:background="@color/arcade_blue" android:layout_marginEnd="2dp" />
+            <View android:layout_width="4dp" android:layout_height="4dp" android:background="@color/arcade_yellow" android:layout_marginEnd="2dp" />
+            <View android:layout_width="4dp" android:layout_height="4dp" android:background="@color/arcade_purple" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="PIXEL ARCADE"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="----------- EST. 2026 -----------"
+            android:textColor="#444444"
+            android:textSize="5sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- Coins Badge (Right) - Wrap Content -->
+    <LinearLayout
+        android:id="@+id/coinBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_pixel_card_dark"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="6dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/profileHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profileHeader">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_coin"
+            android:layout_marginEnd="6dp" />
+
+        <TextView
+            android:id="@+id/tvCoinCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="1250"
+            android:textColor="@color/arcade_yellow"
+            android:textSize="9sp" />
+
+        <TextView
+            android:id="@+id/btnAddCoins"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_pixel_inner_dark"
+            android:text="+"
+            android:textColor="@color/arcade_purple"
+            android:textSize="10sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- Stats Bar -->
+    <LinearLayout
+        android:id="@+id/statsBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_pixel_card_dark"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileHeader">
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTopTitle">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
-                android:id="@+id/tvProfileLink"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/press_start_2p"
-                android:gravity="start|center_vertical"
-                android:paddingVertical="8dp"
-                android:text="PROFILE"
-                android:textColor="#FFFFFF"
-                android:textSize="9sp" />
+                android:text="STREAK"
+                android:textColor="@color/arcade_yellow"
+                android:textSize="7sp" />
 
             <TextView
-                android:id="@+id/tvLeaderboardLink"
-                android:layout_width="0dp"
+                android:id="@+id/tvStreakDays"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/press_start_2p"
-                android:gravity="end|center_vertical"
-                android:paddingVertical="8dp"
-                android:text="LEADERBOARD"
-                android:textColor="#FFFFFF"
-                android:textSize="9sp" />
+                android:text="05 DAYS"
+                android:textColor="@color/arcade_yellow"
+                android:textSize="10sp"
+                android:layout_marginTop="4dp" />
         </LinearLayout>
 
         <View
-            android:id="@+id/vTopDivider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:background="#A79686"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topMenuLinks" />
-
-        <TextView
-            android:id="@+id/tvSelectGame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:fontFamily="@font/press_start_2p"
-            android:text="@string/select_your_game"
-            android:textColor="#FFFFFF"
-            android:textSize="11sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vTopDivider" />
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#2A2A3A" />
 
         <LinearLayout
-            android:id="@+id/coinBadge"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_coin_badge"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingStart="18dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="18dp"
-            android:paddingBottom="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSelectGame">
-
-            <TextView
-                android:id="@+id/btnDailyReward"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:text="🎁"
-                android:clickable="true"
-                android:focusable="true"
-                android:textSize="14sp" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/press_start_2p"
-                android:text="@string/coins_label"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp" />
+                android:text="PLAYS"
+                android:textColor="@color/arcade_blue"
+                android:textSize="7sp" />
 
             <TextView
-                android:id="@+id/tvCoinCount"
+                android:id="@+id/tvTotalPlays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:fontFamily="@font/press_start_2p"
-                android:text="@string/menu_coin_count"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp" />
+                android:text="0156"
+                android:textColor="@color/arcade_blue"
+                android:textSize="10sp"
+                android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/menuScroll"
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#2A2A3A" />
+
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="10dp"
-            android:fillViewport="true"
-            app:layout_constraintBottom_toTopOf="@+id/tvFooter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/coinBadge">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="TOTAL EARNED"
+                android:textColor="@color/arcade_purple"
+                android:textSize="7sp" />
+
+            <TextView
+                android:id="@+id/tvTotalEarned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="002500"
+                android:textColor="@color/arcade_purple"
+                android:textSize="10sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Quick Action Buttons -->
+    <LinearLayout
+        android:id="@+id/quickActionsBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statsBar">
+
+        <TextView
+            android:id="@+id/tvProfileLink"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_pixel_card_purple"
+            android:fontFamily="@font/press_start_2p"
+            android:text="PROFILE"
+            android:textColor="#FFFFFF"
+            android:textSize="8sp"
+            android:gravity="center"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvLeaderboardLink"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_pixel_card_purple"
+            android:fontFamily="@font/press_start_2p"
+            android:text="LEADERBOARD"
+            android:textColor="#FFFFFF"
+            android:textSize="8sp"
+            android:gravity="center"
+            android:paddingBottom="4dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/hallOfFameContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_pixel_card_dark"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quickActionsBar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="HALL OF FAME"
+            android:textColor="#8D8379"
+            android:textSize="6sp"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingBottom="12dp">
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="2048"
+                    android:textColor="@color/arcade_blue"
+                    android:textSize="5sp" />
+                <TextView
+                    android:id="@+id/tvBest2048"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textSize="8sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <View android:layout_width="1dp" android:layout_height="20dp" android:background="#2A2A3A" android:layout_gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="GALAGA"
+                    android:textColor="@color/arcade_yellow"
+                    android:textSize="5sp" />
+                <TextView
+                    android:id="@+id/tvBestGalaga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textSize="8sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <View android:layout_width="1dp" android:layout_height="20dp" android:background="#2A2A3A" android:layout_gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="TTT WINS"
+                    android:textColor="@color/arcade_green"
+                    android:textSize="5sp" />
+                <TextView
+                    android:id="@+id/tvBestTTT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textSize="8sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- "SELECT YOUR GAME" Divider -->
+    <TextView
+        android:id="@+id/tvSelectGame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingTop="16dp"
+        android:paddingBottom="12dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="......... SELECT YOUR GAME ........."
+        android:textColor="@color/arcade_green"
+        android:textSize="8sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hallOfFameContainer" />
+
+    <!-- Games ScrollView -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/menuScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSelectGame">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="16dp">
+
+            <!-- GALAGA Card (Yellow) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_pixel_card_yellow"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="6dp">
+
+                <FrameLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_pixel_inner_dark"
+                    android:padding="8dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/img_galaga_thumb" />
+                </FrameLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/bg_menu_card"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
                     android:orientation="vertical">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="110dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:alpha="0.7"
-                            android:src="@drawable/img_galaga_thumb" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/press_start_2p"
-                            android:text="GALAGA"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="2"
-                            android:shadowDy="2"
-                            android:shadowRadius="4" />
-                    </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="@string/space_shooter"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                        android:text="GALAGA"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="SPACE SHOOTER"
+                        android:textColor="#2D2D2D"
+                        android:textSize="6sp"
+                        android:layout_marginTop="2dp" />
 
                     <TextView
                         android:id="@+id/tvSpaceStats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="4dp"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="@string/menu_space_stats"
-                        android:textColor="#8D8379"
-                        android:textSize="11sp" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnPlaySpace"
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/bg_auth_btn_primary"
-                        android:fontFamily="@font/press_start_2p"
-                        android:paddingBottom="6dp"
-                        android:text="@string/play"
-                        android:textColor="#F3F3F3"
-                        android:textSize="11sp" />
+                        android:text="PLAYS 0"
+                        android:textColor="#2D2D2D"
+                        android:textSize="6sp"
+                        android:layout_marginTop="4dp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/bg_menu_card"
-                    android:orientation="vertical">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:background="@drawable/bg_menu_thumb_2048">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="top|start"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="5dp"
-                            android:text="2048"
-                            android:alpha="0.06"
-                            android:textSize="36sp"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#000000"
-                            android:rotation="-15" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|end"
-                            android:layout_marginEnd="60dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="1024"
-                            android:alpha="0.05"
-                            android:textSize="28sp"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#000000"
-                            android:rotation="10" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="top|end"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginTop="20dp"
-                            android:text="512"
-                            android:alpha="0.03"
-                            android:textSize="44sp"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#000000"
-                            android:rotation="25" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|start"
-                            android:layout_marginStart="40dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="256"
-                            android:alpha="0.04"
-                            android:textSize="24sp"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#000000"
-                            android:rotation="-5" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|start"
-                            android:layout_marginStart="80dp"
-                            android:text="128"
-                            android:alpha="0.03"
-                            android:textSize="20sp"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#000000"
-                            android:rotation="15" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|end"
-                            android:layout_marginEnd="90dp"
-                            android:text="64"
-                            android:alpha="0.05"
-                            android:textSize="32sp"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#000000"
-                            android:rotation="-20" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|end"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="35dp"
-                            android:text="16"
-                            android:alpha="0.04"
-                            android:textSize="22sp"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#000000"
-                            android:rotation="30" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="top|center_horizontal"
-                            android:layout_marginTop="10dp"
-                            android:text="8"
-                            android:alpha="0.03"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#000000"
-                            android:rotation="-10" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_marginBottom="8dp"
-                            android:text="2"
-                            android:alpha="0.05"
-                            android:textSize="26sp"
-                            android:fontFamily="@font/press_start_2p"
-                            android:textColor="#000000"
-                            android:rotation="45" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/press_start_2p"
-                            android:text="@string/game_2048"
-                            android:textColor="#8A7E71"
-                            android:textSize="26sp" />
-                    </FrameLayout>
-
+                    android:id="@+id/btnPlaySpace"
+                    android:layout_width="86dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_pixel_inner_dark"
+                    android:orientation="vertical"
+                    android:gravity="center">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="@string/game_2048"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
-
+                        android:text="PLAY"
+                        android:textColor="@color/arcade_yellow"
+                        android:textSize="8sp" />
                     <TextView
-                        android:id="@+id/tv2048Stats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="4dp"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="@string/menu_2048_stats"
-                        android:textColor="#8D8379"
-                        android:textSize="11sp" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnPlay2048"
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/bg_auth_btn_primary"
-                        android:fontFamily="@font/press_start_2p"
-                        android:paddingBottom="6dp"
-                        android:text="@string/play"
-                        android:textColor="#F3F3F3"
-                        android:textSize="11sp" />
+                        android:text="1 COIN"
+                        android:textColor="@color/arcade_yellow"
+                        android:textSize="5sp"
+                        android:layout_marginTop="4dp" />
                 </LinearLayout>
+            </LinearLayout>
+
+            <!-- TIC TAC TOE Card (Green) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_pixel_card_green"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="6dp">
+
+                <FrameLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_pixel_inner_dark"
+                    android:padding="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="X|O\nX|O"
+                        android:textColor="@color/arcade_green"
+                        android:textSize="10sp"
+                        android:gravity="center" />
+                </FrameLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_menu_card"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
                     android:orientation="vertical">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:background="@drawable/bg_menu_thumb_ttt">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/press_start_2p"
-                            android:text="@string/ttt_preview"
-                            android:textColor="#8A7E71"
-                            android:textSize="24sp" />
-                    </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="@string/tic_tac_toe"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                        android:text="TIC TAC TOE"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="CLASSIC BOARD"
+                        android:textColor="#2D2D2D"
+                        android:textSize="6sp"
+                        android:layout_marginTop="2dp" />
 
                     <TextView
                         android:id="@+id/tvTttStats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="4dp"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="@string/menu_ttt_stats"
-                        android:textColor="#8D8379"
-                        android:textSize="11sp" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnPlayTicTacToe"
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/bg_auth_btn_primary"
-                        android:fontFamily="@font/press_start_2p"
-                        android:paddingBottom="6dp"
-                        android:text="@string/play"
-                        android:textColor="#F3F3F3"
-                        android:textSize="11sp" />
+                        android:text="PLAYS 0"
+                        android:textColor="#2D2D2D"
+                        android:textSize="6sp"
+                        android:layout_marginTop="4dp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/btnPlayTicTacToe"
+                    android:layout_width="86dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_pixel_inner_dark"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="PLAY"
+                        android:textColor="@color/arcade_green"
+                        android:textSize="8sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="FREE"
+                        android:textColor="@color/arcade_green"
+                        android:textSize="5sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
 
-        <TextView
-            android:id="@+id/tvFooter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/press_start_2p"
-            android:text="@string/auth_footer"
-            android:textColor="#CFCFCF"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <!-- 2048 Card (Blue) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_pixel_card_blue"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="6dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <FrameLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_pixel_inner_dark"
+                    android:padding="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="2 0\n4 8"
+                        android:textColor="@color/arcade_blue"
+                        android:textSize="8sp"
+                        android:gravity="center" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="2048"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="PUZZLE"
+                        android:textColor="#E0E0E0"
+                        android:textSize="6sp"
+                        android:layout_marginTop="2dp" />
+
+                    <TextView
+                        android:id="@+id/tv2048Stats"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="PLAYS 0"
+                        android:textColor="#E0E0E0"
+                        android:textSize="6sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnPlay2048"
+                    android:layout_width="86dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_pixel_inner_dark"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="PLAY"
+                        android:textColor="@color/arcade_blue"
+                        android:textSize="8sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="FREE"
+                        android:textColor="@color/arcade_blue"
+                        android:textSize="5sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- SNAKE Card (Red) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_pixel_card_red"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="6dp">
+
+                <FrameLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_pixel_inner_dark"
+                    android:padding="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="🔴"
+                        android:textSize="18sp"
+                        android:gravity="center" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="SNAKE"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="ARCADE CLASSIC"
+                        android:textColor="#E0E0E0"
+                        android:textSize="6sp"
+                        android:layout_marginTop="2dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="PLAYS 0"
+                        android:textColor="#E0E0E0"
+                        android:textSize="6sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="86dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_pixel_inner_dark"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="PLAY"
+                        android:textColor="@color/arcade_red"
+                        android:textSize="8sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="FREE"
+                        android:textColor="@color/arcade_red"
+                        android:textSize="5sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- MORE GAMES Card (Gray) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                android:background="@drawable/bg_pixel_card_gray"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="6dp">
+
+                <FrameLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_pixel_inner_dark"
+                    android:padding="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="🔒"
+                        android:textSize="20sp"
+                        android:gravity="center" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="MORE GAMES"
+                        android:textColor="#888888"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="COMING SOON"
+                        android:textColor="#666666"
+                        android:textSize="6sp"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="86dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_pixel_inner_dark"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="LOCKED"
+                    android:textColor="#444444"
+                    android:textSize="6sp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="#09090D"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/navArcade"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_nav_item_selected">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🕹️"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="ARCADE"
+                android:textColor="@color/arcade_yellow"
+                android:textSize="6sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navChallenges"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⭐"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="CHALLENGE"
+                android:textColor="#666666"
+                android:textSize="6sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏠"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="HOME"
+                android:textColor="#666666"
+                android:textSize="6sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navShop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🪙"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="SHOP"
+                android:textColor="#666666"
+                android:textSize="6sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navSettings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚙️"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="SETTING"
+                android:textColor="#666666"
+                android:textSize="6sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,17 +40,14 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         holder.tvScore.setText(entry.getScore());
         
         int rank = entry.getRank();
+        holder.tvRank.setText(String.valueOf(rank));
         if (rank == 1) {
-            holder.tvRank.setText("🥇");
             holder.tvRank.setTextColor(0xFFD4AF37); // Gold
         } else if (rank == 2) {
-            holder.tvRank.setText("🥈");
             holder.tvRank.setTextColor(0xFFC0C0C0); // Silver
         } else if (rank == 3) {
-            holder.tvRank.setText("🥉");
             holder.tvRank.setTextColor(0xFFCD7F32); // Bronze
         } else {
-            holder.tvRank.setText(String.valueOf(rank));
             holder.tvRank.setTextColor(0xFF5F564D); // High contrast Brown
         }
 

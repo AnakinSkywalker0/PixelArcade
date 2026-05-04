@@ -179,25 +179,26 @@
             android:background="@drawable/bg_dialog"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="28dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="28dp"
                 android:gravity="center"
                 android:fontFamily="@font/press_start_2p"
-                android:text="HOW TO\nPLAY"
+                android:text="HOW TO PLAY"
                 android:textColor="@color/white"
-                android:textSize="24sp" />
+                android:textSize="20sp"
+                android:lineSpacingExtra="8dp" />
 
-            <!-- Instruction Block 1 -->
+            <!-- Instruction Block -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="28dp"
                 android:background="@drawable/bg_dark_box"
-                
+                android:padding="20dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -206,35 +207,35 @@
                     android:fontFamily="@font/press_start_2p"
                     android:text="SWIPE UP, DOWN, LEFT, OR RIGHT TO MOVE ALL TILES."
                     android:textColor="#EADECA"
-                    android:lineSpacingExtra="12dp"
-                    android:textSize="14sp" />
+                    android:lineSpacingExtra="8dp"
+                    android:textSize="12sp" />
                     
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/press_start_2p"
                     android:text="WHEN TWO IDENTICAL TILES TOUCH, THEY MERGE INTO ONE!"
                     android:textColor="#EADECA"
-                    android:lineSpacingExtra="12dp"
-                    android:textSize="14sp" />
+                    android:lineSpacingExtra="8dp"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="24dp"
                     android:gravity="center"
                     android:fontFamily="@font/press_start_2p"
                     android:text="REACH 2048 TO WIN!"
                     android:textColor="@color/retro_cell_2048"
-                    android:textSize="18sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnPlayNow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:paddingVertical="18dp"
                 android:background="@drawable/bg_btn_grid_selected"
                 android:fontFamily="@font/press_start_2p"
@@ -246,12 +247,13 @@
                 android:id="@+id/btnCancelTutorial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:padding="12dp"
                 android:fontFamily="@font/press_start_2p"
                 android:text="BACK"
                 android:textColor="@color/retro_text_dark"
-                android:textSize="14sp" />
+                android:textSize="12sp"
+                android:alpha="0.8" />
 
         </LinearLayout>
     </FrameLayout>

@@ -64,9 +64,8 @@ public class LoginActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(this, "Welcome back!", Toast.LENGTH_SHORT).show();
-                            UserDataManager.getInstance(this).syncFromCloud(() -> {
-                                startActivity(new Intent(this, MainActivity.class));
-                                finish();
+                            UserDataManager.getInstance(this).syncFromCloud(success -> {
+                                navigateToMain();
                             });
                         } else {
                             String msg = task.getException() != null ? task.getException().getMessage() : "";
@@ -102,6 +101,11 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         tvCreateAccount.setOnClickListener(v -> startActivity(new Intent(this, SignUpActivity.class)));
+    }
+
+    private void navigateToMain() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     private void signInWithGoogle() {
@@ -161,9 +165,8 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 String name = mAuth.getCurrentUser() != null ? mAuth.getCurrentUser().getDisplayName() : "Player";
                                 Toast.makeText(LoginActivity.this, "Welcome " + name + "!", Toast.LENGTH_SHORT).show();
-                                UserDataManager.getInstance(LoginActivity.this).syncFromCloud(() -> {
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                    finish();
+                                UserDataManager.getInstance(LoginActivity.this).syncFromCloud(success -> {
+                                    navigateToMain();
                                 });
                             } else {
                                 Toast.makeText(LoginActivity.this, "Firebase Auth Failed.", Toast.LENGTH_SHORT).show();

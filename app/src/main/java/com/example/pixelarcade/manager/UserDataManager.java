@@ -155,10 +155,14 @@ public class UserDataManager {
      * Pull all data from Firestore and overwrite local SharedPreferences.
      * Call this once after login to restore cloud data to a new device.
      */
-    public void syncFromCloud(Runnable onComplete) {
+    public interface SyncCallback {
+        void onSyncComplete(boolean success);
+    }
+
+    public void syncFromCloud(SyncCallback callback) {
         DocumentReference doc = getUserDoc();
         if (doc == null) {
-            if (onComplete != null) onComplete.run();
+            if (callback != null) callback.onSyncComplete(false);
             return;
         }
 
@@ -190,10 +194,8 @@ public class UserDataManager {
                         Log.d(TAG, "Cloud data synced to local storage");
                     }
                 }
-            } else {
-                Log.e(TAG, "Failed to sync from cloud", task.getException());
             }
-            if (onComplete != null) onComplete.run();
+            if (callback != null) callback.onSyncComplete(task.isSuccessful());
         });
     }
 

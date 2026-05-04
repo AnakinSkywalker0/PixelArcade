@@ -16,64 +16,104 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Title at Top -->
-    <TextView
-        android:id="@+id/tvTitle"
+    <!-- Logo Container -->
+    <LinearLayout
+        android:id="@+id/logoContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/press_start_2p"
-        android:text="PIXEL ARCADE"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="40dp" />
-
-    <!-- Main Brand -->
-    <TextView
-        android:id="@+id/tvBrand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/press_start_2p"
+        android:orientation="vertical"
         android:gravity="center"
-        android:text="PIXEL&#10;ARCADE"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintVertical_bias="0.4">
 
-    <!-- Loading Text -->
-    <TextView
-        android:id="@+id/tvLoading"
-        android:layout_width="wrap_content"
+        <!-- Brand Dots -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+            <View android:layout_width="14dp" android:layout_height="14dp" android:background="@color/arcade_red" android:layout_marginEnd="8dp" />
+            <View android:layout_width="14dp" android:layout_height="14dp" android:background="@color/arcade_green" android:layout_marginEnd="8dp" />
+            <View android:layout_width="14dp" android:layout_height="14dp" android:background="@color/arcade_blue" android:layout_marginEnd="8dp" />
+            <View android:layout_width="14dp" android:layout_height="14dp" android:background="@color/arcade_yellow" android:layout_marginEnd="8dp" />
+            <View android:layout_width="14dp" android:layout_height="14dp" android:background="@color/arcade_purple" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="PIXEL\nARCADE"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="----------- EST. 2026 -----------"
+            android:textColor="#333333"
+            android:textSize="8sp"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+    <!-- Loading Section -->
+    <LinearLayout
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/press_start_2p"
+        android:orientation="vertical"
         android:gravity="center"
-        android:text="LOADING"
-        android:textColor="#FFFFFF"
-        android:textSize="9sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="60dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="80dp">
 
-    <!-- Loading Dots -->
+        <ProgressBar
+            android:id="@+id/splashProgress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:progress="0"
+            android:max="100"
+            android:progressDrawable="@drawable/bg_progress_splash" />
+
+        <TextView
+            android:id="@+id/tvLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="BOOTING SYSTEM..."
+            android:textColor="#666666"
+            android:textSize="7sp"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/tvDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="..."
+            android:textColor="#444444"
+            android:textSize="7sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Version Info -->
     <TextView
-        android:id="@+id/tvDots"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/press_start_2p"
-        android:gravity="center"
-        android:text="."
-        android:textColor="#FFFFFF"
-        android:textSize="9sp"
+        android:text="V 1.0.4"
+        android:textColor="#1A1A1A"
+        android:textSize="6sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLoading"
-        android:layout_marginTop="4dp" />
+        android:layout_margin="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

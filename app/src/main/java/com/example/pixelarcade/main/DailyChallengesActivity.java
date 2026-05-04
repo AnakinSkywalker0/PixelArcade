@@ -33,17 +33,17 @@ public class DailyChallengesActivity extends AppCompatActivity {
     // Card 1 — 2048
     private ProgressBar progress1;
     private TextView tvProgress1;
-    private Button btnClaim1;
+    private TextView btnClaim1;
 
     // Card 2 — TTT Streak
     private ProgressBar progress2;
     private TextView tvProgress2;
-    private Button btnClaim2;
+    private TextView btnClaim2;
 
     // Card 3 — Galaga
     private ProgressBar progress3;
     private TextView tvProgress3;
-    private Button btnClaim3;
+    private TextView btnClaim3;
 
     // Colors per card (Premium Theme)
     private static final int COLOR_GOLD   = 0xFFFFD700;
@@ -85,8 +85,28 @@ public class DailyChallengesActivity extends AppCompatActivity {
 
         findViewById(R.id.btnChallengesBack).setOnClickListener(v -> finish());
 
+        setupNavigation();
         checkDailyReset();
         loadChallenges();
+    }
+
+    private void setupNavigation() {
+        findViewById(R.id.navArcade).setOnClickListener(v -> {
+            startActivity(android.content.Intent.createChooser(new android.content.Intent(this, MainActivity.class), "Select Home"));
+            finish();
+        });
+        findViewById(R.id.navHome).setOnClickListener(v -> {
+            startActivity(new android.content.Intent(this, MainActivity.class));
+            finish();
+        });
+        findViewById(R.id.navShop).setOnClickListener(v -> {
+            startActivity(new android.content.Intent(this, ShopActivity.class));
+            finish();
+        });
+        findViewById(R.id.navSettings).setOnClickListener(v -> {
+            startActivity(new android.content.Intent(this, SettingsActivity.class));
+            finish();
+        });
     }
 
     private void checkDailyReset() {
@@ -111,6 +131,7 @@ public class DailyChallengesActivity extends AppCompatActivity {
             reset.put("challenge_ttt_streak_done", false);
             reset.put("challenge_ttt_streak_claimed", false);
             reset.put("challenge_ttt_consec_wins", 0);
+            reset.put("challenge_2048_max_tile", 0);
             
             // Galaga reset
             reset.put("challenge_galaga_waves_done", false);
@@ -144,8 +165,10 @@ public class DailyChallengesActivity extends AppCompatActivity {
             setReadyState(btnClaim1, "CLAIM NOW", COLOR_GOLD);
             btnClaim1.setOnClickListener(v -> claimChallenge("challenge_512_claimed", 1));
         } else {
-            progress1.setProgress(0);
-            tvProgress1.setText("NOT STARTED");
+            int maxTile = udm.getInt("challenge_2048_max_tile", 0);
+            int percent = (int)((Math.log(Math.max(2, maxTile))/Math.log(2)) / (Math.log(512)/Math.log(2)) * 100);
+            progress1.setProgress(Math.min(100, percent));
+            tvProgress1.setText(maxTile + "/512");
             tvProgress1.setTextColor(COLOR_MUTED);
             setLockedState(btnClaim1, "LOCKED", COLOR_MUTED);
         }
@@ -180,7 +203,7 @@ public class DailyChallengesActivity extends AppCompatActivity {
         boolean claimed = udm.getBoolean("challenge_galaga_waves_claimed", false);
         boolean done    = udm.getBoolean("challenge_galaga_waves_done", false);
         int bestWave    = udm.getInt("galaga_endless_best_wave", 0);
-        int target      = 5;
+        int target      = 2;
 
         if (claimed) {
             progress3.setProgress(100);
@@ -190,14 +213,14 @@ public class DailyChallengesActivity extends AppCompatActivity {
         } else if (done || bestWave >= target) {
             if (!done) udm.putBoolean("challenge_galaga_waves_done", true);
             progress3.setProgress(100);
-            tvProgress3.setText("WAVE 5 — COMPLETED!");
+            tvProgress3.setText("WAVE 2 — COMPLETED!");
             tvProgress3.setTextColor(COLOR_TEAL);
             setReadyState(btnClaim3, "CLAIM NOW", COLOR_TEAL);
             btnClaim3.setOnClickListener(v -> claimChallenge("challenge_galaga_waves_claimed", 3));
         } else {
             int perc = (int)((bestWave / (float)target) * 100);
-            progress3.setProgress(perc);
-            tvProgress3.setText("BEST WAVE: " + bestWave + " / " + target);
+            progress3.setProgress(Math.min(100, perc));
+            tvProgress3.setText("BEST: WAVE " + bestWave + "/" + target);
             tvProgress3.setTextColor(COLOR_MUTED);
             setLockedState(btnClaim3, "LOCKED", COLOR_MUTED);
         }
@@ -217,23 +240,25 @@ public class DailyChallengesActivity extends AppCompatActivity {
         showToast("🪙 +20 Coins! Great work!");
     }
 
-    private void setLockedState(Button btn, String label, int textColor) {
+    private void setLockedState(TextView btn, String label, int textColor) {
         btn.setText(label);
-        btn.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF202633));
+        btn.setBackgroundResource(R.drawable.bg_pixel_inner_dark);
         btn.setTextColor(textColor);
         btn.setEnabled(false);
     }
 
-    private void setReadyState(Button btn, String label, int glowColor) {
+    private void setReadyState(TextView btn, String label, int glowColor) {
         btn.setText(label);
-        btn.setBackgroundTintList(android.content.res.ColorStateList.valueOf(glowColor));
+        // For ready state, we use a solid color background to make it pop, 
+        // or we could use a custom "Ready" drawable. For now, solid color is fine.
+        btn.setBackgroundColor(glowColor);
         btn.setTextColor(Color.BLACK);
         btn.setEnabled(true);
     }
 
-    private void setDoneState(Button btn, int textColor) {
+    private void setDoneState(TextView btn, int textColor) {
         btn.setText("DONE ✓");
-        btn.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF202633));
+        btn.setBackgroundResource(R.drawable.bg_pixel_inner_dark);
         btn.setTextColor(textColor);
         btn.setEnabled(false);
     }
@@ -253,6 +278,11 @@ public class DailyChallengesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        udm.syncFromCloud(success -> {
+            if (success && !isFinishing()) {
+                runOnUiThread(this::loadChallenges);
+            }
+        });
         loadChallenges();
     }
 }

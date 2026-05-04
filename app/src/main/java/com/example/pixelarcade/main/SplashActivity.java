@@ -15,30 +15,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashActivity extends AppCompatActivity {
-    private final String[] dots = {".", "..", "..."};
-    private int dotIndex = 0;
-    private final Handler handler = new Handler(android.os.Looper.getMainLooper());
+    private final android.os.Handler handler = new android.os.Handler(android.os.Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        TextView tvDots = findViewById(R.id.tvDots);
-
-        Runnable dotRunnable = new Runnable() {
-            @Override
-            public void run() {
-                tvDots.setText(dots[dotIndex % 3]);
-                dotIndex++;
-                handler.postDelayed(this, 400);
-            }
-        };
-        handler.post(dotRunnable);
+        android.widget.ProgressBar progressBar = findViewById(R.id.splashProgress);
+        
+        // Animate the loading bar for a premium feel
+        android.animation.ObjectAnimator animation = android.animation.ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
+        animation.setDuration(2200);
+        animation.setInterpolator(new android.view.animation.DecelerateInterpolator());
+        animation.start();
 
         handler.postDelayed(() -> {
-            handler.removeCallbacksAndMessages(null);
-
             // Skip auth if user is already logged in
             if (FirebaseAuth.getInstance().getCurrentUser() != null) {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
@@ -46,6 +38,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(new Intent(SplashActivity.this, AuthActivity.class));
             }
             finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }, 2500);
     }
 }

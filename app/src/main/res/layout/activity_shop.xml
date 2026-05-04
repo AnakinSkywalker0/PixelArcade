@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D0D1A"
+    android:fitsSystemWindows="true"
+    tools:context=".main.ShopActivity">
+
+    <!-- ═══════════ HEADER BAR ═══════════ -->
+    <LinearLayout
+        android:id="@+id/headerBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_pixel_card_dark"
+        android:paddingStart="12dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@color/arcade_purple"
+            android:text="←"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:fontFamily="@font/press_start_2p"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SHOP"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:fontFamily="@font/press_start_2p"
+            android:gravity="center"
+            android:layout_marginStart="8dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_pixel_inner_dark"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🪙"
+                android:textSize="12sp"
+                android:layout_marginEnd="4dp"/>
+            <TextView
+                android:id="@+id/tvShopCoins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1250"
+                android:textColor="@color/arcade_yellow"
+                android:textSize="9sp"
+                android:fontFamily="@font/press_start_2p"/>
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:background="@color/arcade_purple"
+                android:text="+"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:fontFamily="@font/press_start_2p"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ═══════════ TABS ═══════════ -->
+    <LinearLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/headerBar">
+
+        <LinearLayout
+            android:id="@+id/tabShips"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_pixel_card_yellow"
+            android:gravity="center"
+            android:paddingVertical="12dp"
+            android:layout_marginEnd="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🚀"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SHIPS"
+                android:textColor="@color/retro_text_dark"
+                android:textSize="10sp"
+                android:fontFamily="@font/press_start_2p"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tabCoins"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_pixel_card_dark"
+            android:gravity="center"
+            android:paddingVertical="12dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🪙"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COINS"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:fontFamily="@font/press_start_2p"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ═══════════ CONTENT ═══════════ -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <!-- Section Title -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="4dp">
+                <View android:layout_width="40dp" android:layout_height="1dp" android:background="#333344" android:layout_marginEnd="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GALAGA SHIPS"
+                    android:textColor="@color/arcade_green"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/press_start_2p"/>
+                <View android:layout_width="40dp" android:layout_height="1dp" android:background="#333344" android:layout_marginStart="8dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="COLLECT AND UPGRADE YOUR FLEET"
+                android:textColor="#555555"
+                android:textSize="6sp"
+                android:fontFamily="@font/press_start_2p"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Grid of Ships -->
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:alignmentMode="alignMargins"
+                android:columnOrderPreserved="false">
+
+                <!-- Ship 1 (Equipped) -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/bg_shop_card_equipped"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingVertical="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DEFAULT"
+                        android:textColor="#FFFFFF"
+                        android:textSize="6sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginBottom="12dp"/>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ship_white"
+                        android:scaleType="fitCenter"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CLASSIC WHITE"
+                        android:textColor="#AAAAAA"
+                        android:textSize="5sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:background="@drawable/bg_btn_green"
+                        android:text="EQUIPPED"
+                        android:textColor="#FFFFFF"
+                        android:textSize="6sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:gravity="center"
+                        android:paddingVertical="6dp"/>
+                </LinearLayout>
+
+                <!-- Coming Soon 1 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/bg_shop_card_locked"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingVertical="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COMING SOON"
+                        android:textColor="#555555"
+                        android:textSize="6sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="❓"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:alpha="0.2"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STAY TUNED!"
+                        android:textColor="#333333"
+                        android:textSize="5sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginTop="12dp"/>
+                </LinearLayout>
+
+                <!-- Coming Soon 2 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/bg_shop_card_locked"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingVertical="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COMING SOON"
+                        android:textColor="#555555"
+                        android:textSize="6sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="❓"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:alpha="0.2"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STAY TUNED!"
+                        android:textColor="#333333"
+                        android:textSize="5sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginTop="12dp"/>
+                </LinearLayout>
+
+                <!-- Row 2 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/bg_shop_card_locked"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingVertical="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COMING SOON"
+                        android:textColor="#555555"
+                        android:textSize="6sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="❓"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:alpha="0.2"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STAY TUNED!"
+                        android:textColor="#333333"
+                        android:textSize="5sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginTop="12dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/bg_shop_card_locked"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingVertical="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COMING SOON"
+                        android:textColor="#555555"
+                        android:textSize="6sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="❓"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:alpha="0.2"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STAY TUNED!"
+                        android:textColor="#333333"
+                        android:textSize="5sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginTop="12dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/bg_shop_card_locked"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingVertical="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COMING SOON"
+                        android:textColor="#555555"
+                        android:textSize="6sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="❓"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:alpha="0.2"
+                        android:layout_marginBottom="12dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STAY TUNED!"
+                        android:textColor="#333333"
+                        android:textSize="5sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginTop="12dp"/>
+                </LinearLayout>
+            </GridLayout>
+
+            <!-- Daily Free Gift Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_pixel_card_dark"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_gift_box"
+                    android:layout_marginEnd="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DAILY FREE GIFT"
+                        android:textColor="@color/arcade_yellow"
+                        android:textSize="9sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginBottom="4dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COME BACK EVERY DAY TO CLAIM FREE COINS!"
+                        android:textColor="#777777"
+                        android:textSize="6sp"
+                        android:fontFamily="@font/press_start_2p"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnClaimGift"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_settings"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CLAIM"
+                        android:textColor="@color/retro_text_dark"
+                        android:textSize="8sp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:layout_marginBottom="4dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🪙"
+                            android:textSize="8sp"
+                            android:layout_marginEnd="4dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50"
+                            android:textColor="@color/retro_text_dark"
+                            android:textSize="8sp"
+                            android:fontFamily="@font/press_start_2p"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ═══════════ BOTTOM NAVIGATION ═══════════ -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#09090D"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/navArcade"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🕹️"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="ARCADE"
+                android:textColor="#666666"
+                android:textSize="6sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navChallenges"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⭐"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="CHALLENGE"
+                android:textColor="#666666"
+                android:textSize="6sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏠"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="HOME"
+                android:textColor="#666666"
+                android:textSize="6sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navShop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_nav_item_selected">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🪙"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="SHOP"
+                android:textColor="@color/arcade_yellow"
+                android:textSize="6sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navSettings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚙️"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="SETTING"
+                android:textColor="#666666"
+                android:textSize="6sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -96,7 +96,7 @@ public class GalagaGameActivity extends AppCompatActivity {
                         // Trigger the pixel ring death explosion on the canvas first
                         gameView.triggerDeathExplosion();
                         // Delay game over screen so the explosion plays out (~1.5s)
-                        new android.os.Handler().postDelayed(() -> {
+                        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
                             Intent intent = new Intent(GalagaGameActivity.this, GalagaGameOverActivity.class);
                             intent.putExtra("SCORE", currentScore);
                             intent.putExtra("WAVE", currentWave);

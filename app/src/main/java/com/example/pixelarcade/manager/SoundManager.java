@@ -79,15 +79,8 @@ public class SoundManager {
     }
 
     private void setupNextMediaPlayer(int resourceId) {
-        nextMediaPlayer = MediaPlayer.create(context, resourceId);
-        if (nextMediaPlayer != null) {
-            nextMediaPlayer.setVolume(0.5f, 0.5f);
-            backgroundMusicPlayer.setNextMediaPlayer(nextMediaPlayer);
-            backgroundMusicPlayer.setOnCompletionListener(mp -> {
-                mp.release();
-                backgroundMusicPlayer = nextMediaPlayer;
-                setupNextMediaPlayer(resourceId);
-            });
+        if (backgroundMusicPlayer != null) {
+            backgroundMusicPlayer.setLooping(true);
         }
     }
 

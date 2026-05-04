@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer Outline -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#000000" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+    <!-- Background Track -->
+    <item android:bottom="2dp" android:left="2dp" android:right="2dp" android:top="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#1A1A1A" />
+            <corners android:radius="2dp" />
+        </shape>
+    </item>
+    <!-- Progress Fill -->
+    <item android:id="@android:id/progress" android:bottom="4dp" android:left="4dp" android:right="4dp" android:top="4dp">
+        <clip>
+            <shape android:shape="rectangle">
+                <corners android:radius="1dp" />
+                <gradient
+                    android:startColor="@color/arcade_purple"
+                    android:endColor="@color/arcade_blue"
+                    android:angle="0" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

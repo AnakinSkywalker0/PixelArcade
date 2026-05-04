@@ -28,121 +28,117 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        // Initialize Sound (removed for non-Galaga)
-        
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        TextView tvProfileLink = findViewById(R.id.tvProfileLink);
-        TextView tvLeaderboardLink = findViewById(R.id.tvLeaderboardLink);
-        View coinBadge = findViewById(R.id.coinBadge);
-        Button btnPlay2048 = findViewById(R.id.btnPlay2048);
-        Button btnPlaySpace = findViewById(R.id.btnPlaySpace);
-        Button btnPlayTicTacToe = findViewById(R.id.btnPlayTicTacToe);
-
+        View tvProfileLink = findViewById(R.id.tvProfileLink);
+        View tvLeaderboardLink = findViewById(R.id.tvLeaderboardLink);
+        View profileHeader = findViewById(R.id.profileHeader);
+        
         tvProfileLink.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
         tvLeaderboardLink.setOnClickListener(v -> startActivity(new Intent(this, LeaderboardActivity.class)));
-        coinBadge.setOnClickListener(v -> startActivity(new Intent(this, DailyChallengesActivity.class)));
+        if (profileHeader != null) {
+            profileHeader.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+        }
 
-        btnPlay2048.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, GameLauncher2048Activity.class);
-            startActivity(intent);
-        });
+        // Game Play Buttons
+        View btnPlay2048 = findViewById(R.id.btnPlay2048);
+        View btnPlaySpace = findViewById(R.id.btnPlaySpace);
+        View btnPlayTicTacToe = findViewById(R.id.btnPlayTicTacToe);
 
-        btnPlaySpace.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, GalagaMainMenuActivity.class);
-            startActivity(intent);
-        });
-
-        btnPlayTicTacToe.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, TicTacToeLauncherActivity.class);
-            startActivity(intent);
-        });
-        
-        TextView btnDailyReward = findViewById(R.id.btnDailyReward);
-        if (btnDailyReward != null) {
-            btnDailyReward.setOnClickListener(v -> {
-                showDailyRewardDialog(); // Always let them see their streak!
+        if (btnPlay2048 != null) {
+            btnPlay2048.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, GameLauncher2048Activity.class);
+                startActivity(intent);
             });
+        }
+
+        if (btnPlaySpace != null) {
+            btnPlaySpace.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, GalagaMainMenuActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        if (btnPlayTicTacToe != null) {
+            btnPlayTicTacToe.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, TicTacToeLauncherActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        // Bottom Navigation
+        View navChallenges = findViewById(R.id.navChallenges);
+        View navHome = findViewById(R.id.navHome);
+        View navShop = findViewById(R.id.navShop);
+        View navSettings = findViewById(R.id.navSettings);
+
+        if (navChallenges != null) {
+            navChallenges.setOnClickListener(v -> startActivity(new Intent(this, DailyChallengesActivity.class)));
+        }
+        if (navShop != null) {
+            navShop.setOnClickListener(v -> startActivity(new Intent(this, ShopActivity.class)));
+        }
+        if (navSettings != null) {
+            navSettings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
         }
         
         updateStats();
-        checkDailyReward();
-    }
-
-    private boolean isDailyRewardReady() {
-        UserDataManager udm = UserDataManager.getInstance(this);
-        long lastClaimTime = udm.getLong("last_daily_claim", 0);
-        if (lastClaimTime == 0) return true;
-
-        java.util.Calendar lastClaim = java.util.Calendar.getInstance();
-        lastClaim.setTimeInMillis(lastClaimTime);
-        lastClaim.set(java.util.Calendar.HOUR_OF_DAY, 0);
-        lastClaim.set(java.util.Calendar.MINUTE, 0);
-        lastClaim.set(java.util.Calendar.SECOND, 0);
-        lastClaim.set(java.util.Calendar.MILLISECOND, 0);
-
-        java.util.Calendar today = java.util.Calendar.getInstance();
-        today.set(java.util.Calendar.HOUR_OF_DAY, 0);
-        today.set(java.util.Calendar.MINUTE, 0);
-        today.set(java.util.Calendar.SECOND, 0);
-        today.set(java.util.Calendar.MILLISECOND, 0);
-
-        long diffMillis = today.getTimeInMillis() - lastClaim.getTimeInMillis();
-        long diffDays = diffMillis / (24 * 60 * 60 * 1000);
-        
-        return diffDays > 0;
-    }
-
-    private void checkDailyReward() {
-        if (isDailyRewardReady()) {
-            showDailyRewardDialog();
-        }
-    }
-
-    private void showDailyRewardDialog() {
-        DailyRewardDialog dialog = new DailyRewardDialog(this, coins -> {
-            updateStats(); // Refresh the coin UI
-        });
-        dialog.show();
     }
 
     private void updateStats() {
         UserDataManager udm = UserDataManager.getInstance(this);
         
-        // Coin Count
-        int coins = udm.getInt("coins", 0);
+        // 1. Top Bar Stats
+        int totalPlays = udm.getInt("plays_2048", 0) + udm.getInt("galaga_plays", 0) + udm.getInt("plays_ttt", 0);
+        int streak = udm.getInt("streak_days", 0);
+        int totalEarned = udm.getInt("total_coins_earned", 0);
+        int currentCoins = udm.getInt("coins", 0);
+
+        TextView tvTotalPlays = findViewById(R.id.tvTotalPlays);
+        if (tvTotalPlays != null) tvTotalPlays.setText(String.format("%04d", totalPlays));
+
+        TextView tvStreak = findViewById(R.id.tvStreakDays);
+        if (tvStreak != null) tvStreak.setText(String.format("%02d DAYS", streak));
+
+        TextView tvTotalEarned = findViewById(R.id.tvTotalEarned);
+        if (tvTotalEarned != null) tvTotalEarned.setText(String.format("%06d", totalEarned));
+
         TextView tvCoinCount = findViewById(R.id.tvCoinCount);
-        if (tvCoinCount != null) {
-            tvCoinCount.setText(String.valueOf(coins));
+        if (tvCoinCount != null) tvCoinCount.setText(String.valueOf(currentCoins));
+
+        TextView tvAvatar = findViewById(R.id.playerAvatarEmoji);
+        if (tvAvatar != null) {
+            tvAvatar.setText(udm.getString("playerAvatarEmoji", "👾"));
         }
 
-        // 2048 Stats
-        int plays2048 = udm.getInt("plays_2048", 0);
+        // 2. Hall of Fame (New Section)
         int high2048 = udm.getInt("high_score_2048", 0);
+        int highGalaga = udm.getInt("galaga_hi_score", 0);
+        int winsTTT = udm.getInt("wins_ttt", 0);
+
+        TextView tvBest2048 = findViewById(R.id.tvBest2048);
+        if (tvBest2048 != null) tvBest2048.setText(String.valueOf(high2048));
+
+        TextView tvBestGalaga = findViewById(R.id.tvBestGalaga);
+        if (tvBestGalaga != null) tvBestGalaga.setText(String.valueOf(highGalaga));
+
+        TextView tvBestTTT = findViewById(R.id.tvBestTTT);
+        if (tvBestTTT != null) tvBestTTT.setText(String.valueOf(winsTTT));
+
+        // 3. Game Card Stats
         TextView tv2048Stats = findViewById(R.id.tv2048Stats);
-        if (tv2048Stats != null) {
-            tv2048Stats.setText("PLAYS: " + plays2048 + " | HIGH: " + high2048);
-        }
+        if (tv2048Stats != null) tv2048Stats.setText("PLAYS " + udm.getInt("plays_2048", 0));
 
-        // Space Stats
-        int playsSpace = udm.getInt("galaga_plays", 0);
-        int highSpace = udm.getInt("galaga_hi_score", 0);
         TextView tvSpaceStats = findViewById(R.id.tvSpaceStats);
-        if (tvSpaceStats != null) {
-            tvSpaceStats.setText("PLAYS: " + playsSpace + " | HIGH: " + highSpace);
-        }
+        if (tvSpaceStats != null) tvSpaceStats.setText("PLAYS " + udm.getInt("galaga_plays", 0));
 
-        // TTT Stats
-        int playsTtt = udm.getInt("plays_ttt", 0);
-        int winsTtt = udm.getInt("wins_ttt", 0);
         TextView tvTttStats = findViewById(R.id.tvTttStats);
-        if (tvTttStats != null) {
-            tvTttStats.setText("PLAYS: " + playsTtt + " | WINS: " + winsTtt);
-        }
+        if (tvTttStats != null) tvTttStats.setText("PLAYS " + udm.getInt("plays_ttt", 0));
     }
 
     @Override

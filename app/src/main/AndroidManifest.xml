@@ -40,6 +40,7 @@
         <activity android:name=".main.DailyChallengesActivity" />
         <activity android:name=".ttt.TicTacToeActivity" />
         <activity android:name=".ttt.TicTacToeLauncherActivity" />
+        <activity android:name=".main.ShopActivity" />
         <activity android:name=".ttt.TicTacToeSettingsActivity" />
     </application>
 

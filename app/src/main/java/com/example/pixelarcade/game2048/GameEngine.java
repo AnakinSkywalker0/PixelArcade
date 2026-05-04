@@ -294,6 +294,16 @@ public class GameEngine {
         return true; // No empty cells, no adjacent matches
     }
 
+    public int getMaxTile() {
+        int max = 0;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (board[i][j] > max) max = board[i][j];
+            }
+        }
+        return max;
+    }
+
     public boolean hasWon() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -306,7 +316,7 @@ public class GameEngine {
     public boolean hasTile(int value) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (board[i][j] == value) return true;
+                if (board[i][j] >= value) return true;
             }
         }
         return false;

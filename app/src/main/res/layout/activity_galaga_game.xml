@@ -12,7 +12,7 @@
 
 
     <!-- Game Engine Canvas -->
-    <com.example.pixelarcade.GalagaGameView
+    <com.example.pixelarcade.galaga.GalagaGameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
