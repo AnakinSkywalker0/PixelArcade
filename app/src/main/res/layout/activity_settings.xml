@@ -288,48 +288,7 @@
                 android:background="#333344"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- Animations Row -->
-            <LinearLayout
-                android:id="@+id/rowAnimations"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="12dp"
-                android:clickable="true"
-                android:focusable="true">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="ANIMATIONS"
-                    android:textColor="#AAAAAA"
-                    android:textSize="9sp"
-                    android:fontFamily="@font/press_start_2p"/>
-
-                <FrameLayout
-                    android:layout_width="80dp"
-                    android:layout_height="32dp">
-                    <ImageView
-                        android:id="@+id/ivAnimations"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/bg_toggle_on"/>
-                    <TextView
-                        android:id="@+id/tvToggleAnim"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="ON"
-                        android:textColor="#FFFFFF"
-                        android:textSize="8sp"
-                        android:fontFamily="@font/press_start_2p"
-                        android:gravity="center_vertical"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="28dp"
-                        android:paddingBottom="3dp"/>
-                </FrameLayout>
-            </LinearLayout>
 
             <!-- Grid Lines Row -->
             <LinearLayout
@@ -374,91 +333,7 @@
                 </FrameLayout>
             </LinearLayout>
 
-            <!-- ─── DISPLAY SECTION ─── -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="4dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📺"
-                    android:textSize="14sp"
-                    android:layout_marginEnd="8dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DISPLAY"
-                    android:textColor="@color/arcade_yellow"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/press_start_2p"/>
-            </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#333344"
-                android:layout_marginBottom="16dp"/>
-
-            <!-- Theme Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="16dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="THEME"
-                    android:textColor="#AAAAAA"
-                    android:textSize="9sp"
-                    android:fontFamily="@font/press_start_2p"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_btn_settings"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="14dp"
-                    android:text="CLASSIC"
-                    android:textColor="@color/retro_text_dark"
-                    android:textSize="10sp"
-                    android:fontFamily="@font/press_start_2p"/>
-            </LinearLayout>
-
-            <!-- Info Box -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_info_dashed"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="28dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ℹ"
-                    android:textSize="16sp"
-                    android:textColor="@color/arcade_blue"
-                    android:layout_marginEnd="10dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="CLASSIC THEME GIVES YOU THE TRUE ARCADE EXPERIENCE."
-                    android:textColor="#777777"
-                    android:textSize="6sp"
-                    android:fontFamily="@font/press_start_2p"
-                    android:lineSpacingExtra="4dp"/>
-            </LinearLayout>
 
             <!-- ─── ACTION BUTTONS ─── -->
 
@@ -581,27 +456,6 @@
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/navHome"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🏠"
-                android:textSize="16sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="HOME"
-                android:textColor="#666666"
-                android:textSize="6sp"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/navShop"

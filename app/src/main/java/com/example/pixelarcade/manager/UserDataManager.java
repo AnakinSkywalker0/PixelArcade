@@ -40,6 +40,10 @@ public class UserDataManager {
     public static final String KEY_WINS_TTT = "wins_ttt";
     public static final String KEY_STREAK = "streak_days";
     public static final String KEY_LAST_CLAIM = "last_daily_claim";
+    public static final String KEY_GALAGA_PLAYS = "galaga_plays";
+    public static final String KEY_GALAGA_ENDLESS_HI = "galaga_endless_hi_score";
+    public static final String KEY_GALAGA_ENDLESS_WAVE = "galaga_endless_best_wave";
+    public static final String KEY_COINS_2048 = "coins_earned_2048";
     public static final String KEY_CHALLENGE_512_DONE = "challenge_512_done";
     public static final String KEY_CHALLENGE_512_CLAIMED = "challenge_512_claimed";
     public static final String KEY_CHALLENGE_TTT_DONE = "challenge_ttt_streak_done";
@@ -62,19 +66,45 @@ public class UserDataManager {
     // ─── Getters (read from local SharedPreferences for speed) ───
 
     public int getInt(String key, int defaultVal) {
-        return prefs.getInt(key, defaultVal);
+        try {
+            return prefs.getInt(key, defaultVal);
+        } catch (ClassCastException e) {
+            // Value was stored as long (from cloud sync) — read as long and cast to int
+            try {
+                return (int) prefs.getLong(key, defaultVal);
+            } catch (ClassCastException e2) {
+                return defaultVal;
+            }
+        }
     }
 
     public long getLong(String key, long defaultVal) {
-        return prefs.getLong(key, defaultVal);
+        try {
+            return prefs.getLong(key, defaultVal);
+        } catch (ClassCastException e) {
+            // Value was stored as int (old data or cloud sync) — read as int and return as long
+            try {
+                return (long) prefs.getInt(key, (int) defaultVal);
+            } catch (ClassCastException e2) {
+                return defaultVal;
+            }
+        }
     }
 
     public boolean getBoolean(String key, boolean defaultVal) {
-        return prefs.getBoolean(key, defaultVal);
+        try {
+            return prefs.getBoolean(key, defaultVal);
+        } catch (ClassCastException e) {
+            return defaultVal;
+        }
     }
 
     public String getString(String key, String defaultVal) {
-        return prefs.getString(key, defaultVal);
+        try {
+            return prefs.getString(key, defaultVal);
+        } catch (ClassCastException e) {
+            return defaultVal;
+        }
     }
 
     // ─── Setters (write locally + push to cloud) ───
@@ -176,10 +206,11 @@ public class UserDataManager {
                         for (Map.Entry<String, Object> entry : data.entrySet()) {
                             Object val = entry.getValue();
                             if (val instanceof Long) {
-                                // Firestore stores all numbers as Long
                                 long longVal = (Long) val;
-                                // Determine if it should be int or long based on key
-                                if (entry.getKey().equals(KEY_LAST_CLAIM) || entry.getKey().equals(KEY_CHALLENGE_LAST_RESET)) {
+                                // Timestamps stay as Long; game stats get cast to int
+                                if (entry.getKey().equals(KEY_LAST_CLAIM)
+                                        || entry.getKey().equals(KEY_CHALLENGE_LAST_RESET)
+                                        || entry.getKey().equals("last_free_gift_claim")) {
                                     editor.putLong(entry.getKey(), longVal);
                                 } else {
                                     editor.putInt(entry.getKey(), (int) longVal);
@@ -207,9 +238,10 @@ public class UserDataManager {
      * Wipes all local and cloud data for the current user.
      */
     public void clearAllData() {
+        // Get doc ref BEFORE signing out (getUserDoc needs the current user)
+        DocumentReference doc = getUserDoc();
         prefs.edit().clear().apply();
         FirebaseAuth.getInstance().signOut();
-        DocumentReference doc = getUserDoc();
         if (doc != null) {
             doc.delete()
                 .addOnSuccessListener(aVoid -> Log.d(TAG, "Cloud data successfully deleted"))
@@ -222,15 +254,49 @@ public class UserDataManager {
         if (doc == null) return;
 
         Map<String, Object> data = new HashMap<>();
-        data.put(KEY_COINS, prefs.getInt(KEY_COINS, 0));
-        data.put(KEY_TOTAL_EARNED, prefs.getInt(KEY_TOTAL_EARNED, 0));
-        data.put(KEY_HIGH_2048, prefs.getInt(KEY_HIGH_2048, 0));
-        data.put(KEY_HIGH_GALAGA, prefs.getInt(KEY_HIGH_GALAGA, 0));
-        data.put(KEY_PLAYS_2048, prefs.getInt(KEY_PLAYS_2048, 0));
-        data.put(KEY_PLAYS_TTT, prefs.getInt(KEY_PLAYS_TTT, 0));
-        data.put(KEY_WINS_TTT, prefs.getInt(KEY_WINS_TTT, 0));
-        data.put(KEY_STREAK, prefs.getInt(KEY_STREAK, 0));
-        data.put(KEY_LAST_CLAIM, prefs.getLong(KEY_LAST_CLAIM, 0L));
+
+        // ── Identity ────────────────────────────────────────────────────────
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            data.put("email", user.getEmail());
+        }
+        data.put("playerName",    getString("playerName", "PLAYER"));
+        data.put("playerTagline", getString("playerTagline", ""));
+        data.put("playerAvatarEmoji", getString("playerAvatarEmoji", "👾"));
+
+        // ── Economy ─────────────────────────────────────────────────────────
+        data.put(KEY_COINS,         getInt(KEY_COINS, 0));
+        data.put(KEY_TOTAL_EARNED,  getInt(KEY_TOTAL_EARNED, 0));
+
+        // ── 2048 ────────────────────────────────────────────────────────────
+        data.put(KEY_HIGH_2048,   getInt(KEY_HIGH_2048, 0));
+        data.put(KEY_PLAYS_2048,  getInt(KEY_PLAYS_2048, 0));
+        data.put(KEY_COINS_2048,  getInt(KEY_COINS_2048, 0));
+
+        // ── Tic-Tac-Toe ─────────────────────────────────────────────────────
+        data.put(KEY_PLAYS_TTT, getInt(KEY_PLAYS_TTT, 0));
+        data.put(KEY_WINS_TTT,  getInt(KEY_WINS_TTT, 0));
+
+        // ── Galaga ──────────────────────────────────────────────────────────
+        data.put(KEY_HIGH_GALAGA,       getInt(KEY_HIGH_GALAGA, 0));
+        data.put(KEY_GALAGA_PLAYS,      getInt(KEY_GALAGA_PLAYS, 0));
+        data.put(KEY_GALAGA_ENDLESS_HI, getInt(KEY_GALAGA_ENDLESS_HI, 0));
+        data.put(KEY_GALAGA_ENDLESS_WAVE, getInt(KEY_GALAGA_ENDLESS_WAVE, 0));
+
+        // ── Streak / Daily ───────────────────────────────────────────────────
+        data.put(KEY_STREAK,     getInt(KEY_STREAK, 0));
+        data.put(KEY_LAST_CLAIM, getLong(KEY_LAST_CLAIM, 0L));
+
+        // ── Shop Gift ───────────────────────────────────────────────────────
+        data.put("last_free_gift_claim", getLong("last_free_gift_claim", 0L));
+
+        // ── Challenges ──────────────────────────────────────────────────────
+        data.put(KEY_CHALLENGE_512_DONE,    getBoolean(KEY_CHALLENGE_512_DONE, false));
+        data.put(KEY_CHALLENGE_512_CLAIMED, getBoolean(KEY_CHALLENGE_512_CLAIMED, false));
+        data.put(KEY_CHALLENGE_TTT_DONE,    getBoolean(KEY_CHALLENGE_TTT_DONE, false));
+        data.put(KEY_CHALLENGE_TTT_CLAIMED, getBoolean(KEY_CHALLENGE_TTT_CLAIMED, false));
+        data.put(KEY_CHALLENGE_TTT_CONSEC,  getInt(KEY_CHALLENGE_TTT_CONSEC, 0));
+        data.put(KEY_CHALLENGE_LAST_RESET,  getLong(KEY_CHALLENGE_LAST_RESET, 0L));
 
         doc.set(data, SetOptions.merge())
                 .addOnSuccessListener(v -> Log.d(TAG, "All local data pushed to cloud"))

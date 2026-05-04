@@ -74,10 +74,6 @@ public class ShopActivity extends AppCompatActivity {
             startActivity(new Intent(this, DailyChallengesActivity.class));
             finish();
         });
-        findViewById(R.id.navHome).setOnClickListener(v -> {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        });
         findViewById(R.id.navSettings).setOnClickListener(v -> {
             startActivity(new Intent(this, SettingsActivity.class));
             finish();

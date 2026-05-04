@@ -28,39 +28,72 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_leaderboard_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_leaderboard_row, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         LeaderboardEntry entry = entryList.get(position);
-        
-        holder.tvName.setText(entry.getName());
-        holder.tvScore.setText(entry.getScore());
-        
+
         int rank = entry.getRank();
-        holder.tvRank.setText(String.valueOf(rank));
+        boolean isMe = entry.isCurrentUser();
+
+        // ── Medal vs. number ──────────────────────────────────────────────
         if (rank == 1) {
-            holder.tvRank.setTextColor(0xFFD4AF37); // Gold
+            holder.tvMedal.setText("🥇");
+            holder.tvMedal.setVisibility(View.VISIBLE);
+            holder.tvRank.setVisibility(View.GONE);
         } else if (rank == 2) {
-            holder.tvRank.setTextColor(0xFFC0C0C0); // Silver
+            holder.tvMedal.setText("🥈");
+            holder.tvMedal.setVisibility(View.VISIBLE);
+            holder.tvRank.setVisibility(View.GONE);
         } else if (rank == 3) {
-            holder.tvRank.setTextColor(0xFFCD7F32); // Bronze
+            holder.tvMedal.setText("🥉");
+            holder.tvMedal.setVisibility(View.VISIBLE);
+            holder.tvRank.setVisibility(View.GONE);
         } else {
-            holder.tvRank.setTextColor(0xFF5F564D); // High contrast Brown
+            holder.tvMedal.setVisibility(View.GONE);
+            holder.tvRank.setVisibility(View.VISIBLE);
+            holder.tvRank.setText(String.valueOf(rank));
+            holder.tvRank.setTextColor(isMe ? 0xFFF6C547 : 0xFF5F564D);
         }
 
-        // Highlight current user's row
-        if (entry.isCurrentUser()) {
-            holder.itemView.setBackgroundResource(R.drawable.bg_rank_bar); // Solid brown bar
-            holder.tvName.setTextColor(0xFFFFFFFF); // White text on dark bar
-            holder.tvScore.setTextColor(0xFFF6C547); // Gold score
-            if (rank > 3) holder.tvRank.setTextColor(0xFFFFFFFF);
+        // ── Name & YOU badge ──────────────────────────────────────────────
+        holder.tvName.setText(entry.getName());
+        holder.tvYouBadge.setVisibility(isMe ? View.VISIBLE : View.GONE);
+
+        // ── Score & Label ─────────────────────────────────────────────────
+        holder.tvScore.setText(entry.getScore());
+        holder.tvScoreLabel.setText(entry.getScoreLabel());
+
+        // ── Row background & text colors by rank ──────────────────────────
+        if (rank == 1) {
+            // Gold row
+            holder.itemView.setBackgroundColor(0xFF2A2000);
+            holder.tvName.setTextColor(0xFFF6C547);
+            holder.tvScore.setTextColor(0xFFF6C547);
+        } else if (rank == 2) {
+            // Silver row
+            holder.itemView.setBackgroundColor(0xFF1A1A1F);
+            holder.tvName.setTextColor(0xFFCCCCCC);
+            holder.tvScore.setTextColor(0xFFCCCCCC);
+        } else if (rank == 3) {
+            // Bronze row
+            holder.itemView.setBackgroundColor(0xFF1E1408);
+            holder.tvName.setTextColor(0xFFCD7F32);
+            holder.tvScore.setTextColor(0xFFCD7F32);
+        } else if (isMe) {
+            // My row – highlighted in arcade gold
+            holder.itemView.setBackgroundResource(R.drawable.bg_pixel_card_dark);
+            holder.tvName.setTextColor(0xFFFFFFFF);
+            holder.tvScore.setTextColor(0xFFF6C547);
         } else {
-            holder.itemView.setBackgroundResource(R.drawable.bg_leaderboard_row); // Default row
-            holder.tvName.setTextColor(0xFF1B1C22); // Deep Black
-            holder.tvScore.setTextColor(0xFF5F564D); // Deep Brown
+            // Normal dark row
+            holder.itemView.setBackgroundResource(R.drawable.bg_pixel_inner_dark);
+            holder.tvName.setTextColor(0xFFAAAAAA);
+            holder.tvScore.setTextColor(0xFFF6C547);
         }
     }
 
@@ -70,13 +103,16 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvRank, tvName, tvScore;
+        TextView tvMedal, tvRank, tvName, tvYouBadge, tvScore, tvScoreLabel;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvRank = itemView.findViewById(R.id.tvRank);
-            tvName = itemView.findViewById(R.id.tvName);
-            tvScore = itemView.findViewById(R.id.tvScore);
+            tvMedal      = itemView.findViewById(R.id.tvMedal);
+            tvRank       = itemView.findViewById(R.id.tvRank);
+            tvName       = itemView.findViewById(R.id.tvName);
+            tvYouBadge   = itemView.findViewById(R.id.tvYouBadge);
+            tvScore      = itemView.findViewById(R.id.tvScore);
+            tvScoreLabel = itemView.findViewById(R.id.tvScoreLabel);
         }
     }
 }

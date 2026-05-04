@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     android:id="@+id/leaderboardRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/retro_bg"
-    >
+    android:background="#0A0A0F">
 
     <TextView
         android:id="@+id/btnClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_pixel_inner_dark"
         android:fontFamily="@font/press_start_2p"
-        android:padding="8dp"
+        android:gravity="center"
         android:text="X"
-        android:textColor="#5F564D"
-        android:textSize="12sp"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,21 +26,24 @@
         android:id="@+id/tvLeaderboardTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/press_start_2p"
         android:gravity="center"
         android:text="@string/leaderboard"
-        android:textColor="#76716C"
-        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnClose" />
 
+    <!-- Category Chips -->
     <LinearLayout
         android:id="@+id/chipContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,67 +53,72 @@
             android:id="@+id/chipGalaga"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_chip_black"
+            android:background="@drawable/bg_pixel_inner_dark"
             android:fontFamily="@font/press_start_2p"
             android:text="@string/chip_galaga"
-            android:textColor="#F6C547"
-            android:textSize="9sp" />
+            android:textColor="#5F564D"
+            android:textSize="8sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/chip2048"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="6dp"
             android:layout_weight="0.8"
-            android:background="@drawable/bg_chip_orange"
+            android:background="@drawable/bg_pixel_inner_dark"
             android:fontFamily="@font/press_start_2p"
             android:text="@string/chip_2048"
-            android:textColor="#FFFFFF"
-            android:textSize="9sp" />
+            android:textColor="#5F564D"
+            android:textSize="8sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/chipTtt"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1.6"
-            android:background="@drawable/bg_leaderboard_chip"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1.4"
+            android:background="@drawable/bg_pixel_inner_dark"
             android:fontFamily="@font/press_start_2p"
             android:text="@string/chip_ttt"
-            android:textColor="#76716C"
-            android:textSize="9sp" />
+            android:textColor="#5F564D"
+            android:textSize="8sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/chipAll"
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_weight="0.8"
-            android:background="@drawable/bg_leaderboard_chip"
+            android:background="@drawable/bg_pixel_card_dark"
             android:fontFamily="@font/press_start_2p"
             android:text="@string/chip_all"
-            android:textColor="#76716C"
-            android:textSize="9sp" />
+            android:textColor="@color/arcade_yellow"
+            android:textSize="8sp" />
     </LinearLayout>
 
+    <!-- Leaderboard List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLeaderboard"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:clipToPadding="false"
+        android:paddingBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btnRankContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipContainer" />
 
+    <!-- Your Rank Footer -->
     <LinearLayout
         android:id="@+id/btnRankContainer"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@drawable/bg_rank_bar"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_pixel_card_dark"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -119,9 +130,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start_2p"
             android:text="YOUR RANK:"
-            android:textColor="#FFFFFF"
-            android:textSize="10sp" />
-            
+            android:textColor="#8D8379"
+            android:textSize="8sp" />
+
         <TextView
             android:id="@+id/tvMyRank"
             android:layout_width="wrap_content"
@@ -129,8 +140,8 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/press_start_2p"
             android:text="#--"
-            android:textColor="#FFFFFF"
-            android:textSize="10sp" />
+            android:textColor="@color/arcade_yellow"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

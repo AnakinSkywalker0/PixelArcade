@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme (dark) -->
     <style name="Base.Theme.PixelArcade" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:windowBackground">@color/retro_bg</item>
-        <item name="android:statusBarColor">@color/retro_bg</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
@@ -12,6 +12,12 @@
         <item name="android:activityOpenExitAnimation">@android:anim/fade_out</item>
         <item name="android:activityCloseEnterAnimation">@android:anim/fade_in</item>
         <item name="android:activityCloseExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <!-- Splash-specific theme: pure black window so there's no white flash -->
+    <style name="Theme.PixelArcade.Splash" parent="Base.Theme.PixelArcade">
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:statusBarColor">#000000</item>
     </style>
 
     <style name="Theme.PixelArcade" parent="Base.Theme.PixelArcade" />

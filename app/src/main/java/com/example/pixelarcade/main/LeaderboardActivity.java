@@ -77,24 +77,25 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         switch (category) {
             case "GALAGA":
-                chipGalaga.setBackgroundResource(R.drawable.bg_chip_black);
-                chipGalaga.setTextColor(0xFFF6C547);
-                fetchLeaderboard("galaga_hi_score", "Score");
+                chipGalaga.setBackgroundResource(R.drawable.bg_pixel_card_dark);
+                chipGalaga.setTextColor(0xFFFFFFFF);
+                fetchLeaderboard("galaga_hi_score", "SCORE", "SCORE");
                 break;
             case "2048":
-                chip2048.setBackgroundResource(R.drawable.bg_chip_orange);
+                chip2048.setBackgroundResource(R.drawable.bg_pixel_card_dark);
                 chip2048.setTextColor(0xFFFFFFFF);
-                fetchLeaderboard("high_score_2048", "Score");
+                fetchLeaderboard("high_score_2048", "SCORE", "SCORE");
                 break;
             case "TTT":
-                chipTtt.setBackgroundResource(R.drawable.bg_leaderboard_chip_active);
-                chipTtt.setTextColor(0xFFF6C547);
-                fetchLeaderboard("wins_ttt", "Wins");
+                chipTtt.setBackgroundResource(R.drawable.bg_pixel_card_dark);
+                chipTtt.setTextColor(0xFFFFFFFF);
+                fetchLeaderboard("wins_ttt", "WINS", "WINS");
                 break;
             case "ALL":
-                chipAll.setBackgroundResource(R.drawable.bg_leaderboard_chip_active);
-                chipAll.setTextColor(0xFFFFFFFF);
-                fetchLeaderboard("total_coins_earned", "Coins");
+                chipAll.setBackgroundResource(R.drawable.bg_pixel_card_dark);
+                chipAll.setTextColor(0xFFF6C547);
+                // Based on wins as requested
+                fetchLeaderboard("wins_ttt", "WINS", "WINS");
                 break;
         }
     }
@@ -103,7 +104,7 @@ public class LeaderboardActivity extends AppCompatActivity {
      * Fetches top scores from Firestore, sorted descending by the given field.
      * Also injects the current user's own rank if they're not in the top 10.
      */
-    private void fetchLeaderboard(String field, String suffix) {
+    private void fetchLeaderboard(String field, String suffix, String label) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String myUid = currentUser != null ? currentUser.getUid() : null;
@@ -119,25 +120,24 @@ public class LeaderboardActivity extends AppCompatActivity {
 
                 for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
                     String name = doc.getString("playerName");
-                    if (name == null || name.isEmpty()) name = "PLAYER";
+                    if (name == null || name.isEmpty()) {
+                        String email = doc.getString("email");
+                        if (email != null && !email.isEmpty()) {
+                            name = email.split("@")[0];
+                        } else {
+                            name = "ANON_USER";
+                        }
+                    }
 
                     Long val = doc.getLong(field);
                     long score = val != null ? val : 0;
-                    if (score == 0) continue; // skip users with no score
+                    if (score == 0 && !field.equals("wins_ttt")) continue; // Only skip zero if not TTT wins
 
-                    String displayScore;
-                    if (suffix.equals("Wins")) {
-                        displayScore = score + " Wins";
-                    } else if (suffix.equals("Coins")) {
-                        displayScore = formatNumber(score) + " COINS";
-                    } else {
-                        displayScore = formatNumber(score);
-                    }
-
+                    String displayScore = formatNumber(score);
                     boolean isMe = doc.getId().equals(myUid);
                     if (isMe) foundSelf = true;
 
-                    entries.add(new LeaderboardEntry(rank, name.toUpperCase(), displayScore, isMe));
+                    entries.add(new LeaderboardEntry(rank, name.toUpperCase(), displayScore, label, isMe));
                     rank++;
                 }
 
@@ -148,21 +148,20 @@ public class LeaderboardActivity extends AppCompatActivity {
                         .addOnSuccessListener(myDoc -> {
                             if (myDoc.exists()) {
                                 String myName = myDoc.getString("playerName");
-                                if (myName == null || myName.isEmpty()) myName = "YOU";
+                                if (myName == null || myName.isEmpty()) {
+                                    String email = myDoc.getString("email");
+                                    if (email != null && !email.isEmpty()) {
+                                        myName = email.split("@")[0];
+                                    } else {
+                                        myName = "YOU";
+                                    }
+                                }
                                 Long myVal = myDoc.getLong(field);
                                 long myScore = myVal != null ? myVal : 0;
 
-                                if (myScore > 0) {
-                                    String myDisplay;
-                                    if (suffix.equals("Wins")) {
-                                        myDisplay = myScore + " Wins";
-                                    } else if (suffix.equals("Coins")) {
-                                        myDisplay = formatNumber(myScore) + " COINS";
-                                    } else {
-                                        myDisplay = formatNumber(myScore);
-                                    }
-
-                                    entries.add(new LeaderboardEntry(currentRank, myName.toUpperCase(), myDisplay, true));
+                                if (myScore >= 0) {
+                                    String myDisplay = formatNumber(myScore);
+                                    entries.add(new LeaderboardEntry(currentRank, myName.toUpperCase(), myDisplay, label, true));
                                     tvMyRank.setText("#" + currentRank);
                                 } else {
                                     tvMyRank.setText("UNRANKED");
@@ -198,13 +197,13 @@ public class LeaderboardActivity extends AppCompatActivity {
     }
 
     private void resetChips() {
-        chipGalaga.setBackgroundResource(R.drawable.bg_leaderboard_chip);
-        chipGalaga.setTextColor(0xFF76716C);
-        chip2048.setBackgroundResource(R.drawable.bg_leaderboard_chip);
-        chip2048.setTextColor(0xFF76716C);
-        chipTtt.setBackgroundResource(R.drawable.bg_leaderboard_chip);
-        chipTtt.setTextColor(0xFF76716C);
-        chipAll.setBackgroundResource(R.drawable.bg_leaderboard_chip);
-        chipAll.setTextColor(0xFF76716C);
+        chipGalaga.setBackgroundResource(R.drawable.bg_pixel_inner_dark);
+        chipGalaga.setTextColor(0xFF5F564D);
+        chip2048.setBackgroundResource(R.drawable.bg_pixel_inner_dark);
+        chip2048.setTextColor(0xFF5F564D);
+        chipTtt.setBackgroundResource(R.drawable.bg_pixel_inner_dark);
+        chipTtt.setTextColor(0xFF5F564D);
+        chipAll.setBackgroundResource(R.drawable.bg_pixel_inner_dark);
+        chipAll.setTextColor(0xFF5F564D);
     }
 }

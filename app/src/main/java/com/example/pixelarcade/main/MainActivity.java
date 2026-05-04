@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Bottom Navigation
         View navChallenges = findViewById(R.id.navChallenges);
-        View navHome = findViewById(R.id.navHome);
         View navShop = findViewById(R.id.navShop);
         View navSettings = findViewById(R.id.navSettings);
 
@@ -112,8 +112,21 @@ public class MainActivity extends AppCompatActivity {
         if (tvCoinCount != null) tvCoinCount.setText(String.valueOf(currentCoins));
 
         TextView tvAvatar = findViewById(R.id.playerAvatarEmoji);
-        if (tvAvatar != null) {
-            tvAvatar.setText(udm.getString("playerAvatarEmoji", "👾"));
+        ImageView ivHeaderPhoto = findViewById(R.id.ivHeaderProfileImage);
+        String customImagePath = udm.getString("custom_profile_image", null);
+
+        if (customImagePath != null && new java.io.File(customImagePath).exists()) {
+            if (tvAvatar != null) tvAvatar.setVisibility(android.view.View.GONE);
+            if (ivHeaderPhoto != null) {
+                ivHeaderPhoto.setVisibility(android.view.View.VISIBLE);
+                ivHeaderPhoto.setImageURI(android.net.Uri.fromFile(new java.io.File(customImagePath)));
+            }
+        } else {
+            if (ivHeaderPhoto != null) ivHeaderPhoto.setVisibility(android.view.View.GONE);
+            if (tvAvatar != null) {
+                tvAvatar.setVisibility(android.view.View.VISIBLE);
+                tvAvatar.setText(udm.getString("playerAvatarEmoji", "👾"));
+            }
         }
 
         // 2. Hall of Fame (New Section)

@@ -24,14 +24,14 @@ public class SettingsActivity extends AppCompatActivity {
 
     private SeekBar sbVolume;
     private TextView tvVolumeLabel;
-    private ImageView ivSoundEffects, ivMusic, ivAnimations, ivGridLines;
-    private TextView tvToggleSfx, tvToggleMusic, tvToggleAnim, tvToggleGrid;
-    private LinearLayout rowSoundEffects, rowMusic, rowAnimations, rowGridLines;
+    private ImageView ivSoundEffects, ivMusic, ivGridLines;
+    private TextView tvToggleSfx, tvToggleMusic, tvToggleGrid;
+    private LinearLayout rowSoundEffects, rowMusic, rowGridLines;
     private View btnResetData, btnBackToMenu, btnBack;
 
     private UserDataManager udm;
 
-    private boolean isSoundEffectsOn, isMusicOn, isAnimationsOn, isGridLinesOn;
+    private boolean isSoundEffectsOn, isMusicOn, isGridLinesOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,17 +80,14 @@ public class SettingsActivity extends AppCompatActivity {
         // Toggles
         ivSoundEffects = findViewById(R.id.ivSoundEffects);
         ivMusic = findViewById(R.id.ivMusic);
-        ivAnimations = findViewById(R.id.ivAnimations);
         ivGridLines = findViewById(R.id.ivGridLines);
 
         tvToggleSfx = findViewById(R.id.tvToggleSfx);
         tvToggleMusic = findViewById(R.id.tvToggleMusic);
-        tvToggleAnim = findViewById(R.id.tvToggleAnim);
         tvToggleGrid = findViewById(R.id.tvToggleGrid);
 
         rowSoundEffects = findViewById(R.id.rowSoundEffects);
         rowMusic = findViewById(R.id.rowMusic);
-        rowAnimations = findViewById(R.id.rowAnimations);
         rowGridLines = findViewById(R.id.rowGridLines);
 
         btnResetData = findViewById(R.id.btnResetData);
@@ -120,11 +117,6 @@ public class SettingsActivity extends AppCompatActivity {
             updateToggle(ivMusic, tvToggleMusic, isMusicOn, "music");
         });
 
-        rowAnimations.setOnClickListener(v -> {
-            isAnimationsOn = !isAnimationsOn;
-            updateToggle(ivAnimations, tvToggleAnim, isAnimationsOn, "animations");
-        });
-
         rowGridLines.setOnClickListener(v -> {
             isGridLinesOn = !isGridLinesOn;
             updateToggle(ivGridLines, tvToggleGrid, isGridLinesOn, "grid_lines");
@@ -141,10 +133,6 @@ public class SettingsActivity extends AppCompatActivity {
         });
         findViewById(R.id.navChallenges).setOnClickListener(v -> {
             startActivity(new android.content.Intent(this, DailyChallengesActivity.class));
-            finish();
-        });
-        findViewById(R.id.navHome).setOnClickListener(v -> {
-            startActivity(new android.content.Intent(this, MainActivity.class));
             finish();
         });
         findViewById(R.id.navShop).setOnClickListener(v -> {
@@ -177,12 +165,10 @@ public class SettingsActivity extends AppCompatActivity {
 
         isSoundEffectsOn = udm.getBoolean("sound_effects", true);
         isMusicOn = udm.getBoolean("music", false);
-        isAnimationsOn = udm.getBoolean("animations", true);
         isGridLinesOn = udm.getBoolean("grid_lines", true);
 
         updateToggle(ivSoundEffects, tvToggleSfx, isSoundEffectsOn, "sound_effects");
         updateToggle(ivMusic, tvToggleMusic, isMusicOn, "music");
-        updateToggle(ivAnimations, tvToggleAnim, isAnimationsOn, "animations");
         updateToggle(ivGridLines, tvToggleGrid, isGridLinesOn, "grid_lines");
     }
 

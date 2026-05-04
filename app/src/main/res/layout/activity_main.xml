@@ -17,28 +17,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Header Section (Flattened for perfect alignment) -->
-    <FrameLayout
-        android:id="@+id/profileHeader"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/bg_pixel_card_dark"
-        android:clickable="true"
-        android:focusable="true"
-        android:padding="6dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <FrameLayout
+            android:id="@+id/profileHeader"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_pixel_card_dark"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/playerAvatarEmoji"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="👾"
-            android:textSize="24sp" />
-    </FrameLayout>
+            <TextView
+                android:id="@+id/playerAvatarEmoji"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="👾"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/ivHeaderProfileImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+        </FrameLayout>
 
     <!-- Title (Center) - Perfectly centered in screen -->
     <LinearLayout
@@ -679,12 +685,12 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- SNAKE Card (Red) -->
+            <!-- SNAKE Card - COMING SOON -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="86dp"
                 android:layout_marginBottom="12dp"
-                android:background="@drawable/bg_pixel_card_red"
+                android:background="@drawable/bg_pixel_card_gray"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
@@ -700,8 +706,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="🔴"
-                        android:textSize="18sp"
+                        android:text="🐍"
+                        android:textSize="20sp"
                         android:gravity="center" />
                 </FrameLayout>
 
@@ -717,50 +723,28 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/press_start_2p"
                         android:text="SNAKE"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#888888"
                         android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="ARCADE CLASSIC"
-                        android:textColor="#E0E0E0"
-                        android:textSize="6sp"
-                        android:layout_marginTop="2dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/press_start_2p"
-                        android:text="PLAYS 0"
-                        android:textColor="#E0E0E0"
+                        android:text="COMING SOON"
+                        android:textColor="@color/arcade_yellow"
                         android:textSize="6sp"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
 
-                <LinearLayout
+                <TextView
                     android:layout_width="86dp"
                     android:layout_height="56dp"
                     android:background="@drawable/bg_pixel_inner_dark"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/press_start_2p"
-                        android:text="PLAY"
-                        android:textColor="@color/arcade_red"
-                        android:textSize="8sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/press_start_2p"
-                        android:text="FREE"
-                        android:textColor="@color/arcade_red"
-                        android:textSize="5sp"
-                        android:layout_marginTop="4dp" />
-                </LinearLayout>
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="SOON"
+                    android:textColor="@color/arcade_yellow"
+                    android:textSize="7sp"
+                    android:gravity="center" />
             </LinearLayout>
 
             <!-- MORE GAMES Card (Gray) -->
@@ -884,27 +868,6 @@
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/navHome"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🏠"
-                android:textSize="16sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="HOME"
-                android:textColor="#666666"
-                android:textSize="6sp"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/navShop"

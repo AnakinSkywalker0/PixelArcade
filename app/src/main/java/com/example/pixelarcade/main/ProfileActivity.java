@@ -4,28 +4,78 @@ import com.example.pixelarcade.R;
 import com.example.pixelarcade.manager.SoundManager;
 import com.example.pixelarcade.manager.UserDataManager;
 
+import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Button;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView tvPlayerName, tvSubTitle, tvMemberSince, tvProfileAvatarEmoji;
+    private ImageView ivProfileImage;
     private TextView tvTotalCoinsEarned, tvHighScore, tvTotalGames;
     private TextView tv2048Plays, tv2048High, tv2048Coins;
     private TextView tvTttPlays, tvTttWins, tvTttWinRate;
     private TextView tvGalagaPlays, tvGalagaHigh, tvGalagaWave;
     private UserDataManager udm;
+
+    private Uri cameraImageUri;
+
+    // Multiple permissions launcher (camera + storage)
+    private final ActivityResultLauncher<String[]> requestMultiPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), results -> {
+                boolean cameraGranted = Boolean.TRUE.equals(results.get(Manifest.permission.CAMERA));
+                if (cameraGranted) {
+                    showImageSourceDialog();
+                } else {
+                    Toast.makeText(this, "Camera permission required", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+    private final ActivityResultLauncher<Uri> takePictureLauncher =
+            registerForActivityResult(new ActivityResultContracts.TakePicture(), success -> {
+                if (success) {
+                    handleImageResult(cameraImageUri);
+                }
+            });
+
+    private final ActivityResultLauncher<String> pickImageLauncher =
+            registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
+                if (uri != null) {
+                    handleImageResult(uri);
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +96,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvSubTitle = findViewById(R.id.tvSubTitle);
         tvMemberSince = findViewById(R.id.tvMemberSince);
         tvProfileAvatarEmoji = findViewById(R.id.tvProfileAvatarEmoji);
+        ivProfileImage = findViewById(R.id.ivProfileImage);
 
         // Top stats row
         tvTotalCoinsEarned = findViewById(R.id.tvTotalCoinsEarned);
@@ -66,20 +117,133 @@ public class ProfileActivity extends AppCompatActivity {
         tvGalagaPlays = findViewById(R.id.tvGalagaPlays);
         tvGalagaHigh = findViewById(R.id.tvGalagaHigh);
         tvGalagaWave = findViewById(R.id.tvGalagaWave);
-
+        
         // Back button
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
+        // Photo feature
+        findViewById(R.id.btnEditPhoto).setOnClickListener(v -> checkPermissionsAndShowDialog());
 
         // Action buttons
         findViewById(R.id.btnEditProfile).setOnClickListener(v ->
                 startActivity(new Intent(this, EditProfileActivity.class)));
 
         findViewById(R.id.btnSocial).setOnClickListener(v ->
-                android.widget.Toast.makeText(this, "Social features coming soon!", android.widget.Toast.LENGTH_SHORT).show());
+                Toast.makeText(this, "Social features coming soon!", Toast.LENGTH_SHORT).show());
 
         findViewById(R.id.btnViewLeaderboard).setOnClickListener(v ->
                 startActivity(new Intent(this, LeaderboardActivity.class)));
 
+        loadProfile();
+    }
+
+    private void checkPermissionsAndShowDialog() {
+        boolean cameraOk = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED;
+
+        if (cameraOk) {
+            showImageSourceDialog();
+        } else {
+            // Request camera (gallery uses GetContent which handles its own permission on modern Android)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                requestMultiPermissionLauncher.launch(new String[]{
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.READ_MEDIA_IMAGES
+                });
+            } else {
+                requestMultiPermissionLauncher.launch(new String[]{
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                });
+            }
+        }
+    }
+
+    private void showImageSourceDialog() {
+        String[] options = {"Take Photo", "Choose from Gallery", "Remove / Default"};
+        new AlertDialog.Builder(this)
+                .setTitle("Update Profile Photo")
+                .setItems(options, (dialog, which) -> {
+                    if (which == 0) {
+                        launchCamera();
+                    } else if (which == 1) {
+                        pickImageLauncher.launch("image/*");
+                    } else {
+                        removeCustomPhoto();
+                    }
+                })
+                .show();
+    }
+
+    private void launchCamera() {
+        try {
+            File photoFile = createImageFile();
+            cameraImageUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", photoFile);
+            takePictureLauncher.launch(cameraImageUri);
+        } catch (IOException e) {
+            Toast.makeText(this, "Error creating file", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        return File.createTempFile("PROFILE_" + timeStamp, ".jpg", storageDir);
+    }
+
+    private void handleImageResult(Uri uri) {
+        try {
+            Bitmap bitmap = getCorrectlyOrientedBitmap(uri);
+            if (bitmap != null) {
+                String savedPath = saveToInternalStorage(bitmap);
+                udm.putString("custom_profile_image", savedPath);
+                loadProfile();
+                Toast.makeText(this, "Photo updated!", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Error processing image", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private Bitmap getCorrectlyOrientedBitmap(Uri uri) throws IOException {
+        InputStream is = getContentResolver().openInputStream(uri);
+        Bitmap bitmap = BitmapFactory.decodeStream(is);
+        is.close();
+
+        // Fix rotation
+        InputStream input = getContentResolver().openInputStream(uri);
+        ExifInterface exif = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            exif = new ExifInterface(input);
+        }
+        int orientation = exif != null ? exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL) : ExifInterface.ORIENTATION_NORMAL;
+        input.close();
+
+        Matrix matrix = new Matrix();
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90: matrix.postRotate(90); break;
+            case ExifInterface.ORIENTATION_ROTATE_180: matrix.postRotate(180); break;
+            case ExifInterface.ORIENTATION_ROTATE_270: matrix.postRotate(270); break;
+        }
+
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+    private String saveToInternalStorage(Bitmap bitmap) {
+        File directory = new File(getFilesDir(), "profile_photos");
+        if (!directory.exists()) directory.mkdirs();
+        File file = new File(directory, "current_profile.jpg");
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+            return file.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private void removeCustomPhoto() {
+        udm.remove("custom_profile_image");
         loadProfile();
     }
 
@@ -100,13 +264,24 @@ public class ProfileActivity extends AppCompatActivity {
         }
         tvSubTitle.setText(tagline);
 
-        // Avatar
-        tvProfileAvatarEmoji.setText("IMG");
+        // Avatar / Image
+        String customImagePath = udm.getString("custom_profile_image", null);
+        if (customImagePath != null && new File(customImagePath).exists()) {
+            tvProfileAvatarEmoji.setVisibility(View.GONE);
+            ivProfileImage.setVisibility(View.VISIBLE);
+            // Force reload by clearing cache
+            ivProfileImage.setImageURI(null);
+            ivProfileImage.setImageURI(Uri.fromFile(new File(customImagePath)));
+        } else {
+            tvProfileAvatarEmoji.setVisibility(View.VISIBLE);
+            ivProfileImage.setVisibility(View.GONE);
+            tvProfileAvatarEmoji.setText(udm.getString("playerAvatarEmoji", "👾"));
+        }
 
         // Member since
         String joinDate = udm.getString("join_date", null);
         if (joinDate == null) {
-            joinDate = new java.text.SimpleDateFormat("MMM yyyy", Locale.US).format(new java.util.Date());
+            joinDate = new SimpleDateFormat("MMM yyyy", Locale.US).format(new Date());
             udm.putString("join_date", joinDate);
         }
         tvMemberSince.setText("MEMBER SINCE " + joinDate.toUpperCase());

@@ -1,7 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Night theme must match our dark arcade aesthetic -->
     <style name="Base.Theme.PixelArcade" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 </resources>

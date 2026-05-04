@@ -92,10 +92,6 @@ public class DailyChallengesActivity extends AppCompatActivity {
 
     private void setupNavigation() {
         findViewById(R.id.navArcade).setOnClickListener(v -> {
-            startActivity(android.content.Intent.createChooser(new android.content.Intent(this, MainActivity.class), "Select Home"));
-            finish();
-        });
-        findViewById(R.id.navHome).setOnClickListener(v -> {
             startActivity(new android.content.Intent(this, MainActivity.class));
             finish();
         });
