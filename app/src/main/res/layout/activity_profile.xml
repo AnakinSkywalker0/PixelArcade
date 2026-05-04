@@ -70,15 +70,24 @@
                 android:visibility="gone" />
 
             <!-- Edit Photo Overlay Button -->
-            <ImageButton
+            <FrameLayout
                 android:id="@+id/btnEditPhoto"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_gravity="bottom|end"
                 android:background="@drawable/bg_pixel_inner_dark"
-                android:padding="8dp"
-                android:src="@drawable/ic_nav_space"
-                app:tint="#FFFFFF" />
+                android:clickable="true"
+                android:focusable="true">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:paddingBottom="2dp"
+                    android:fontFamily="@font/press_start_2p" />
+            </FrameLayout>
         </FrameLayout>
 
         <!-- Player Name -->
@@ -137,6 +146,7 @@
 
             <!-- Coins -->
             <LinearLayout
+                android:id="@+id/coinStatCard"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_marginEnd="6dp"
@@ -339,7 +349,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="COINS"
+                        android:text="WINS"
                         android:textColor="#555555"
                         android:textSize="6sp" />
                     <TextView
@@ -425,7 +435,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="WINS"
+                        android:text="HIGH"
                         android:textColor="#555555"
                         android:textSize="6sp" />
                     <TextView
@@ -448,7 +458,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="RATE"
+                        android:text="WINS"
                         android:textColor="#555555"
                         android:textSize="6sp" />
                     <TextView
@@ -557,7 +567,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/press_start_2p"
-                        android:text="WAVE"
+                        android:text="WINS"
                         android:textColor="#555555"
                         android:textSize="6sp" />
                     <TextView

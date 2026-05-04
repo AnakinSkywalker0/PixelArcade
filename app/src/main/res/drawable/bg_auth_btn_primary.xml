@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow / depth layer -->
     <item android:bottom="3dp">
         <shape android:shape="rectangle">
-            <solid android:color="#5F564D" />
+            <solid android:color="#B38A00" />
             <corners android:radius="6dp" />
         </shape>
     </item>
+    <!-- Main button face -->
     <item android:bottom="6dp">
         <shape android:shape="rectangle">
-            <solid android:color="#7F766D" />
+            <solid android:color="#F6C547" />
             <corners android:radius="6dp" />
             <stroke
                 android:width="2dp"
-                android:color="#5F564D" />
+                android:color="#B38A00" />
         </shape>
     </item>
 </layer-list>
-

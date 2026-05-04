@@ -46,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
             profileHeader.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
         }
 
+        View coinBadge = findViewById(R.id.coinBadge);
+        View btnAddCoins = findViewById(R.id.btnAddCoins);
+        View.OnClickListener buyCoinsListener = v -> startActivity(new Intent(this, BuyCoinsActivity.class));
+        
+        if (coinBadge != null) coinBadge.setOnClickListener(buyCoinsListener);
+        if (btnAddCoins != null) btnAddCoins.setOnClickListener(buyCoinsListener);
+
         // Game Play Buttons
         View btnPlay2048 = findViewById(R.id.btnPlay2048);
         View btnPlaySpace = findViewById(R.id.btnPlaySpace);
@@ -158,5 +165,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         updateStats();
+
+        // Active cloud sync: push latest data and pull any cloud updates
+        UserDataManager udm = UserDataManager.getInstance(this);
+        udm.pushAllToCloud();
+        udm.syncFromCloud(success -> {
+            if (success && !isFinishing()) {
+                runOnUiThread(this::updateStats);
+            }
+        });
     }
 }

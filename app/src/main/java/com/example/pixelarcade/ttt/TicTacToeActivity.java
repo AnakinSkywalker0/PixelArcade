@@ -95,6 +95,9 @@ public class TicTacToeActivity extends AppCompatActivity {
         btnTttOverlayMenu.setOnClickListener(v -> finish());
         btnTttPlayAgain.setOnClickListener(v -> {
             tttOverlay.setVisibility(View.GONE);
+            // Increment play count for every new match
+            UserDataManager udmAgain = UserDataManager.getInstance(this);
+            udmAgain.putInt("plays_ttt", udmAgain.getInt("plays_ttt", 0) + 1);
             resetBoard();
         });
 
@@ -110,9 +113,8 @@ public class TicTacToeActivity extends AppCompatActivity {
         animationsEnabled = udm.getBoolean("animations", true);
         playerFirst = udm.getBoolean("ttt_player_first", true);
 
-        // Increment play count
-        int plays = udm.getInt("plays_ttt", 0);
-        udm.putInt("plays_ttt", plays + 1);
+        // Increment play count for the first match
+        udm.putInt("plays_ttt", udm.getInt("plays_ttt", 0) + 1);
 
         tttGrid.post(() -> {
             buildGrid();

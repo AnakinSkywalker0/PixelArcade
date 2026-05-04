@@ -85,6 +85,10 @@ public class DailyChallengesActivity extends AppCompatActivity {
 
         findViewById(R.id.btnChallengesBack).setOnClickListener(v -> finish());
 
+        findViewById(R.id.coinHeroSection).setOnClickListener(v -> {
+            startActivity(new android.content.Intent(this, BuyCoinsActivity.class));
+        });
+
         setupNavigation();
         checkDailyReset();
         loadChallenges();

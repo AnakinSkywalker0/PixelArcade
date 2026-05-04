@@ -223,37 +223,33 @@ public class GalagaGameView extends SurfaceView implements SurfaceHolder.Callbac
         };
 
         float[][] formation2 = {
-            // 4 Boss Galagas — top
-            {-1.5f, 0, 2}, {-0.5f, 0, 2}, {0.5f, 0, 2}, {1.5f, 0, 2},
-            // 6 Moths — rows 1 & 2
-            {-2.5f, 1, 1}, {-1.5f, 1, 1}, {-0.5f, 1, 1}, {0.5f, 1, 1}, {1.5f, 1, 1}, {2.5f, 1, 1},
-            {-2.5f, 2, 1}, {-1.5f, 2, 1}, {-0.5f, 2, 1}, {0.5f, 2, 1}, {1.5f, 2, 1}, {2.5f, 2, 1},
-            // 8 Blue Enemies — row 3 (new!)
-            {-3.5f, 3, 3}, {-2.5f, 3, 3}, {-1.5f, 3, 3}, {-0.5f, 3, 3},
-            { 0.5f, 3, 3}, { 1.5f, 3, 3}, { 2.5f, 3, 3}, { 3.5f, 3, 3},
-            // 8 Bees — rows 4–5
-            {-3.5f, 4, 0}, {-2.5f, 4, 0}, {-1.5f, 4, 0}, {-0.5f, 4, 0},
-            { 0.5f, 4, 0}, { 1.5f, 4, 0}, { 2.5f, 4, 0}, { 3.5f, 4, 0},
-            {-3.5f, 5, 0}, {-2.5f, 5, 0}, {-1.5f, 5, 0}, {-0.5f, 5, 0},
-            { 0.5f, 5, 0}, { 1.5f, 5, 0}, { 2.5f, 5, 0}, { 3.5f, 5, 0},
+            // 2 Boss Galagas — top center
+            {-0.5f, 0, 2}, {0.5f, 0, 2},
+            // 4 Moths — row 1
+            {-1.5f, 1, 1}, {-0.5f, 1, 1}, {0.5f, 1, 1}, {1.5f, 1, 1},
+            // 4 Blue Enemies — row 2
+            {-1.5f, 2, 3}, {-0.5f, 2, 3}, {0.5f, 2, 3}, {1.5f, 2, 3},
+            // 6 Bees — row 3
+            {-2.5f, 3, 0}, {-1.5f, 3, 0}, {-0.5f, 3, 0},
+            { 0.5f, 3, 0}, { 1.5f, 3, 0}, { 2.5f, 3, 0},
+            // 6 Bees — row 4
+            {-2.5f, 4, 0}, {-1.5f, 4, 0}, {-0.5f, 4, 0},
+            { 0.5f, 4, 0}, { 1.5f, 4, 0}, { 2.5f, 4, 0},
         };
 
         float[][] formation3 = {
-            // 4 Boss Galagas
+            // 4 Boss Galagas — top
             {-1.5f, 0, 2}, {-0.5f, 0, 2}, {0.5f, 0, 2}, {1.5f, 0, 2},
-            // 8 Moths — rows 1 & 2
-            {-3.5f, 1, 1}, {-2.5f, 1, 1}, {-1.5f, 1, 1}, {-0.5f, 1, 1},
-            { 0.5f, 1, 1}, { 1.5f, 1, 1}, { 2.5f, 1, 1}, { 3.5f, 1, 1},
-            {-3.5f, 2, 1}, {-2.5f, 2, 1}, {-1.5f, 2, 1}, {-0.5f, 2, 1},
-            { 0.5f, 2, 1}, { 1.5f, 2, 1}, { 2.5f, 2, 1}, { 3.5f, 2, 1},
-            // 8 Blue Enemies — row 3 (new!)
-            {-3.5f, 3, 3}, {-2.5f, 3, 3}, {-1.5f, 3, 3}, {-0.5f, 3, 3},
-            { 0.5f, 3, 3}, { 1.5f, 3, 3}, { 2.5f, 3, 3}, { 3.5f, 3, 3},
-            // 8 Bees — rows 4–5
-            {-3.5f, 4, 0}, {-2.5f, 4, 0}, {-1.5f, 4, 0}, {-0.5f, 4, 0},
-            { 0.5f, 4, 0}, { 1.5f, 4, 0}, { 2.5f, 4, 0}, { 3.5f, 4, 0},
-            {-3.5f, 5, 0}, {-2.5f, 5, 0}, {-1.5f, 5, 0}, {-0.5f, 5, 0},
-            { 0.5f, 5, 0}, { 1.5f, 5, 0}, { 2.5f, 5, 0}, { 3.5f, 5, 0},
+            // 4 Moths — row 1
+            {-1.5f, 1, 1}, {-0.5f, 1, 1}, {0.5f, 1, 1}, {1.5f, 1, 1},
+            // 4 Moths — row 2
+            {-1.5f, 2, 1}, {-0.5f, 2, 1}, {0.5f, 2, 1}, {1.5f, 2, 1},
+            // 6 Blue Enemies — row 3
+            {-2.5f, 3, 3}, {-1.5f, 3, 3}, {-0.5f, 3, 3},
+            { 0.5f, 3, 3}, { 1.5f, 3, 3}, { 2.5f, 3, 3},
+            // 6 Bees — row 4
+            {-2.5f, 4, 0}, {-1.5f, 4, 0}, {-0.5f, 4, 0},
+            { 0.5f, 4, 0}, { 1.5f, 4, 0}, { 2.5f, 4, 0},
         };
 
         float[][] layout;
@@ -373,8 +369,8 @@ public class GalagaGameView extends SurfaceView implements SurfaceHolder.Callbac
             shootCooldown = 18; // ~3 shots/sec at 60fps
         }
 
-        // Enemy fire — AIMED at player's X
-        int fireChance = Math.max(15, 60 - currentWave * 12);
+        // Enemy fire — AIMED at player's X (~35% less frequent)
+        int fireChance = Math.max(22, 90 - currentWave * 12);
         if (!enemies.isEmpty() && random.nextInt(fireChance) < 1) {
             List<Enemy> shooters = new ArrayList<>();
             for (Enemy e : enemies) if (e.type != 3) shooters.add(e);
@@ -384,8 +380,8 @@ public class GalagaGameView extends SurfaceView implements SurfaceHolder.Callbac
             }
         }
 
-        // Blue enemy fire — large slow balls, aimed straight down at player
-        int blueFireChance = Math.max(30, 90 - currentWave * 10);
+        // Blue enemy fire — large slow balls (~35% less frequent)
+        int blueFireChance = Math.max(45, 130 - currentWave * 10);
         if (!enemies.isEmpty() && random.nextInt(blueFireChance) < 1) {
             List<Enemy> blues = new ArrayList<>();
             for (Enemy e : enemies) if (e.type == 3) blues.add(e);
@@ -682,7 +678,7 @@ public class GalagaGameView extends SurfaceView implements SurfaceHolder.Callbac
     }
 
     private class Player {
-        RectF rect; float speed = 16f, size = 80f; int invulnFrames = 0;
+        RectF rect; float speed = 16f, size = 110f; int invulnFrames = 0;
         Player(float x, float y) { rect = new RectF(x-size/2, y-size/2, x+size/2, y+size/2); }
         void update() { if (invulnFrames > 0) invulnFrames--; }
         void moveLeft(int w)  { rect.offset(-speed, 0); if (rect.left < 0) rect.offsetTo(0, rect.top); }

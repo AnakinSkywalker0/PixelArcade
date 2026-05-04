@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0F"
+    android:fitsSystemWindows="true">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_pixel_inner_dark"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_retro_back"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/press_start_2p"
+            android:gravity="center"
+            android:text="BUY COINS"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/coinBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_pixel_inner_dark"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="6dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="6dp"
+                android:src="@drawable/ic_coin" />
+
+            <TextView
+                android:id="@+id/tvCoinBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:text="1250"
+                android:textColor="@color/arcade_yellow"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Hero Coin Icon -->
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/ic_coin"
+                app:tint="@color/arcade_yellow" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/press_start_2p"
+                android:gravity="center"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:text="USE COINS TO UNLOCK ITEMS,\nPOWER-UPS AND MORE!"
+                android:textColor="#9A9086"
+                android:textSize="8sp" />
+
+            <!-- Bundle List -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical">
+
+                <!-- Bundle 1 -->
+                <include
+                    android:id="@+id/bundle500"
+                    layout="@layout/item_coin_bundle" />
+
+                <include
+                    android:id="@+id/bundle1200"
+                    layout="@layout/item_coin_bundle" />
+
+                <include
+                    android:id="@+id/bundle2500"
+                    layout="@layout/item_coin_bundle" />
+
+                <include
+                    android:id="@+id/bundle5500"
+                    layout="@layout/item_coin_bundle" />
+
+                <include
+                    android:id="@+id/bundle12000"
+                    layout="@layout/item_coin_bundle" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/press_start_2p"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:text="All purchases are secure and encrypted.\nBy purchasing, you agree to our Terms of Service."
+                android:textColor="#5F564D"
+                android:textSize="6sp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -121,8 +121,11 @@ public class ProfileActivity extends AppCompatActivity {
         // Back button
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
-        // Photo feature
         findViewById(R.id.btnEditPhoto).setOnClickListener(v -> checkPermissionsAndShowDialog());
+
+        findViewById(R.id.coinStatCard).setOnClickListener(v -> {
+            startActivity(new Intent(this, BuyCoinsActivity.class));
+        });
 
         // Action buttons
         findViewById(R.id.btnEditProfile).setOnClickListener(v ->
@@ -309,17 +312,17 @@ public class ProfileActivity extends AppCompatActivity {
         // TTT Breakdown
         int playsTtt = udm.getInt("plays_ttt", 0);
         int winsTtt = udm.getInt("wins_ttt", 0);
-        int winRate = playsTtt > 0 ? (winsTtt * 100 / playsTtt) : 0;
+        int streakTtt = udm.getInt("challenge_ttt_consec_wins", 0);
         tvTttPlays.setText(String.valueOf(playsTtt));
-        tvTttWins.setText(String.valueOf(winsTtt));
-        tvTttWinRate.setText(winRate + "%");
+        tvTttWins.setText(String.valueOf(streakTtt)); // This is now 'HIGH'
+        tvTttWinRate.setText(String.valueOf(winsTtt)); // This is now 'WINS'
 
         // Galaga Breakdown
         int playsGalaga = udm.getInt("galaga_plays", 0);
         int waveGalaga = udm.getInt("galaga_endless_best_wave", 0);
         tvGalagaPlays.setText(String.valueOf(playsGalaga));
         tvGalagaHigh.setText(formatNumber(Math.max(highGalaga, highEndless)));
-        tvGalagaWave.setText(String.valueOf(waveGalaga));
+        tvGalagaWave.setText(String.valueOf(waveGalaga)); // This is now 'WINS'
     }
 
     private String formatNumber(int num) {

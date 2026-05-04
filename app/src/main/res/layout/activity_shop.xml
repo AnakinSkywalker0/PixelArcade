@@ -42,41 +42,8 @@
             android:textSize="16sp"
             android:fontFamily="@font/press_start_2p"
             android:gravity="center"
+            android:layout_marginEnd="36dp"
             android:layout_marginStart="8dp"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_pixel_inner_dark"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="4dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🪙"
-                android:textSize="12sp"
-                android:layout_marginEnd="4dp"/>
-            <TextView
-                android:id="@+id/tvShopCoins"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1250"
-                android:textColor="@color/arcade_yellow"
-                android:textSize="9sp"
-                android:fontFamily="@font/press_start_2p"/>
-            <TextView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="8dp"
-                android:background="@color/arcade_purple"
-                android:text="+"
-                android:textColor="#FFFFFF"
-                android:textSize="10sp"
-                android:gravity="center"
-                android:fontFamily="@font/press_start_2p"/>
-        </LinearLayout>
     </LinearLayout>
 
     <!-- ═══════════ TABS ═══════════ -->
@@ -442,11 +409,12 @@
                         android:fontFamily="@font/press_start_2p"
                         android:layout_marginBottom="4dp"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="COME BACK EVERY DAY TO CLAIM FREE COINS!"
+                        android:text="COME BACK EVERY DAY TO\nCLAIM FREE COINS!"
                         android:textColor="#777777"
                         android:textSize="6sp"
+                        android:lineSpacingMultiplier="1.4"
                         android:fontFamily="@font/press_start_2p"/>
                 </LinearLayout>
 

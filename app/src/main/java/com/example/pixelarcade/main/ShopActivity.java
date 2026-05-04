@@ -22,7 +22,6 @@ import com.example.pixelarcade.game2048.GameLauncher2048Activity;
 public class ShopActivity extends AppCompatActivity {
 
     private UserDataManager udm;
-    private TextView tvCoins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +36,7 @@ public class ShopActivity extends AppCompatActivity {
         });
 
         udm = UserDataManager.getInstance(this);
-        tvCoins = findViewById(R.id.tvShopCoins);
-        updateCoinDisplay();
+        // updateCoinDisplay(); // No longer in header
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
@@ -51,7 +49,7 @@ public class ShopActivity extends AppCompatActivity {
                 int currentCoins = udm.getInt("coins", 0);
                 udm.putInt("coins", currentCoins + 50);
                 udm.putLong("last_free_gift_claim", now);
-                updateCoinDisplay();
+                // updateCoinDisplay();
                 Toast.makeText(this, "Claimed 50 coins!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Gift available in a few hours!", Toast.LENGTH_SHORT).show();
@@ -62,7 +60,7 @@ public class ShopActivity extends AppCompatActivity {
     }
 
     private void updateCoinDisplay() {
-        tvCoins.setText(String.valueOf(udm.getInt("coins", 0)));
+        // tvCoins.setText(String.valueOf(udm.getInt("coins", 0)));
     }
 
     private void setupNavigation() {
